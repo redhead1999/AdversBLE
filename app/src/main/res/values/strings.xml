@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Адверс</string>
+    <string name="pump_string">Помпа</string>
+    <string name="heat_string">Подогрев</string>
+    <string name="settings_string">Настройки</string>
+    <string name="timer_string">Таймер</string>
+    <string name="theme_string">Тема</string>
+    <string name="general_setting_string">Основные</string>
+    <string name="support_setting_string">Поддержка</string>
+    <string name="set_time_setting_string">Время работы</string>
+    <string name="contact_setting_string">Контакты</string>
+    <string name="feedback_setting_string">Обратная связь</string>
+    <string name="privacy_policy_setting_string">О компании</string>
+    <string name="notifications_setting_string">Уведомления</string>
+    <string name="about_setting_string">О нас</string>
+    <string name="charts_heading_string">Графики</string>
+
+    <!--Settings-->
+
+    <string name="worktime_string">Время работы</string>
+    <string name="unlimited_worktime_string">Неограниченное</string>
+
+    <string name="automatic_reheater_string">Автоматический догреватель</string>
+    <string name="heater_and_reheater_string">Подогреватель и догреватель</string>
+
+    <string name="temperature_heater_string">Температура догревателя</string>
+    <string name="temperature_reheater_string">Температура подогревателя</string>
+
+    <string name="pump_and_heating_string">Помпа и отопление</string>
+
+    <string name="pump_operation_in_standby_mode_string">Работа помпы в ждущем режиме</string>
+    <string name="operation_of_the_pump_with_the_engine">Работа помпы с двигателем</string>
+    <string name="сabin_heater_operation">Работа отопителя салона</string>
+    <string name="cabin_heater_start_temperature">Температура включения отопителя салона</string>
+    <string name="informtaion_string">Cправка</string>
+
+    <string name="system_string">Система</string>
+    <string name="remote_control_string">Внешнее управление</string>
+    <string name="temperature_string">Температура</string>
+    <string name="celsius_string">Цельсий</string>
+    <string name="fahrenheit_string">Фаренгейт</string>
+
+    <string name="heater_string">Подогреватель</string>
+    <string name="device_name_string">Имя устройства</string>
+    <string name="serial_number_string">Серийный номер</string>
+    <string name="software_version_string">Версия ПО</string>
+    <string name="total_worktime_string">Общее время работы</string>
+
+
+
+
+</resources>

@@ -1,0 +1,5 @@
+package com.aold.advers.chat.domain.chat
+
+import java.io.IOException
+
+class TransferFailedException: IOException("Reading incoming data failed")

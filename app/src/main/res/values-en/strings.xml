@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Advers</string>
+    <string name="pump_string">Pump</string>
+    <string name="heat_string">Heating</string>
+    <string name="settings_string">Settings</string>
+    <string name="timer_string">Timer</string>
+    <string name="theme_string">Тheme</string>
+    <string name="general_setting_string">General</string>
+    <string name="support_setting_string">Support</string>
+    <string name="set_time_setting_string">Work time</string>
+    <string name="contact_setting_string">Contact</string>
+    <string name="feedback_setting_string">Feedback</string>
+    <string name="privacy_policy_setting_string">Privacy Policy</string>
+    <string name="notifications_setting_string">Notifications</string>
+    <string name="about_setting_string">About</string>
+    <string name="charts_heading_string">Charts</string>
+
+    <!--Settings-->
+
+    <string name="worktime_string">Work time</string>
+    <string name="unlimited_worktime_string">Unlimited working time</string>
+
+    <string name="automatic_reheater_string">Automatic reheater</string>
+    <string name="heater_and_reheater_string">Heater and reheater</string>
+
+    <string name="temperature_heater_string">Reheater temperature</string>
+    <string name="temperature_reheater_string">Heater temperature</string>
+
+    <string name="pump_and_heating_string">Pump and heating</string>
+    <string name="pump_operation_in_standby_mode_string">Pump operation in standby mode</string>
+    <string name="operation_of_the_pump_with_the_engine">Operation of the pump with the engine</string>
+    <string name="сabin_heater_operation">Cabin heater operation</string>
+    <string name="cabin_heater_start_temperature">Cabin heater start temperature</string>
+
+    <string name="system_string">System</string>
+    <string name="remote_control_string">Remote control</string>
+    <string name="temperature_string">Temperature</string>
+    <string name="celsius_string">Celsius</string>
+    <string name="fahrenheit_string">Fahrengeit</string>
+
+    <string name="heater_string">Heater</string>
+    <string name="device_name_string">Device name</string>
+    <string name="serial_number_string">Serial number</string>
+    <string name="software_version_string">Software</string>
+    <string name="total_worktime_string">Total</string>
+    <string name="informtaion_string">Info</string>
+
+
+
+</resources>
