@@ -1,4 +1,4 @@
-package com.aold.advers.presentation.parts.picker
+package com.aold.advers.presentation.components.picker
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue

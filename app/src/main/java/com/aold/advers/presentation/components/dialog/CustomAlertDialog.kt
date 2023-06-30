@@ -1,4 +1,4 @@
-package com.aold.advers.presentation.parts.dialog
+package com.aold.advers.presentation.components.dialog
 
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.MaterialTheme
@@ -7,7 +7,7 @@ import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 
 @Composable
-fun CustomAlertDialog(name: String,
+fun InfoAlertDialog(name: String,
           showDialog: Boolean,
           onDismiss: () -> Unit) {
     if (showDialog) {

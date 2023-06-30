@@ -1,8 +1,7 @@
-package com.aold.advers.presentation.parts
+package com.aold.advers.presentation.components.charts
 
 import android.graphics.Paint
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -14,13 +13,14 @@ import androidx.compose.ui.unit.sp
 import kotlin.math.round
 import kotlin.math.roundToInt
 
+
 @Composable
-fun QuadLineChart(
+fun TemperatureChart(
     data: List<Pair<Int, Double>> = emptyList(),
     modifier: Modifier = Modifier
 ) {
     val spacing = 100f
-    val graphColor = Color.Red
+    val graphColor = Color.Cyan
     val transparentGraphColor = remember { graphColor.copy(alpha = 0.5f) }
     val upperValue = remember { (data.maxOfOrNull { it.second }?.plus(1))?.roundToInt() ?: 0 }
     val lowerValue = remember { (data.minOfOrNull { it.second }?.toInt() ?: 0) }
@@ -34,8 +34,7 @@ fun QuadLineChart(
         }
     }
 
-    Canvas(modifier = modifier
-        .background(Color.Transparent),) {
+    Canvas(modifier = modifier) {
         val spacePerHour = (size.width - spacing) / data.size
         (data.indices step 2).forEach { i ->
             val hour = data[i].first
@@ -61,34 +60,27 @@ fun QuadLineChart(
             }
         }
 
-        var medX: Float
-        var medY: Float
         val strokePath = Path().apply {
             val height = size.height
             data.indices.forEach { i ->
-                val nextInfo = data.getOrNull(i + 1) ?: data.last()
-                val firstRatio = (data[i].second - lowerValue) / (upperValue - lowerValue)
-                val secondRatio = (nextInfo.second - lowerValue) / (upperValue - lowerValue)
+                val info = data[i]
+                val ratio = (info.second - lowerValue) / (upperValue - lowerValue)
 
                 val x1 = spacing + i * spacePerHour
-                val y1 = height - spacing - (firstRatio * height).toFloat()
-                val x2 = spacing + (i + 1) * spacePerHour
-                val y2 = height - spacing - (secondRatio * height).toFloat()
+                val y1 = height - spacing - (ratio * height).toFloat()
+
                 if (i == 0) {
                     moveTo(x1, y1)
-                } else {
-                    medX = (x1 + x2) / 2f
-                    medY = (y1 + y2) / 2f
-                    quadraticBezierTo(x1 = x1, y1 = y1, x2 = medX, y2 = medY)
                 }
+                lineTo(x1, y1)
             }
         }
 
         drawPath(
             path = strokePath,
-            color = Color.Red,
+            color = graphColor,
             style = Stroke(
-                width = 3.dp.toPx(),
+                width = 2.dp.toPx(),
                 cap = StrokeCap.Round
             )
         )

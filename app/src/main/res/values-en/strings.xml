@@ -46,6 +46,7 @@
     <string name="total_worktime_string">Total</string>
     <string name="informtaion_string">Info</string>
 
+    <string name="agreement_string">Consent to personal data processing </string>
 
 
 </resources>

@@ -1,4 +1,4 @@
-package com.aold.advers.presentation.parts
+package com.aold.advers.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
