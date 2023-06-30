@@ -48,5 +48,8 @@
 
     <string name="agreement_string">Consent to personal data processing </string>
 
+    <string name="ble_playground">BLE Playground</string>
+
+
 
 </resources>
