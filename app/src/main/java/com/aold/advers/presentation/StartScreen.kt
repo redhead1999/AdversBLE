@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -38,7 +39,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.aold.advers.R
 import com.aold.advers.WindowInfo
-import com.aold.advers.presentation.parts.picker.PickerExample
+import com.aold.advers.presentation.components.picker.PickerExample
 import com.aold.advers.rememberWindowInfo
 
 /**
@@ -133,6 +134,87 @@ fun StartScreen(
         }
         Box(
             modifier = Modifier
+                .fillMaxWidth()
+                .padding()
+                .fillMaxHeight(),
+            contentAlignment = Alignment.TopCenter
+        )
+        {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(30.dp)
+            ) {
+                Button(
+                    border = BorderStroke(1.dp, Color.Transparent),
+                    shape = RoundedCornerShape(15),
+                    modifier = Modifier
+                        .width(100.dp)
+                        .height(55.dp),
+                    onClick = {
+                        navController.navigate(Screen.TemperatureChartScreen.route) {
+                            popUpTo(Screen.TemperatureChartScreen.route) {
+                                inclusive = false
+                            }
+                        }
+                    }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.termo),
+                        contentDescription = null // decorative element
+                    )
+                    Spacer(modifier = Modifier.size(10.dp))
+                    Text(
+                        text = "0°C",
+                        style = androidx.compose.ui.text.TextStyle(fontSize = 10.sp)
+                    )
+                }
+                Button(
+                    border = BorderStroke(1.dp, Color.Transparent),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red),
+                    shape = RoundedCornerShape(15),
+                    modifier = Modifier
+                        .width(100.dp)
+                        .height(55.dp),
+                    onClick = {
+                        navController.navigate(Screen.BluetoothChatScreen.route) {
+                            popUpTo(Screen.BluetoothChatScreen.route) {
+                                inclusive = true
+                            }
+                        }
+                    }) {
+                    Text(
+                        text = "ПОИСК",
+                        style = androidx.compose.ui.text.TextStyle(fontSize = 15.sp)
+                    )
+                }
+                Button(
+                    border = BorderStroke(1.dp, Color.Transparent),
+                    shape = RoundedCornerShape(15),
+                    modifier = Modifier
+                        .width(100.dp)
+                        .height(55.dp),
+                    onClick = {
+                        navController.navigate(Screen.VoltageChartScreen.route) {
+                            popUpTo(Screen.VoltageChartScreen.route) {
+                                inclusive = false
+                            }
+                        }
+                    }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.light),
+                        contentDescription = null // decorative element
+                    )
+                    Spacer(modifier = Modifier.size(10.dp))
+                    Text(
+                        text = "0.0 V",
+                        style = androidx.compose.ui.text.TextStyle(fontSize = 15.sp)
+                    )
+                }
+            }
+        }
+        Box(
+            modifier = Modifier
                 .width(1000.dp)
                 .fillMaxHeight()
                 .background(color = Color.Transparent),
@@ -141,6 +223,26 @@ fun StartScreen(
         {
             Row {
                 PickerExample()
+            }
+            Row() {
+                Button(
+                    border = BorderStroke(1.dp, Color.Transparent),
+                    shape = CircleShape,
+                    modifier = Modifier
+                        .width(65.dp)
+                        .height(40.dp),
+                    onClick = {
+                        navController.navigate(Screen.TestScreen.route) {
+                            popUpTo(Screen.TestScreen.route) {
+                                inclusive = false
+                            }
+                        }
+                    }) {
+                    Text(
+                        text = "ТЕСТ",
+                        style = androidx.compose.ui.text.TextStyle(fontSize = 10.sp)
+                    )
+                }
             }
         }
         Box(

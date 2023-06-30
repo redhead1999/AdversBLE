@@ -1,4 +1,4 @@
-package com.aold.advers.presentation.parts
+package com.aold.advers.presentation.components
 
 import android.os.Build
 import androidx.annotation.RequiresApi

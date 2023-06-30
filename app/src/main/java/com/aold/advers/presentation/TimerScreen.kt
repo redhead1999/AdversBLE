@@ -30,7 +30,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -38,7 +37,7 @@ import com.aold.advers.R
 import com.aold.advers.WindowInfo
 import com.aold.advers.presentation.notifications.Counter
 import com.aold.advers.presentation.notifications.CounterNotificationService
-import com.aold.advers.presentation.parts.TimerHeaderText
+import com.aold.advers.presentation.components.headings.TimerHeaderText
 import com.aold.advers.rememberWindowInfo
 
 /**

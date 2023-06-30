@@ -33,6 +33,7 @@
     <string name="operation_of_the_pump_with_the_engine">Работа помпы с двигателем</string>
     <string name="сabin_heater_operation">Работа отопителя салона</string>
     <string name="cabin_heater_start_temperature">Температура включения отопителя салона</string>
+    <string name="agreement_string">Согласие на обработку персональных данных</string>
     <string name="informtaion_string">Cправка</string>
 
     <string name="system_string">Система</string>

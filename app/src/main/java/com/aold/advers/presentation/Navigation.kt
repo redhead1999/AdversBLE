@@ -9,7 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.aold.advers.chat.presentation.BluetoothChatScreen
-import com.aold.advers.presentation.parts.TestScreen
+import com.aold.advers.presentation.components.TestScreen
 
 
 

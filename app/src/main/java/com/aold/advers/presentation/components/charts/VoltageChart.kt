@@ -1,4 +1,4 @@
-package com.aold.advers.presentation.parts
+package com.aold.advers.presentation.components.charts
 
 import android.graphics.Paint
 import androidx.compose.foundation.Canvas

@@ -1,4 +1,4 @@
-package com.aold.advers.presentation.parts
+package com.aold.advers.presentation.components.headings
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,10 +14,10 @@ import androidx.compose.ui.unit.sp
 import com.aold.advers.R
 
 @Composable
-fun TimerHeaderText() {
+fun ChartsHeaderText() {
     Text(
         color = MaterialTheme.colors.primary,
-        text = stringResource(id = R.string.timer_string),
+        text = stringResource(id = R.string.charts_heading_string),
         textAlign = TextAlign.Center,
         modifier = Modifier
             .fillMaxWidth()

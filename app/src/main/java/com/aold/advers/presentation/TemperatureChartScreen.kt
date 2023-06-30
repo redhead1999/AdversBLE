@@ -17,8 +17,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.aold.advers.WindowInfo
-import com.aold.advers.presentation.parts.ChartsHeaderText
-import com.aold.advers.presentation.parts.TemperatureChart
+import com.aold.advers.presentation.components.headings.ChartsHeaderText
+import com.aold.advers.presentation.components.charts.TemperatureChart
 import com.aold.advers.rememberWindowInfo
 
 @ExperimentalMaterialApi

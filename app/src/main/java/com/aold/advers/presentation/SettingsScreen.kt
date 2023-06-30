@@ -39,8 +39,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.aold.advers.BuildConfig
 import com.aold.advers.R
-import com.aold.advers.presentation.parts.SettingsHeaderText
-import com.aold.advers.presentation.parts.dialog.CustomAlertDialog
+import com.aold.advers.presentation.components.dialog.AgreementAlertDialog
+import com.aold.advers.presentation.components.dialog.InfoAlertDialog
+import com.aold.advers.presentation.components.headings.SettingsHeaderText
 import com.aold.advers.ui.theme.AdversBluetoothTheme
 
 /**
@@ -67,7 +68,7 @@ fun SettingsScreen(
             Row() {
                 Text(
                     color = MaterialTheme.colors.primary,
-                    text = "Тема приложения",
+                    text = "Темная тема",
                     fontSize = 14.sp,
 
                     fontWeight = FontWeight.Bold,
@@ -190,14 +191,25 @@ fun SupportOptionsUI() {
 
         val showDialog = remember { mutableStateOf(false) }
         if (showDialog.value) {
-            CustomAlertDialog(name = "Cправочная информация - это очень ванжая информация." +
+            InfoAlertDialog(name = "Cправочная информация - это очень ванжая информация." +
                     "Cправочная информация - это очень ванжая информация",
                 showDialog = showDialog.value,
-                onDismiss = {showDialog.value = false})
+                onDismiss = { showDialog.value = false })
         }
         SettingsItem(
             mainText = stringResource(id = R.string.cabin_heater_start_temperature),
-            onClick = {showDialog.value = true})
+            onClick = { showDialog.value = true })
+
+        if (showDialog.value) {
+           AgreementAlertDialog(name = "Даете ли вы согласие на отправку данных с вашего изделия для его дистанционной диагностики?",
+                showDialog = showDialog.value,
+                onDismiss = { showDialog.value = false })
+        }
+        SettingsItem(
+            mainText = stringResource(id = R.string.agreement_string),
+            onClick = { showDialog.value = true })
+
+
         Spacer(modifier = Modifier.height(5.dp))
 
         val context = LocalContext.current
@@ -243,7 +255,7 @@ fun SettingsItemWithSwitcher(mainText: String, onClick: () -> Unit) {
                     fontWeight = FontWeight.Bold,
                 )
             }
-            Switch(checked =true , onCheckedChange = null)
+            Switch(checked = true, onCheckedChange = null)
         }
     }
 }

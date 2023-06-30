@@ -1,4 +1,4 @@
-package com.aold.advers.presentation.parts
+package com.aold.advers.presentation.components.headings
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

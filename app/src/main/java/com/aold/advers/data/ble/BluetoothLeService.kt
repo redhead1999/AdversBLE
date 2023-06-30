@@ -28,8 +28,8 @@ class BluetoothLeService : Service() {
     private var mBluetoothGatt: BluetoothGatt? = null
     private var mConnectionState = STATE_DISCONNECTED
 
-    // Implements callback methods for GATT events that the app cares about.  For example,
-    // connection change and services discovered.
+    // Реализует методы обратного вызова для событий GATT, о которых заботится приложение. Например,
+    // изменение подключения и обнаруженные службы.
     private val mGattCallback = object : BluetoothGattCallback() {
         override fun onConnectionStateChange(gatt: BluetoothGatt, status: Int, newState: Int) {
             val intentAction: String
@@ -80,8 +80,8 @@ class BluetoothLeService : Service() {
                                 characteristic: BluetoothGattCharacteristic) {
         val intent = Intent(action)
 
-        // This is special handling for the Heart Rate Measurement profile.  Data parsing is
-        // carried out as per profile specifications:
+        // Это специальная обработка для профиля измерения частоты сердечных сокращений.  Анализ данных - это
+        //        // выполняется в соответствии со спецификациями профиля:
         // http://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.heart_rate_measurement.xml
         if (UUID_ADVERS_HEATER== characteristic.uuid) {
             val flag = characteristic.properties
@@ -97,7 +97,7 @@ class BluetoothLeService : Service() {
             Log.d(TAG, String.format("ADVERS HEATER: %d", heartRate))
             intent.putExtra(EXTRA_DATA, heartRate.toString())
         } else {
-            // For all other profiles, writes the data formatted in HEX.
+            // Для всех остальных профилей записывает данные, отформатированные в шестнадцатеричном формате.
             val data = characteristic.value
             if (data != null && data.size > 0) {
                 val stringBuilder = StringBuilder(data.size)
@@ -119,9 +119,9 @@ class BluetoothLeService : Service() {
     }
 
     override fun onUnbind(intent: Intent): Boolean {
-        // After using a given device, you should make sure that BluetoothGatt.close() is called
-        // such that resources are cleaned up properly.  In this particular example, close() is
-        // invoked when the UI is disconnected from the Service.
+        // После использования данного устройства вы должны убедиться, что вызывается функция BluetoothGatt.close()
+        // таким образом, чтобы ресурсы были очищены должным образом.  В этом конкретном примере close() - это
+        // вызывается, когда пользовательский интерфейс отключен от службы.
         close()
         return super.onUnbind(intent)
     }
@@ -134,8 +134,8 @@ class BluetoothLeService : Service() {
      * @return Return true if the initialization is successful.
      */
     fun initialize(): Boolean {
-        // For API level 18 and above, get a reference to BluetoothAdapter through
-        // BluetoothManager.
+        // // Для API уровня 18 и выше получите ссылку на адаптер Bluetooth через
+        // // Менеджер Bluetooth.
         if (mBluetoothManager == null) {
             mBluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
             if (mBluetoothManager == null) {
@@ -187,8 +187,8 @@ class BluetoothLeService : Service() {
             Log.w(TAG, "Device not found.  Unable to connect.")
             return false
         }
-        // We want to directly connect to the device, so we are setting the autoConnect
-        // parameter to false.
+        // // Мы хотим напрямую подключиться к устройству, поэтому мы устанавливаем автоматическое подключение
+        // значение параметра равно false.
         mBluetoothGatt = device.connectGatt(this, false, mGattCallback)
         Log.d(TAG, "Trying to create a new connection.")
         mBluetoothDeviceAddress = address
@@ -249,6 +249,7 @@ class BluetoothLeService : Service() {
         if (mBluetoothAdapter == null || mBluetoothGatt == null) {
             Log.w(TAG, "BluetoothAdapter not initialized")
             return
+
         }
         mBluetoothGatt!!.setCharacteristicNotification(characteristic, enabled)
 
