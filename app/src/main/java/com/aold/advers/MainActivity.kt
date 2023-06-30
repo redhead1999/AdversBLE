@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothManager
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
@@ -36,14 +37,18 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 @RequiresApi(Build.VERSION_CODES.M)
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
 
+class MainActivity : ComponentActivity(
+) {
+    
 
     private val bluetoothManager by lazy {
         applicationContext.getSystemService(BluetoothManager::class.java)
     }
     private val bluetoothAdapter by lazy {
         bluetoothManager?.adapter
+        val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
+        bluetoothManager.adapter
     }
 
     private val isBluetoothEnabled: Boolean
@@ -101,6 +106,26 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    private fun promptEnableBluetooth() {
+        if (!bluetoothAdapter.isEnabled) {
+            val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+            startActivityForResult(enableBtIntent, )
+        }
+    }
+
+    private fun startActivityForResult(enableBtIntent: Intent) {
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!bluetoothAdapter.isEnabled) {
+            promptEnableBluetooth()
+        }
+    }
+
+   
 
     override fun onStart() {
         super.onStart()
