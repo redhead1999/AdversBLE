@@ -1,6 +1,7 @@
 package com.aold.advers.ble.presentation
 
 import android.bluetooth.BluetoothGattCharacteristic
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,13 +10,15 @@ import com.aold.advers.ble.printProperties
 import kotlinx.android.synthetic.main.row_characteristic.view.characteristic_properties
 import kotlinx.android.synthetic.main.row_characteristic.view.characteristic_uuid
 
+
 class CharacteristicAdapter(
     private val items: List<BluetoothGattCharacteristic>,
     private val onClickListener: ((characteristic: BluetoothGattCharacteristic) -> Unit)
 ) : RecyclerView.Adapter<CharacteristicAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = parent.context.layoutInflater.inflate(
+        val view = LayoutInflater.from(parent.context)
+            .inflate(
             R.layout.row_characteristic,
             parent,
             false
