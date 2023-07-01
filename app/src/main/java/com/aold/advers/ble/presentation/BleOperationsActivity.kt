@@ -34,7 +34,8 @@ import java.util.Date
 import java.util.Locale
 import java.util.UUID
 
-class BleOperationsActivity : AppCompatActivity() {
+class BleOperationsActivity : AppCompatActivity(
+) {
 
     private lateinit var device: BluetoothDevice
     private val dateFormatter = SimpleDateFormat("MMM d, HH:mm:ss", Locale.US)

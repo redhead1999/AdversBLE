@@ -23,10 +23,8 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -55,7 +53,7 @@ fun StartScreen(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(),
+                 .fillMaxHeight(),
             contentAlignment = Alignment.TopCenter
         )
         {
@@ -96,8 +94,8 @@ fun StartScreen(
                         .width(100.dp)
                         .height(55.dp),
                     onClick = {
-                        navController.navigate(Screen.BluetoothChatScreen.route) {
-                            popUpTo(Screen.BluetoothChatScreen.route) {
+                        navController.navigate(Screen.BleOperationsActivity.route) {
+                            popUpTo(Screen.BleOperationsActivity.route) {
                                 inclusive = true
                             }
                         }
@@ -177,11 +175,11 @@ fun StartScreen(
                         .width(100.dp)
                         .height(55.dp),
                     onClick = {
-                        navController.navigate(Screen.BluetoothChatScreen.route) {
-                            popUpTo(Screen.BluetoothChatScreen.route) {
-                                inclusive = true
-                            }
-                        }
+//                        navController.navigate(Screen.BluetoothChatScreen.route) {
+//                            popUpTo(Screen.BluetoothChatScreen.route) {
+//                                inclusive = true
+//                            }
+//                        }
                     }) {
                     Text(
                         text = "ПОИСК",
