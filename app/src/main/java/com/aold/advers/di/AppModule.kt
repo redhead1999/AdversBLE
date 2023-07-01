@@ -6,8 +6,6 @@ package com.aold.advers.di
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothManager
 import android.content.Context
-import com.aold.advers.data.TemperatureAndHumidityReceiveManager
-import com.aold.advers.data.ble.TemperatureAndHumidityBLEReceiveManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,14 +22,5 @@ object AppModule {
     fun provideBluetoothAdapter(@ApplicationContext context: Context): BluetoothAdapter {
         val manager = context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
         return manager.adapter
-    }
-
-    @Provides
-    @Singleton
-    fun provideTempHumidityReceiveManager(
-        @ApplicationContext context: Context,
-        bluetoothAdapter: BluetoothAdapter,
-    ): TemperatureAndHumidityReceiveManager {
-        return TemperatureAndHumidityBLEReceiveManager(bluetoothAdapter, context)
     }
 }

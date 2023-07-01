@@ -8,7 +8,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.aold.advers.chat.presentation.BluetoothChatScreen
 import com.aold.advers.presentation.components.TestScreen
 
 
@@ -34,13 +33,7 @@ fun Navigation(
         composable(Screen.StartScreen.route) {
             StartScreen(navController = navController)
         }
-
-        composable(Screen.TemperatureHumidityScreen.route) {
-            TemperatureHumidityScreen(
-                onBluetoothStateChanged
-            )
-        }
-
+        
         composable(Screen.SettingsScreen.route) {
             SettingsScreen(
                 navController = navController
@@ -67,12 +60,6 @@ fun Navigation(
 
         composable(Screen.TestScreen.route) {
             TestScreen(
-                navController = navController
-            )
-        }
-
-        composable(Screen.BluetoothChatScreen.route) {
-            BluetoothChatScreen(
                 navController = navController
             )
         }

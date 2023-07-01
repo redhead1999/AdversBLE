@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.dagger.hilt.android'
     id 'kotlin-kapt'
-    id 'kotlin-android-extensions'
+        id 'kotlin-android-extensions'
 }
 
 def keystoreProperties = new Properties()
@@ -62,7 +62,7 @@ android {
         viewBinding true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.1.1"
+        kotlinCompilerExtensionVersion "1.1.0-beta03"
     }
     packagingOptions {
         resources {
@@ -131,6 +131,6 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
     //Alert dialogs
-    implementation 'org.jetbrains.anko:anko:0.10.8'
+
 
 }

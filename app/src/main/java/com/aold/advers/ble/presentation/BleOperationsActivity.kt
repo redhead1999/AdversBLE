@@ -5,6 +5,7 @@ import android.app.Activity
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothGattCharacteristic
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.aold.advers.R
+import com.aold.advers.ble.ConnectionEventListener
 import com.aold.advers.ble.ConnectionManager
 import com.aold.advers.ble.isIndicatable
 import com.aold.advers.ble.isNotifiable
@@ -142,9 +144,11 @@ class BleOperationsActivity : AppCompatActivity() {
                         log("Reading from ${characteristic.uuid}")
                         ConnectionManager.readCharacteristic(device, characteristic)
                     }
+
                     CharacteristicProperty.Writable, CharacteristicProperty.WritableWithoutResponse -> {
                         showWritePayloadDialog(characteristic)
                     }
+
                     CharacteristicProperty.Notifiable, CharacteristicProperty.Indicatable -> {
                         if (notifyingCharacteristics.contains(characteristic.uuid)) {
                             log("Disabling notifications on ${characteristic.uuid}")
@@ -159,38 +163,28 @@ class BleOperationsActivity : AppCompatActivity() {
         }
     }
 
+    private fun selector(
+        title: CharSequence? = null,
+        items: List<CharSequence>,
+        onClick: (DialogInterface, Int) -> Unit
+    ) {
+        //alert
+
+    }
+
     @SuppressLint("InflateParams")
     private fun showWritePayloadDialog(characteristic: BluetoothGattCharacteristic) {
         val hexField = layoutInflater.inflate(R.layout.edittext_hex_payload, null) as EditText
-        alert {
-            customView = hexField
-            isCancelable = false
-            yesButton {
-                with(hexField.text.toString()) {
-                    if (isNotBlank() && isNotEmpty()) {
-                        val bytes = hexToBytes()
-                        log("Writing to ${characteristic.uuid}: ${bytes.toHexString()}")
-                        ConnectionManager.writeCharacteristic(device, characteristic, bytes)
-                    } else {
-                        log("Please enter a hex payload to write to ${characteristic.uuid}")
-                    }
-                }
-            }
-            noButton {}
-        }.show()
+        //alert dialog
         hexField.showKeyboard()
     }
 
     private val connectionEventListener by lazy {
-        com.aold.advers.ble.ConnectionEventListener().apply {
+        ConnectionEventListener().apply {
             onDisconnect = {
                 runOnUiThread {
-//                    alert {
-//                        title = "Disconnected"
-//                        message = "Disconnected from device."
-//                        positiveButton("OK") { onBackPressed() }
-//                    }.show()
-//                }
+                   //alertdialog
+                }
             }
 
             onCharacteristicRead = { _, characteristic ->

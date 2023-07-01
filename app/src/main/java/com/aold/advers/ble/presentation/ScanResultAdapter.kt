@@ -1,10 +1,14 @@
 package com.aold.advers.ble.presentation
 
 import android.bluetooth.le.ScanResult
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aold.advers.R
+import kotlinx.android.synthetic.main.row_scan_result.view.device_name
+import kotlinx.android.synthetic.main.row_scan_result.view.mac_address
+import kotlinx.android.synthetic.main.row_scan_result.view.signal_strength
 
 class ScanResultAdapter(
     private val items: List<ScanResult>,
@@ -12,7 +16,8 @@ class ScanResultAdapter(
 ) : RecyclerView.Adapter<ScanResultAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = parent.context.layoutInflater.inflate(
+        val view = LayoutInflater.from(parent.context)
+            .inflate(
             R.layout.row_scan_result,
             parent,
             false
