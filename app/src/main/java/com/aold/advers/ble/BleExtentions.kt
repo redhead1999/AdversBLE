@@ -15,7 +15,7 @@ const val CCC_DESCRIPTOR_UUID = "00002902-0000-1000-8000-00805F9B34FB"
 
 fun BluetoothGatt.printGattTable() {
     if (services.isEmpty()) {
-        Timber.i("No service and characteristic available, call discoverServices() first?")
+        Timber.i("Нет доступных служб и характеристик, сначала вызовите discoverServices()?")
         return
     }
     services.forEach { service ->
@@ -109,8 +109,8 @@ fun BluetoothGattDescriptor.containsPermission(permission: Int): Boolean =
     permissions and permission != 0
 
 /**
- * Convenience extension function that returns true if this [BluetoothGattDescriptor]
- * is a Client Characteristic Configuration Descriptor.
+ * Функция расширения удобства, которая возвращает значение true, если [BluetoothGattDescriptor]
+ * - это дескриптор конфигурации характеристик клиента.
  */
 fun BluetoothGattDescriptor.isCccd() =
     uuid.toString().toUpperCase(Locale.US) == CCC_DESCRIPTOR_UUID.toUpperCase(Locale.US)

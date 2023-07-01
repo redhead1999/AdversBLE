@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.aold.advers.ble.presentation.BleOperationsActivity
 import com.aold.advers.presentation.components.TestScreen
 
 
@@ -63,6 +64,11 @@ fun Navigation(
                 navController = navController
             )
         }
+
+        composable(Screen.BleOperationsActivity.route) {
+            BleOperationsActivity(
+            )
+        }
     }
 }
 
@@ -83,5 +89,6 @@ sealed class Screen(val route: String) {
     object VoltageChartScreen : Screen("voltage_chart_screen")
     object TestScreen : Screen("test_screen")
     object BluetoothChatScreen : Screen("bluetooth_chat_screen")
+    object BleOperationsActivity : Screen("ble_operations_activity")
 
 }

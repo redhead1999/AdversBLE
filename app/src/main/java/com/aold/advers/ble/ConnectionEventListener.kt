@@ -5,7 +5,7 @@ import android.bluetooth.BluetoothGatt
 import android.bluetooth.BluetoothGattCharacteristic
 import android.bluetooth.BluetoothGattDescriptor
 
-/** A listener containing callback methods to be registered with [ConnectionManager].*/
+/** Прослушиватель, содержащий методы обратного вызова, которые должны быть зарегистрированы в [ConnectionManager].*/
 class ConnectionEventListener {
     var onConnectionSetupComplete: ((BluetoothGatt) -> Unit)? = null
     var onDisconnect: ((BluetoothDevice) -> Unit)? = null
