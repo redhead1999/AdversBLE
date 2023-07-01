@@ -36,9 +36,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.aold.advers.R
-import com.aold.advers.WindowInfo
+import com.aold.advers.utils.WindowInfo
 import com.aold.advers.presentation.components.picker.PickerExample
-import com.aold.advers.rememberWindowInfo
+import com.aold.advers.presentation.navigation.Screen
+import com.aold.advers.utils.rememberWindowInfo
 
 /**
  * @author Kirilin Yury on 09.06.2023.
@@ -175,11 +176,11 @@ fun StartScreen(
                         .width(100.dp)
                         .height(55.dp),
                     onClick = {
-//                        navController.navigate(Screen.BluetoothChatScreen.route) {
-//                            popUpTo(Screen.BluetoothChatScreen.route) {
-//                                inclusive = true
-//                            }
-//                        }
+                        navController.navigate(Screen.ConnectionStartScreen.route) {
+                            popUpTo(Screen.ConnectionStartScreen.route) {
+                                inclusive = true
+                            }
+                        }
                     }) {
                     Text(
                         text = "ПОИСК",

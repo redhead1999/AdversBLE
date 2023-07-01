@@ -1,4 +1,4 @@
-package com.aold.advers.presentation
+package com.aold.advers.presentation.navigation
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -8,7 +8,14 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.aold.advers.ble.presentation.BleOperationsActivity
+import com.aold.advers.ble.presentation.ConnectionStartScreen
+import com.aold.advers.ble.presentation.TemperatureHumidityScreen
+import com.aold.advers.presentation.SettingsScreen
+import com.aold.advers.presentation.SplashScreen
+import com.aold.advers.presentation.StartScreen
+import com.aold.advers.presentation.mock.TemperatureChartScreen
+import com.aold.advers.presentation.mock.TimerScreen
+import com.aold.advers.presentation.mock.VoltageChartScreen
 import com.aold.advers.presentation.components.TestScreen
 
 
@@ -34,7 +41,7 @@ fun Navigation(
         composable(Screen.StartScreen.route) {
             StartScreen(navController = navController)
         }
-        
+
         composable(Screen.SettingsScreen.route) {
             SettingsScreen(
                 navController = navController
@@ -65,8 +72,15 @@ fun Navigation(
             )
         }
 
-        composable(Screen.BleOperationsActivity.route) {
-            BleOperationsActivity(
+        composable(Screen.ConnectionStartScreen.route) {
+            ConnectionStartScreen(
+                navController = navController
+            )
+        }
+
+        composable(Screen.TemperatureHumidityScreen.route){
+            TemperatureHumidityScreen(
+                onBluetoothStateChanged
             )
         }
     }
@@ -80,7 +94,6 @@ data class BottomNavItem(
 
 sealed class Screen(val route: String) {
     object SplashScreen : Screen("splash_screen")
-
     object StartScreen : Screen("start_screen")
     object TemperatureHumidityScreen : Screen("temp_humid_screen")
     object SettingsScreen : Screen("settings_screen")
@@ -90,5 +103,6 @@ sealed class Screen(val route: String) {
     object TestScreen : Screen("test_screen")
     object BluetoothChatScreen : Screen("bluetooth_chat_screen")
     object BleOperationsActivity : Screen("ble_operations_activity")
+    object ConnectionStartScreen : Screen("connection_start_screen")
 
 }

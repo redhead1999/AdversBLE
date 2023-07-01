@@ -1,4 +1,4 @@
-package com.aold.advers.presentation
+package com.aold.advers.presentation.mock
 
 
 import androidx.compose.foundation.background
@@ -16,14 +16,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.aold.advers.WindowInfo
+import com.aold.advers.utils.WindowInfo
 import com.aold.advers.presentation.components.headings.ChartsHeaderText
-import com.aold.advers.presentation.components.charts.TemperatureChart
-import com.aold.advers.rememberWindowInfo
+import com.aold.advers.presentation.components.charts.QuadLineChart
+import com.aold.advers.utils.rememberWindowInfo
 
 @ExperimentalMaterialApi
 @Composable
-fun TemperatureChartScreen(
+fun VoltageChartScreen(
     navController: NavController,
 ) {
     val data = listOf(
@@ -43,9 +43,9 @@ fun TemperatureChartScreen(
         Pair(19, 115.45),
         Pair(20, 111.85)
     )
-
     val windowInfo = rememberWindowInfo()
     if (windowInfo.screenWidthInfo is WindowInfo.WindowType.Compact) {
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -54,7 +54,7 @@ fun TemperatureChartScreen(
             verticalArrangement = Arrangement.Top
         ) {
             ChartsHeaderText()
-            TemperatureChart(
+            QuadLineChart(
                 data = data,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -68,15 +68,15 @@ fun TemperatureChartScreen(
                 .fillMaxSize()
                 .background(Color.Transparent)
                 .padding(16.dp),
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Top
         ) {
             ChartsHeaderText()
             Spacer(modifier = Modifier.height(50.dp))
-            TemperatureChart(
+            QuadLineChart(
                 data = data,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(300.dp)
+                    .height(100.dp)
                     .align(CenterHorizontally)
             )
         }

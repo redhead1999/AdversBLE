@@ -6,30 +6,23 @@ import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ActivityInfo
-import android.content.pm.PackageManager
-import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
-import android.view.WindowManager
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Switch
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.view.WindowCompat
-import com.aold.advers.presentation.Navigation
+import com.aold.advers.presentation.navigation.Navigation
 import com.aold.advers.presentation.notifications.CounterNotificationService
 import com.aold.advers.ui.theme.AdversBluetoothTheme
+import com.aold.advers.utils.WindowInfo
+import com.aold.advers.utils.rememberWindowInfo
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

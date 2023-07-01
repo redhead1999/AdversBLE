@@ -1,4 +1,4 @@
-package com.aold.advers.ble
+package com.aold.advers.ble.utils
 
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothGatt
@@ -13,10 +13,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Handler
 import android.os.Looper
-import androidx.annotation.RequiresPermission
 import timber.log.Timber
 import java.lang.ref.WeakReference
-import java.util.UUID
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentLinkedQueue
 

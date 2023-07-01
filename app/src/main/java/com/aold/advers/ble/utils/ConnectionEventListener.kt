@@ -1,4 +1,4 @@
-package com.aold.advers.ble
+package com.aold.advers.ble.utils
 
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothGatt
