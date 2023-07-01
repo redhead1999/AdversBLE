@@ -1,4 +1,4 @@
-package com.aold.advers.presentation
+package com.aold.advers.presentation.mock
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -34,11 +34,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.aold.advers.R
-import com.aold.advers.WindowInfo
+import com.aold.advers.utils.WindowInfo
 import com.aold.advers.presentation.notifications.Counter
 import com.aold.advers.presentation.notifications.CounterNotificationService
 import com.aold.advers.presentation.components.headings.TimerHeaderText
-import com.aold.advers.rememberWindowInfo
+import com.aold.advers.utils.rememberWindowInfo
 
 /**
  * @author Kirilin Yury on 25.06.2023.

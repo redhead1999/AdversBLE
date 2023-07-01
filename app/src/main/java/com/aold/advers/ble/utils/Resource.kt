@@ -1,4 +1,4 @@
-package com.aold.advers.util
+package com.aold.advers.ble.utils
 
 /**
  * @author Kirilin Yury on 09.06.2023.

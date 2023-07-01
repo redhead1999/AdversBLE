@@ -1,4 +1,4 @@
-package com.aold.advers.ble
+package com.aold.advers.ble.utils
 
 import android.bluetooth.BluetoothGatt
 import android.bluetooth.BluetoothGattCharacteristic
@@ -11,7 +11,7 @@ import java.util.*
  */
 
 //todo дескриптор ble
-const val CCC_DESCRIPTOR_UUID = "00002902-0000-1000-8000-00805F9B34FB"
+const val CCCD_DESCRIPTOR_UUID = "00002902-0000-1000-8000-00805F9B34FB"
 
 fun BluetoothGatt.printGattTable() {
     if (services.isEmpty()) {
@@ -113,7 +113,7 @@ fun BluetoothGattDescriptor.containsPermission(permission: Int): Boolean =
  * - это дескриптор конфигурации характеристик клиента.
  */
 fun BluetoothGattDescriptor.isCccd() =
-    uuid.toString().toUpperCase(Locale.US) == CCC_DESCRIPTOR_UUID.toUpperCase(Locale.US)
+    uuid.toString().toUpperCase(Locale.US) == CCCD_DESCRIPTOR_UUID.toUpperCase(Locale.US)
 
 // ByteArray
 

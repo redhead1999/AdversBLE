@@ -1,4 +1,4 @@
-package com.aold.advers
+package com.aold.advers.utils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
