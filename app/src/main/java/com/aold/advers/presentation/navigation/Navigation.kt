@@ -10,14 +10,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.aold.advers.ble.presentation.ConnectionStartScreen
 import com.aold.advers.ble.presentation.TemperatureHumidityScreen
+import com.aold.advers.presentation.HomeScreen
 import com.aold.advers.presentation.SettingsScreen
 import com.aold.advers.presentation.SplashScreen
-import com.aold.advers.presentation.StartScreen
+import com.aold.advers.presentation.components.TestScreen
 import com.aold.advers.presentation.mock.TemperatureChartScreen
 import com.aold.advers.presentation.mock.TimerScreen
 import com.aold.advers.presentation.mock.VoltageChartScreen
-import com.aold.advers.presentation.components.TestScreen
-
 
 
 /**
@@ -35,11 +34,13 @@ fun Navigation(
 
     NavHost(navController = navController, startDestination = Screen.SplashScreen.route) {
         composable(Screen.SplashScreen.route) {
-            SplashScreen(navController = navController)
+            SplashScreen(
+                navController = navController,
+                 )
         }
 
-        composable(Screen.StartScreen.route) {
-            StartScreen(navController = navController)
+        composable(Screen.HomeScreen.route) {
+            HomeScreen(navController = navController)
         }
 
         composable(Screen.SettingsScreen.route) {
@@ -94,7 +95,7 @@ data class BottomNavItem(
 
 sealed class Screen(val route: String) {
     object SplashScreen : Screen("splash_screen")
-    object StartScreen : Screen("start_screen")
+    object HomeScreen : Screen("home_screen")
     object TemperatureHumidityScreen : Screen("temp_humid_screen")
     object SettingsScreen : Screen("settings_screen")
     object TimerScreen : Screen("timer_screen")

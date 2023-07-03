@@ -25,7 +25,7 @@ private val LightColorPalette = lightColors(
 
 @SuppressLint("ConflictingOnColor")
 private val LightThemeColors = lightColors(
-    primary = Grey500,
+    primary = White,
     primaryVariant = Blue400,
     onPrimary = Black2,
     secondary = Color.White,
@@ -54,15 +54,10 @@ private val DarkThemeColors = darkColors(
 
 @Composable
 fun AdversBluetoothTheme(darkTheme: Boolean, content: @Composable () -> Unit) {
-    val colors = if (darkTheme) {
-        DarkThemeColors
-    } else {
-        LightThemeColors
-    }
     MaterialTheme(
         colors = if (darkTheme) DarkThemeColors else LightThemeColors,
         typography = Typography,
-        shapes = Shapes
+        shapes = Shapes,
     ){
         content()
     }

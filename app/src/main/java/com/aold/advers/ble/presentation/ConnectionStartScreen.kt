@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,7 +35,7 @@ fun ConnectionStartScreen(
             modifier = Modifier
                 .size(150.dp)
                 .clip(CircleShape)
-                .background(Color.Blue, CircleShape)
+                .background(color = MaterialTheme.colors.error, CircleShape)
                 .clickable {
                     navController.navigate(Screen.TemperatureHumidityScreen.route){
                         popUpTo(Screen.ConnectionStartScreen.route){
@@ -48,8 +49,7 @@ fun ConnectionStartScreen(
                 text = "СТАРТ",
                 fontSize = 35.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
-            )
+                color = MaterialTheme.colors.onPrimary)
         }
     }
 

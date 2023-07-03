@@ -49,7 +49,8 @@
     <string name="agreement_string">Consent to personal data processing </string>
 
     <string name="ble_playground">BLE Playground</string>
-
+    <string name="tap_twice_to_exit">Press back again to exit </string>
+    <string name="start_ble_connection">Connecting to a device</string>
 
 
 </resources>

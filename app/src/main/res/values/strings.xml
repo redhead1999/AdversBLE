@@ -49,7 +49,9 @@
     <string name="total_worktime_string">Общее время работы</string>
 
     <string name="ble_playground">Полигон</string>
+    <string name="tap_twice_to_exit">Нажмите еще раз, чтобы выйти</string>
 
+    <string name="start_ble_connection">Подключение к устройству</string>
 
 
 

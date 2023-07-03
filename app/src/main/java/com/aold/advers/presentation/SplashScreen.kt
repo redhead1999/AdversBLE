@@ -23,6 +23,8 @@ import kotlinx.coroutines.delay
 @Composable
 fun SplashScreen(
     navController: NavController,
+    onPopBackStack: () -> Unit = {},
+    onNavigate: (String) -> Unit = {},
 ) {
     //todo анимашка
     val scale = remember {
@@ -40,7 +42,10 @@ fun SplashScreen(
             )
         )
         delay(400L)
-        navController.navigate("start_screen")
+        navController.navigate("home_screen"){
+            popUpTo(0)
+        }
+
     }
 
 

@@ -55,9 +55,3 @@ val Black2 = Color(0xFF000000)
 
 val RedErrorDark = Color(0xFFB00020)
 val RedErrorLight = Color(0xFFEF5350)
-
-val DarkSlateGrey = Color(0xFF27474e)
-val DarkSlateGreyLight = Color(0xFF36626B)
-val Plum = Color(0xFF7d387d)
-val OldRose = Color(0xFFcd8b76)
-val Vanilla = Color(0xFFe1d89f)

@@ -32,6 +32,7 @@
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application
+
         android:name=".AdversApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -52,7 +53,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ble.presentation.BleOperationsActivity"/>
         <receiver android:name=".presentation.notifications.CounterNotificationReceiver" />
     </application>
 

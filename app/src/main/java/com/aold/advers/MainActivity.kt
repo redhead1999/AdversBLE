@@ -33,7 +33,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 class MainActivity : ComponentActivity(
 ) {
-    
 
     private val bluetoothManager by lazy {
         applicationContext.getSystemService(BluetoothManager::class.java)
