@@ -91,7 +91,7 @@ fun TemperatureHumidityScreen(
                 .aspectRatio(1f)
                 .border(
                     BorderStroke(
-                        5.dp, Color.Blue
+                        5.dp, MaterialTheme.colors.onPrimary
                     ),
                     RoundedCornerShape(10.dp)
                 ),
@@ -114,7 +114,7 @@ fun TemperatureHumidityScreen(
                 }
             }else if(!permissionState.allPermissionsGranted){
                 Text(
-                    text = "Go to the app setting and allow the missing permissions.",
+                    text = "Перейдите к настройке приложения и разрешите недостающие разрешения..",
                     style = MaterialTheme.typography.body2,
                     modifier = Modifier.padding(10.dp),
                     textAlign = TextAlign.Center
@@ -136,7 +136,7 @@ fun TemperatureHumidityScreen(
                         }
                     ) {
                         Text(
-                            "Try again"
+                            "Еще раз"
                         )
                     }
                 }
@@ -147,11 +147,11 @@ fun TemperatureHumidityScreen(
                     verticalArrangement = Arrangement.Center
                 ){
                     Text(
-                        text = "Humidity: ${viewModel.humidity}",
+                        text = "Влажность: ${viewModel.humidity}",
                         style = MaterialTheme.typography.h6
                     )
                     Text(
-                        text = "Temperature: ${viewModel.temperature}",
+                        text = "Температура: ${viewModel.temperature}",
                         style = MaterialTheme.typography.h6
                     )
                 }
@@ -159,7 +159,7 @@ fun TemperatureHumidityScreen(
                 Button(onClick = {
                     viewModel.initializeConnection()
                 }) {
-                    Text("Initialize again")
+                    Text("Инициализировать снова")
                 }
             }
         }

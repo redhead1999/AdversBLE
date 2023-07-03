@@ -31,7 +31,7 @@ class TemperatureAndHumidityBLEReceiveManager @Inject constructor(
     private val context: Context,
 ) : TemperatureAndHumidityReceiveManager {
 
-    private val DEVICE_NAME = "Jinou_Sensor_HumiTemp"
+    private val DEVICE_NAME = "BLE-адаптер"
     private val TEMP_HUMIDITY_SERVICE_UIID = "0000aa20-0000-1000-8000-00805f9b34fb"
     private val TEMP_HUMIDITY_CHARACTERISTICS_UUID = "0000aa21-0000-1000-8000-00805f9b34fb"
 
@@ -75,7 +75,7 @@ class TemperatureAndHumidityBLEReceiveManager @Inject constructor(
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 if (newState == BluetoothProfile.STATE_CONNECTED) {
                     coroutineScope.launch {
-                        data.emit(Resource.Loading(message = "Discovering Services..."))
+                        data.emit(Resource.Loading(message = "Поиск устройства..."))
                     }
                     gatt.discoverServices()
                     this@TemperatureAndHumidityBLEReceiveManager.gatt = gatt
@@ -99,7 +99,7 @@ class TemperatureAndHumidityBLEReceiveManager @Inject constructor(
                 coroutineScope.launch {
                     data.emit(
                         Resource.Loading(
-                            message = "Attempting to connect $currentConnectionAttempt/$MAXIMUM_CONNECTION_ATTEMPTS"
+                            message = "Попытка подключения $currentConnectionAttempt/$MAXIMUM_CONNECTION_ATTEMPTS"
                         )
                     )
                 }
@@ -107,7 +107,7 @@ class TemperatureAndHumidityBLEReceiveManager @Inject constructor(
                     startReceiving()
                 } else {
                     coroutineScope.launch {
-                        data.emit(Resource.Error(errorMessage = "Could not connect to ble device"))
+                        data.emit(Resource.Error(errorMessage = "Невозможно подключиться к устройству"))
                     }
                 }
             }
@@ -117,7 +117,7 @@ class TemperatureAndHumidityBLEReceiveManager @Inject constructor(
             with(gatt) {
                 printGattTable()
                 coroutineScope.launch {
-                    data.emit(Resource.Loading(message = "Adjusting MTU space..."))
+                    data.emit(Resource.Loading(message = "Настройка пространства MTU..."))
                 }
                 gatt.requestMtu(517)
             }
@@ -128,7 +128,7 @@ class TemperatureAndHumidityBLEReceiveManager @Inject constructor(
                 findCharacteristics(TEMP_HUMIDITY_SERVICE_UIID, TEMP_HUMIDITY_CHARACTERISTICS_UUID)
             if (characteristic == null) {
                 coroutineScope.launch {
-                    data.emit(Resource.Error(errorMessage = "Could not find temp and humidity publisher"))
+                    data.emit(Resource.Error(errorMessage = "Не удалось найти publisher температуры и второго параметра"))
                 }
                 return
             }
@@ -176,7 +176,7 @@ class TemperatureAndHumidityBLEReceiveManager @Inject constructor(
 
         characteristic.getDescriptor(cccdUuid)?.let { cccdDescriptor ->
             if (gatt?.setCharacteristicNotification(characteristic, true) == false) {
-                Log.d("BLEReceiveManager", "set characteristics notification failed")
+                Log.d("BLEReceiveManager", "не удалось установить уведомление о характеристиках")
                 return
             }
             writeDescription(cccdDescriptor, payload)
@@ -187,7 +187,7 @@ class TemperatureAndHumidityBLEReceiveManager @Inject constructor(
         gatt?.let { gatt ->
             descriptor.value = payload
             gatt.writeDescriptor(descriptor)
-        } ?: error("Not connected to a BLE device!")
+        } ?: error("Не подключен к BLE-устройству")
     }
 
     private fun findCharacteristics(
