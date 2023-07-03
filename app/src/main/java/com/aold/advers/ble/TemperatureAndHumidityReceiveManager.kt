@@ -1,6 +1,6 @@
 package com.aold.advers.ble
 
-import com.aold.advers.ble.utils.Resource
+import com.aold.advers.utils.Resource
 import kotlinx.coroutines.flow.MutableSharedFlow
 
 /**

@@ -11,10 +11,10 @@ import com.aold.advers.ble.ConnectionState
 import com.aold.advers.ble.TempHumidityResult
 import com.aold.advers.ble.TemperatureAndHumidityReceiveManager
 import com.aold.advers.ble.utils.CCCD_DESCRIPTOR_UUID
-import com.aold.advers.ble.utils.Resource
 import com.aold.advers.ble.utils.isIndicatable
 import com.aold.advers.ble.utils.isNotifiable
 import com.aold.advers.ble.utils.printGattTable
+import com.aold.advers.utils.Resource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -32,8 +32,8 @@ class TemperatureAndHumidityBLEReceiveManager @Inject constructor(
 ) : TemperatureAndHumidityReceiveManager {
 
     private val DEVICE_NAME = "BLE-адаптер"
-    private val TEMP_HUMIDITY_SERVICE_UIID = "0000aa20-0000-1000-8000-00805f9b34fb"
-    private val TEMP_HUMIDITY_CHARACTERISTICS_UUID = "0000aa21-0000-1000-8000-00805f9b34fb"
+    private val ADVERS_BLE_SERVICE_UIID = "d973f2e0-b19e-11e2-9e96-0800200c9a66"
+    private val ADVERS_BLE_CHARACTERISTICS_UUID = "d973f2e2-b19e-11e2-9e96-0800200c9a66"
 
     override val data: MutableSharedFlow<Resource<TempHumidityResult>> = MutableSharedFlow()
 
@@ -125,7 +125,7 @@ class TemperatureAndHumidityBLEReceiveManager @Inject constructor(
 
         override fun onMtuChanged(gatt: BluetoothGatt, mtu: Int, status: Int) {
             val characteristic =
-                findCharacteristics(TEMP_HUMIDITY_SERVICE_UIID, TEMP_HUMIDITY_CHARACTERISTICS_UUID)
+                findCharacteristics(ADVERS_BLE_SERVICE_UIID, ADVERS_BLE_CHARACTERISTICS_UUID)
             if (characteristic == null) {
                 coroutineScope.launch {
                     data.emit(Resource.Error(errorMessage = "Не удалось найти publisher температуры и второго параметра"))
@@ -141,7 +141,7 @@ class TemperatureAndHumidityBLEReceiveManager @Inject constructor(
         ) {
             with(characteristic) {
                 when (uuid) {
-                    UUID.fromString(TEMP_HUMIDITY_CHARACTERISTICS_UUID) -> {
+                    UUID.fromString(ADVERS_BLE_CHARACTERISTICS_UUID) -> {
                         //XX XX XX XX XX XX
                         val multiplicator = if (value.first().toInt() > 0) -1 else 1
                         val temperature = value[1].toInt() + value[2].toInt() / 10f
@@ -221,7 +221,7 @@ class TemperatureAndHumidityBLEReceiveManager @Inject constructor(
     override fun closeConnection() {
         bleScanner.stopScan(scanCallback)
         val characteristic =
-            findCharacteristics(TEMP_HUMIDITY_SERVICE_UIID, TEMP_HUMIDITY_CHARACTERISTICS_UUID)
+            findCharacteristics(ADVERS_BLE_SERVICE_UIID, ADVERS_BLE_CHARACTERISTICS_UUID)
         if (characteristic != null) {
             disconnectCharacteristic(characteristic)
         }

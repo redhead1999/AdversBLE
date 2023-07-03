@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aold.advers.ble.ConnectionState
 import com.aold.advers.ble.TemperatureAndHumidityReceiveManager
-import com.aold.advers.ble.utils.Resource
+import com.aold.advers.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
