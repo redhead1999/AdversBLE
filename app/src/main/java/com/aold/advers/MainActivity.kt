@@ -24,6 +24,7 @@ import com.aold.advers.ui.theme.AdversBluetoothTheme
 import com.aold.advers.utils.WindowInfo
 import com.aold.advers.utils.rememberWindowInfo
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 /**
  * @author Kirilin Yury on 09.06.2023.
@@ -43,11 +44,19 @@ class MainActivity : ComponentActivity(
         bluetoothManager.adapter
     }
 
+
     private val isBluetoothEnabled: Boolean
         get() = bluetoothAdapter?.isEnabled == true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Timber.d("activity created...")
+
+        //val bleObserver = BleObserver(this)
+        //this.lifecycle.addObserver(bleObserver)
+
+
         var darkMode by mutableStateOf(true)
         val service = CounterNotificationService(applicationContext)
         //TODO ориентация ландшафт

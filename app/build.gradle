@@ -24,7 +24,7 @@ android {
         minSdk 21
         targetSdk 33
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
 
         testInstrumentationRunner "com.santansarah.scan.InstrumentationTestRunner"
         testInstrumentationRunnerArgument "runnerBuilder", "de.mannodermaus.junit5.AndroidJUnit5Builder"
@@ -90,18 +90,28 @@ android {
             }
         }
     }
+
+    sourceSets {
+        main {
+            assets {
+                srcDirs 'src\\main\\assets', 'src\\main\\assets\\fonts'
+            }
+        }
+    }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha04"
     implementation 'androidx.activity:activity-compose:1.3.1'
     implementation 'androidx.recyclerview:recyclerview:1.3.0'
     implementation 'com.google.android.material:material:1.9.0'
+    implementation "androidx.drawerlayout:drawerlayout:1.2.0"
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -177,10 +187,6 @@ dependencies {
     implementation "androidx.window:window:1.1.0-alpha04"
     implementation "androidx.compose.material3:material3-window-size-class:1.1.0-alpha06"
 
-
-
-
-
     //testing
     testImplementation "io.insert-koin:koin-test:$koin_android_version"
     testImplementation "io.insert-koin:koin-test-junit5:$koin_android_version"
@@ -211,5 +217,12 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.2.3')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
+
+    //Material3
+    implementation 'androidx.compose.material3:material3'
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'me.tankery.lib:circularSeekBar:1.4.2'
+
 
 }

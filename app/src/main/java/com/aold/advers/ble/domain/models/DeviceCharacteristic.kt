@@ -1,7 +1,7 @@
 package com.aold.advers.ble.domain.models
 
 import com.aold.advers.ble.domain.bleparsables.Appearance
-import com.aold.advers.ble.domain.bleparsables.ELKBLEDOM
+import com.aold.advers.ble.domain.bleparsables.ADVERSBLEDOM
 import com.aold.advers.ble.domain.bleparsables.PreferredConnectionParams
 import com.aold.advers.ble.utils.decodeSkipUnreadable
 import com.aold.advers.ble.utils.print
@@ -124,8 +124,8 @@ fun DeviceCharacteristics.getReadInfo(): String {
 
 fun DeviceCharacteristics.getWriteCommands(): Array<String> {
     return when (uuid) {
-        ELKBLEDOM.uuid -> {
-            ELKBLEDOM.commands()
+        ADVERSBLEDOM.uuid -> {
+            ADVERSBLEDOM.commands()
         }
 
         else -> {

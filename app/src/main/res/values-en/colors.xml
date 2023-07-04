@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray">#AAFFFFFF</color>
+    <color name="light_gray">#55FFFFFF</color>
+
+    <color name="colorSetupLock">#00000000</color>
+    <color name="colorBackgroundSplash">#000000</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#ff1068b4</color>
+
+    <color name="colorFault">#e61628</color>
+
+    <color name="colorRecieveText">#00FF00</color>
+    <color name="colorSendText">#82CAFF</color>
+    <color name="colorStatusText">#FFDB58</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="black_overlay">#66000000</color>
+
+    <color name="track_1">#ff1068b4</color>
+    <color name="track_2">#55555555</color>
+    <color name="thumb">#ffff0000</color>
+
+    <color name="timers_week_on">#cccccc</color>
+    <color name="timers_week_off">#3d3d3d</color>
+
+    <color name="update_track">#55555555</color>
+    <color name="update_thumb">#ffffff</color>
+    <color name="update_select">#3d3d3d</color>
+
+    <color name="list_divider">#cccccccc</color>
+    <color name="device_select">#3d3d3d</color>
+
+    <color name="device_online">#00aa00</color>
+    <color name="device_offline">#e61628</color>
+
+    <color name="grey">#99999999</color>
+
+    <color name="text_white">#ffffff</color>
+
+    <color name="text_light">#cccccc</color>
+
+    <color name="graph_light">#aa1068b4</color>
+
+    <color name="background_light_start">#ff000000</color>
+    <color name="background_light_end">#ff000000</color>
+
+    <color name="background_main_start">#ff000000</color>
+    <color name="background_main_center">#ff000000</color>
+
+    <color name="background_drawer_start">#ff000000</color>
+    <color name="background_drawer_end">#ff000000</color>
+
+    <color name="background_line_start">#ee000000</color>
+    <color name="background_line_end">#ffffffff</color>
+
+    <color name="circle_progress">#1068b4</color>
+    <color name="circle_pointer">#ffffffff</color>
+    <color name="circle">#3d3d3d</color>
+</resources>

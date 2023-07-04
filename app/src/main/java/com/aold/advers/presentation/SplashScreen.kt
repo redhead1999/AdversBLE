@@ -42,7 +42,7 @@ fun SplashScreen(
             )
         )
         delay(400L)
-        navController.navigate("home_screen"){
+        navController.navigate("start_home_screen"){
             popUpTo(0)
         }
 

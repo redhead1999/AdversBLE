@@ -11,6 +11,9 @@
     <color name="background_dark">#201A1B</color>
     <color name="notification_icon">#0D91DA</color>
 
+    <color name="gray">#AAFFFFFF</color>
+    <color name="light_gray">#55FFFFFF</color>
+
     <color name="blue_300">#FF64B5F6</color>
     <color name="blue_400">#FF42A5F5</color>
     <color name="blue_500">#FF2196F3</color>
@@ -22,4 +25,65 @@
 
     <color name="red_dark">#B00020</color>
     <color name="red_light">#EF5350</color>
+
+    <color name="colorSetupLock">#00000000</color>
+    <color name="colorBackgroundSplash">#000000</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#ff1068b4</color>
+
+    <color name="colorFault">#e82227</color>
+
+    <color name="colorRecieveText">#00FF00</color>
+    <color name="colorSendText">#82CAFF</color>
+    <color name="colorStatusText">#FFDB58</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="black_overlay">#66000000</color>
+
+    <color name="track_1">#ff1068b4</color>
+    <color name="track_2">#55555555</color>
+    <color name="thumb">#ffff0000</color>
+
+    <color name="timers_week_on">#305173</color>
+    <color name="timers_week_off">#55555555</color>
+
+    <color name="update_track">#55555555</color>
+    <color name="update_thumb">#305173</color>
+    <color name="update_select">#cccccccc</color>
+
+    <color name="list_divider">#667095b9</color>
+    <color name="device_select">#667095b9</color>
+
+    <color name="device_online">#00aa00</color>
+    <color name="device_offline">#e82227</color>
+
+    <color name="grey">#55555555</color>
+
+    <color name="text_white">#305173</color>
+
+    <color name="text_light">#305173</color>
+
+    <color name="graph_light">#aa305173</color>
+
+    <color name="background_light_start">#1f00aaff</color>
+    <color name="background_light_end">#33f0f9ff</color>
+
+    <color name="background_main_start">#33f0f9ff</color>
+    <color name="background_main_center">#f0f9ff</color>
+
+    <color name="background_drawer_start">#ffddf5ff</color>
+    <color name="background_drawer_end">#ffeef5ff</color>
+
+    <color name="background_line_start">#22f0f9ff</color>
+    <color name="background_line_end">#22000000</color>
+
+    <color name="circle_progress">#305173</color>
+    <color name="circle_pointer">#305173</color>
+    <color name="circle">#667095b9</color>
+
+
+
 </resources>

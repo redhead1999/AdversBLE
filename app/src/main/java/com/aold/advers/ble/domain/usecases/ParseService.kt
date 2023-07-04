@@ -3,7 +3,7 @@ package com.aold.advers.ble.domain.usecases
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothGatt
 import com.aold.advers.ble.domain.interfaces.IBleRepository
-import com.aold.advers.ble.domain.local.entities.Service
+import com.aold.advers.ble.local.entities.Service
 import com.aold.advers.ble.domain.models.BlePermissions
 import com.aold.advers.ble.domain.models.BleProperties
 import com.aold.advers.ble.domain.models.BleWriteTypes

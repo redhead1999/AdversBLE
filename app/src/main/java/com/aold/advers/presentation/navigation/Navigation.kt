@@ -5,14 +5,17 @@ import androidx.annotation.RequiresApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.aold.advers.ble.presentation.ConnectionStartScreen
-import com.aold.advers.ble.presentation.TemperatureHumidityScreen
-import com.aold.advers.presentation.HomeScreen
+import com.aold.advers.ble.domain.models.AppDestinations
+import com.aold.advers.ble.domain.models.AppRoutes
+import com.aold.advers.ble.presentation.new.scan.HomeRoute
+import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo
 import com.aold.advers.presentation.SettingsScreen
 import com.aold.advers.presentation.SplashScreen
+import com.aold.advers.presentation.StartHomeScreen
 import com.aold.advers.presentation.components.TestScreen
 import com.aold.advers.presentation.mock.TemperatureChartScreen
 import com.aold.advers.presentation.mock.TimerScreen
@@ -39,8 +42,8 @@ fun Navigation(
                  )
         }
 
-        composable(Screen.HomeScreen.route) {
-            HomeScreen(navController = navController)
+        composable(Screen.StartHomeScreen.route) {
+            StartHomeScreen(navController = navController)
         }
 
         composable(Screen.SettingsScreen.route) {
@@ -73,19 +76,30 @@ fun Navigation(
             )
         }
 
-        composable(Screen.ConnectionStartScreen.route) {
-            ConnectionStartScreen(
-                navController = navController
-            )
-        }
-
-        composable(Screen.TemperatureHumidityScreen.route){
-            TemperatureHumidityScreen(
-                onBluetoothStateChanged
-            )
-        }
+//        composable(AppDestinations.HOME) {
+//            HomeRoute(
+//                onControlClick = { deviceAddress ->
+//                    navController.navigate("${AppRoutes.CONTROL_SCREEN}/$deviceAddress")
+//                },
+//                appLayoutInfo = appLayoutInfo,
+//                onHelpClicked = { navController.navigate(AppRoutes.HELP_ABOUT) }
+//            )
+//        }
     }
-}
+
+//        composable(Screen.ConnectionStartScreen.route) {
+//            ConnectionStartScreen(
+//                navController = navController
+//            )
+//        }
+//
+//        composable(Screen.TemperatureHumidityScreen.route){
+//            TemperatureHumidityScreen(
+//                onBluetoothStateChanged
+//            )
+//        }
+    }
+
 
 data class BottomNavItem(
     val name: String,
@@ -95,7 +109,7 @@ data class BottomNavItem(
 
 sealed class Screen(val route: String) {
     object SplashScreen : Screen("splash_screen")
-    object HomeScreen : Screen("home_screen")
+    object StartHomeScreen : Screen("start_home_screen")
     object TemperatureHumidityScreen : Screen("temp_humid_screen")
     object SettingsScreen : Screen("settings_screen")
     object TimerScreen : Screen("timer_screen")
@@ -103,7 +117,7 @@ sealed class Screen(val route: String) {
     object VoltageChartScreen : Screen("voltage_chart_screen")
     object TestScreen : Screen("test_screen")
     object BluetoothChatScreen : Screen("bluetooth_chat_screen")
-    object BleOperationsActivity : Screen("ble_operations_activity")
     object ConnectionStartScreen : Screen("connection_start_screen")
+    object HomeScreen : Screen("home_screen_2")
 
 }

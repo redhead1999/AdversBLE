@@ -1,6 +1,6 @@
 package com.aold.advers.ble.domain.models
 
-import com.aold.advers.ble.domain.local.entities.ScannedDevice
+import com.aold.advers.ble.local.entities.ScannedDevice
 
 data class ScanState(
     val scanUI: ScanUI,
