@@ -219,10 +219,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
 
     //Material3
-    implementation 'androidx.compose.material3:material3'
+    implementation "androidx.compose.material3:material3:$compose_material3"
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'me.tankery.lib:circularSeekBar:1.4.2'
+
+
 
 
 }

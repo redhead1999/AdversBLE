@@ -8,8 +8,9 @@ import com.aold.advers.ble.domain.models.AppDestinations.CONTROL
 import com.aold.advers.ble.domain.models.AppDestinations.HOME
 import com.aold.advers.ble.domain.models.AppRoutes.CONTROL_SCREEN
 import com.aold.advers.ble.domain.models.AppRoutes.HELP_ABOUT
-import com.aold.advers.ble.presentation.new.control.ControlScreen
-import com.aold.advers.ble.presentation.new.scan.HomeRoute
+import com.aold.advers.ble.presentation.control.ControlScreen
+import com.aold.advers.ble.presentation.help.AboutScreen
+import com.aold.advers.ble.presentation.scan.HomeRoute
 import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo
 
 @Composable
@@ -40,7 +41,7 @@ fun AppNavGraph(
             )
         }
         composable(HELP_ABOUT) {
-            com.aold.advers.ble.presentation.new.help.AboutScreen(
+            AboutScreen(
                 appLayoutInfo = appLayoutInfo,
                 onBackClicked = { navController.popBackStack() }
             )

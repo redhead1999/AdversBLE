@@ -5,14 +5,9 @@ import androidx.annotation.RequiresApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.aold.advers.ble.domain.models.AppDestinations
-import com.aold.advers.ble.domain.models.AppRoutes
-import com.aold.advers.ble.presentation.new.scan.HomeRoute
-import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo
 import com.aold.advers.presentation.SettingsScreen
 import com.aold.advers.presentation.SplashScreen
 import com.aold.advers.presentation.StartHomeScreen
