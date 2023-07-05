@@ -1,4 +1,4 @@
-package com.aold.advers.di
+package com.aold.advers.ble.di
 
 import com.aold.advers.ble.domain.usecases.ParseDescriptor
 import com.aold.advers.ble.domain.usecases.ParseNotification

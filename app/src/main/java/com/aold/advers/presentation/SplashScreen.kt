@@ -55,7 +55,7 @@ fun SplashScreen(
     ) {
         //todo картинка для сплэша
         Image(
-            painter = painterResource(id = R.drawable.logo),
+            painter = painterResource(id = R.drawable.corporation),
             contentDescription = "Адверс",
             modifier = Modifier.scale(scale.value))
     }

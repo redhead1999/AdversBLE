@@ -2,8 +2,8 @@ package com.aold.advers.presentation.components.headings
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -16,7 +16,7 @@ import com.aold.advers.R
 @Composable
 fun TimerHeaderText() {
     Text(
-        color = MaterialTheme.colors.primary,
+        color = MaterialTheme.colorScheme.primary,
         text = stringResource(id = R.string.timer_string),
         textAlign = TextAlign.Center,
         modifier = Modifier

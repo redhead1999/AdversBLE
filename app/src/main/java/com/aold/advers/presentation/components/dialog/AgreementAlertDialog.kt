@@ -1,9 +1,9 @@
 package com.aold.advers.presentation.components.dialog
 
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 
 @Composable
@@ -13,20 +13,20 @@ fun AgreementAlertDialog(name: String,
     if (showDialog) {
         AlertDialog(
             title = {
-                Text("Согласие на отправку данных", color = MaterialTheme.colors.primary)
+                Text("Согласие на отправку данных", color = MaterialTheme.colorScheme.primary)
             },
             text = {
-                Text(text = name, color = MaterialTheme.colors.primary)
+                Text(text = name, color = MaterialTheme.colorScheme.primary)
             },
             onDismissRequest = onDismiss,
             confirmButton = {
                 TextButton(onClick = onDismiss ) {
-                    Text("ДА", color = MaterialTheme.colors.primary)
+                    Text("ДА", color = MaterialTheme.colorScheme.primary)
                 }
             },
             dismissButton = {
                 TextButton(onClick = onDismiss ) {
-                    Text("НЕТ", color = MaterialTheme.colors.primary)
+                    Text("НЕТ", color = MaterialTheme.colorScheme.primary)
                 }
             }
         )

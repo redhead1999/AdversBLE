@@ -4,7 +4,10 @@ import com.aold.advers.ble.domain.models.UUID_DEFAULT
 import com.aold.advers.ble.utils.toHex
 import timber.log.Timber
 
-object ADVERSBLEDOM : ParsableUuid("0000FFF3$UUID_DEFAULT".lowercase()) {
+object ADVERSBLEDOM : ParsableUuid("D973F2E1$UUID_DEFAULT".lowercase()) {
+
+    const val FULL_ADVERSBLE_DOM = "D973F2E1-B19E-11E2-9E96-0800200C9A66"
+
 
     //todo команды для запуска
     const val ON = "0x7E0004F00001FF00EF"
