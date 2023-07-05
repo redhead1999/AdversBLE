@@ -8,6 +8,8 @@ object AppRoutes {
     const val HOME_SCREEN = "home"
     const val CONTROL_SCREEN = "control"
     const val HELP_ABOUT = "help_about"
+    const val SETTINGS = "settings"
+    const val TEST = "test"
 }
 
 object AppRouteArgs {
@@ -18,4 +20,6 @@ object AppDestinations {
     const val HOME = HOME_SCREEN
     const val CONTROL = "$CONTROL_SCREEN/{$ADDRESS}"
     const val HELP_ABOUT = AppRoutes.HELP_ABOUT
+    const val SETTINGS = AppRoutes.SETTINGS
+    const val TEST = AppRoutes.TEST
 }

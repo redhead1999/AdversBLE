@@ -54,11 +54,11 @@ internal class PrepopulatedRepositoryTest : KoinTest {
         assertEquals(services.first().uuid, service?.uuid)
     }
 
-    @Test
-    @DisplayName("Get Microsoft device by id")
-    fun getMicrosoftDeviceById() = runTest {
-        val msDevice = bleRepository.getMicrosoftDeviceById(msDevices.first().id)
-        assertEquals(msDevices.first().id, msDevice?.id)
-    }
+//    @Test
+//    @DisplayName("Get Microsoft device by id")
+//    fun getMicrosoftDeviceById() = runTest {
+//        val msDevice = bleRepository.getMicrosoftDeviceById(msDevices.first().id)
+//        assertEquals(msDevices.first().id, msDevice?.id)
+//    }
 
 }

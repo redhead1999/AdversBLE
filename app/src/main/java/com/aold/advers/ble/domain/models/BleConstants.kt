@@ -4,8 +4,6 @@ package com.aold.advers.ble.domain.models
 //todo характеристика
 const val UUID_DEFAULT = "-B19E-11E2-9E96-0800200C9A66"
 
-
-
 enum class BlePermissions(val value: Int) {
     PERMISSION_READ(1),
     PERMISSION_READ_ENCRYPTED(2),

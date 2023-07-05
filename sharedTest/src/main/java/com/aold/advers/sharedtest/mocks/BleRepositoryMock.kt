@@ -26,9 +26,9 @@ class BleRepositoryMock: IBleRepository {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getMicrosoftDeviceById(id: Int): MicrosoftDevice? {
-        TODO("Not yet implemented")
-    }
+//    override suspend fun getMicrosoftDeviceById(id: Int): MicrosoftDevice? {
+//        TODO("Not yet implemented")
+//    }
 
     override suspend fun insertDevice(device: ScannedDevice): Long {
         TODO("Not yet implemented")
@@ -48,9 +48,9 @@ class BleRepositoryMock: IBleRepository {
 
     }
 
-    override suspend fun getMsDevice(byteArray: ByteArray): String? {
-        TODO("Not yet implemented")
-    }
+//    override suspend fun getMsDevice(byteArray: ByteArray): String? {
+//        TODO("Not yet implemented")
+//    }
 
     override suspend fun getServices(serviceIdRecord: List<ParcelUuid>): List<String>? {
         TODO("Not yet implemented")

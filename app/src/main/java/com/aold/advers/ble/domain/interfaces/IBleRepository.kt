@@ -1,13 +1,13 @@
 package com.aold.advers.ble.domain.interfaces
 
 import android.os.ParcelUuid
+import com.aold.advers.ble.domain.models.ScanFilterOption
 import com.aold.advers.ble.local.entities.BleCharacteristic
 import com.aold.advers.ble.local.entities.Company
 import com.aold.advers.ble.local.entities.Descriptor
 import com.aold.advers.ble.local.entities.MicrosoftDevice
 import com.aold.advers.ble.local.entities.ScannedDevice
 import com.aold.advers.ble.local.entities.Service
-import com.aold.advers.ble.domain.models.ScanFilterOption
 import kotlinx.coroutines.flow.Flow
 
 interface IBleRepository {

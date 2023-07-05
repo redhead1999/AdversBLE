@@ -26,6 +26,10 @@ class ParseScanResult
                 getMfId(mfData)?.let { mfId ->
                     mfName = bleRepository.getCompanyById(mfId)?.name
 
+                    //todo вывод только автотерма
+
+                    mfName = bleRepository.getCompanyById(mfId)?.name
+
                     result.scanRecord?.getManufacturerSpecificData(mfId)?.let { mfBytes ->
                         if (mfId == 6) {
                             bleRepository.getMsDevice(mfBytes)?.let { msDevice ->

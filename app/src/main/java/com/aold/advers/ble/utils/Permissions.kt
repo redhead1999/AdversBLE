@@ -1,4 +1,4 @@
-package com.santansarah.scan.utils
+package com.aold.advers.ble.utils
 
 import android.Manifest
 import android.os.Build

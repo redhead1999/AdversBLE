@@ -5,7 +5,7 @@ import com.aold.advers.ble.local.entities.MicrosoftDevice
 import com.aold.advers.ble.local.entities.Service
 
 val companies = listOf(
-    Company(0, "Ericsson Technology Licensing"),
+    Company(0, "Адверс"),
     Company(6, "Microsoft"),
 )
 

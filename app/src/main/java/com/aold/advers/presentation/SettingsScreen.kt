@@ -17,11 +17,9 @@
 //import androidx.compose.foundation.rememberScrollState
 //import androidx.compose.foundation.shape.RoundedCornerShape
 //import androidx.compose.foundation.verticalScroll
-//import androidx.compose.material.Card
-//import androidx.compose.material.ExperimentalMaterialApi
-//import androidx.compose.material.MaterialTheme
-//import androidx.compose.material.Switch
-//import androidx.compose.material.Text
+//import androidx.compose.material3.MaterialTheme
+//import androidx.compose.material3.Switch
+//import androidx.compose.material3.Text
 //import androidx.compose.runtime.Composable
 //import androidx.compose.runtime.getValue
 //import androidx.compose.runtime.mutableStateOf
@@ -42,13 +40,11 @@
 //import com.aold.advers.presentation.components.dialog.AgreementAlertDialog
 //import com.aold.advers.presentation.components.dialog.InfoAlertDialog
 //import com.aold.advers.presentation.components.headings.SettingsHeaderText
-//import com.aold.advers.ui.theme.AdversBluetoothTheme
-//
+//import com.aold.advers.ui.theme.AdversBleTheme
 ///**
 // * @author Kirilin Yury on 25.06.2023.
 // */
 //
-//@ExperimentalMaterialApi
 //@Composable
 //fun SettingsScreen(
 //    navController: NavController,
@@ -63,11 +59,11 @@
 //
 //
 //
-//        AdversBluetoothTheme(darkTheme = darkMode) {
+//        AdversBleTheme(darkTheme = darkMode) {
 //            SettingsHeaderText()
 //            Row() {
 //                Text(
-//                    color = MaterialTheme.colors.primary,
+//                    color = MaterialTheme.colorScheme.primary,
 //                    text = "Темная тема",
 //                    fontSize = 14.sp,
 //
@@ -85,8 +81,6 @@
 //    }
 //}
 //
-//
-//@ExperimentalMaterialApi
 //@Composable
 //fun GeneralOptionsUI() {
 //    Column(
@@ -95,7 +89,7 @@
 //            .padding(top = 10.dp)
 //    ) {
 //        Text(
-//            color = MaterialTheme.colors.primary,
+//            color = MaterialTheme.colorScheme.primary,
 //            text = stringResource(id = R.string.worktime_string),
 //            fontSize = 14.sp,
 //            fontWeight = FontWeight.Bold,
