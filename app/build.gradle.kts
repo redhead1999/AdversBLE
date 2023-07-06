@@ -14,11 +14,6 @@ plugins {
     id ("com.google.firebase.crashlytics")
 }
 
-repositories {
-    mavenCentral()
-    google()
-}
-
 android {
     signingConfigs {
         register("release") {
@@ -42,11 +37,11 @@ android {
     compileSdk =  33
 
     defaultConfig {
-        applicationId = Config.applicationId
-        minSdk = Config.minSdkVersion
-        targetSdk = Config.targetSdkVersion
-        versionCode = Config.versionCode
-        versionName = Config.versionName
+        applicationId =  "com.aold.advers"
+        minSdk = 21
+        targetSdk =  33
+        versionCode = 1
+        versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArgument("runnerBuilder", "de.mannodermaus.junit5.AndroidJUnit5Builder")
 
@@ -72,7 +67,7 @@ android {
         targetCompatibility =  JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = Config.jvmTarget
+        jvmTarget = "11"
     }
 
     buildFeatures {
@@ -81,7 +76,7 @@ android {
         viewBinding =  true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Config.kotlinCompiler
+        kotlinCompilerExtensionVersion = "1.3.2"
     }
     packagingOptions {
         resources {
@@ -230,6 +225,9 @@ dependencies {
 
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation ("me.tankery.lib:circularSeekBar:1.4.2")
+
+    //TimePicker
+    implementation ("io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc")
 }
 
 

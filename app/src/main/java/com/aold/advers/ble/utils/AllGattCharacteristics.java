@@ -7,11 +7,17 @@ public class AllGattCharacteristics {
     private static HashMap<String, String> attributes = new HashMap();
 
     static {
+
+        //ОСНОВНЫЕ ПАРАМЕТРЫ
+
         attributes.put("00002a00-0000-1000-8000-00805f9b34fb", "Device Name");
         attributes.put("00002a01-0000-1000-8000-00805f9b34fb", "Appearance");
         attributes.put("00002a02-0000-1000-8000-00805f9b34fb", "Peripheral Privacy Flag");
         attributes.put("00002a03-0000-1000-8000-00805f9b34fb", "Reconnection Address");
         attributes.put("00002a04-0000-1000-8000-00805f9b34fb", "Peripheral Preferred Connection Parameters");
+
+
+
         attributes.put("00002a05-0000-1000-8000-00805f9b34fb", "Service Changed");
         attributes.put("00002a06-0000-1000-8000-00805f9b34fb", "Alert Level");
         attributes.put("00002a07-0000-1000-8000-00805f9b34fb", "Tx Power Level");
@@ -226,7 +232,6 @@ public class AllGattCharacteristics {
         attributes.put("00002b1f-0000-1000-8000-00805f9b34fb", "Reconnection Configuration Control Point");
 
     }
-
     public static String lookup(String uuid) {
         return lookup(uuid, "--");
     }

@@ -1,5 +1,7 @@
 package com.aold.advers.ble
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -14,9 +16,11 @@ import com.aold.advers.ble.presentation.control.ControlScreen
 import com.aold.advers.ble.presentation.help.AboutScreen
 import com.aold.advers.ble.presentation.scan.HomeRoute
 import com.aold.advers.ble.presentation.settings.Settings
-import com.aold.advers.ble.presentation.test.Test
+import com.aold.advers.ble.presentation.test.TestScreen
+import com.aold.advers.ble.presentation.timers.TimerScreen
 import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AppNavGraph(
     navController: NavHostController,
@@ -32,16 +36,12 @@ fun AppNavGraph(
 
         //ЭКРАН ДЛЯ ТЕСТОВ
 
-        composable(HOME) {
-            HomeRoute(
-                onControlClick = { deviceAddress ->
-                    navController.navigate("$CONTROL_SCREEN/$deviceAddress")
-                },
-                appLayoutInfo = appLayoutInfo,
-                onHelpClicked = { navController.navigate(HELP_ABOUT) },
-                onSettingsClicked = { navController.navigate(SETTINGS) }
-            )
-        }
+//        composable(HOME) {
+//            TestScreen(
+//                appLayoutInfo = appLayoutInfo,
+//                onBackClicked = { navController.popBackStack() })
+//        }
+
 
         composable(HOME) {
             HomeRoute(
@@ -53,6 +53,8 @@ fun AppNavGraph(
                 onSettingsClicked = { navController.navigate(SETTINGS) }
             )
         }
+
+
         composable(CONTROL) {
             ControlScreen(
                 appLayoutInfo = appLayoutInfo,
@@ -67,12 +69,6 @@ fun AppNavGraph(
         }
         composable(SETTINGS) {
             Settings(
-                appLayoutInfo = appLayoutInfo,
-                onBackClicked = { navController.popBackStack() }
-            )
-        }
-        composable(TEST) {
-            Test(
                 appLayoutInfo = appLayoutInfo,
                 onBackClicked = { navController.popBackStack() }
             )

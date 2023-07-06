@@ -55,8 +55,8 @@ import androidx.compose.ui.graphics.Color
 //
 //val RedErrorDark = Color(0xFFB00020)
 //val RedErrorLight = Color(0xFFEF5350)
-
-val md_theme_light_primary = Color(0xFF0087ff)
+val white = Color(0xFFF3F3F3)
+val md_theme_light_primary = Color(0xFF5b5b5b)
 val md_theme_light_onPrimary = Color(0xFFe2e2e9)
 
 val md_theme_light_primaryContainer = Color(0xffd2d6db)
@@ -65,13 +65,13 @@ val md_theme_light_onPrimaryContainer = Color(0xFF0e0f10)
 val md_theme_light_secondary = Color(0xFF00005d)
 val md_theme_light_onSecondary = Color(0xFF363b49)
 
-val md_theme_light_secondaryContainer = Color(0xFF02309c)
+val md_theme_light_secondaryContainer = Color(0xFF5b5b5b)
 val md_theme_light_onSecondaryContainer = Color(0xFFd6d8e1)
 
 val md_theme_light_tertiary = Color(0xFF0e0f10)
 val md_theme_light_onTertiary = Color(0xFFcaccd9)
 
-val md_theme_light_tertiaryContainer = Color(0xFF0073d1)
+val md_theme_light_tertiaryContainer = Color(0xFF5b5b5b)
 val md_theme_light_onTertiaryContainer = Color(0xFFedede8)
 val md_theme_light_error = Color(0xFFff0000)
 val md_theme_light_errorContainer = Color(0xFFFFDAD6)
@@ -98,7 +98,7 @@ val md_theme_light_inverseOnSurface = Color(0xFFe8eaed)
 
 //********************************************************************//
 
-val md_theme_dark_primary = Color(0xFF005fb8)
+val md_theme_dark_primary = Color(0xFF5b5b5b)
 val md_theme_dark_onPrimary = Color(0xFFb1b3c9)
 
 val md_theme_dark_primaryContainer = Color(0xFF00103d)

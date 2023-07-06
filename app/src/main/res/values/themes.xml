@@ -2,8 +2,9 @@
 <resources>
 
     <style name="Theme.AdversTheme" parent="android:Theme.Material.Light.NoActionBar" >
-        <item name="android:windowBackground">@color/gray</item>
+        <item name="android:windowBackground">#6ea0c3</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:fontFamily">@font/balsamiq</item>
     </style>
 
 

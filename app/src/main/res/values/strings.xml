@@ -4,7 +4,10 @@
     <string name="pump_string">Помпа</string>
     <string name="heat_string">Подогрев</string>
     <string name="settings_string">Настройки</string>
+    <string name="history_string">История</string>
     <string name="timer_string">Таймер</string>
+    <string name="tempo_string">Температура</string>
+    <string name="voltage_string">Напряжение</string>
     <string name="theme_string">Тема</string>
     <string name="general_setting_string">Основные</string>
     <string name="support_setting_string">Поддержка</string>

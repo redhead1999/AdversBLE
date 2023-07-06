@@ -18,4 +18,3 @@ dependencyResolutionManagement {
 rootProject.name = "AdversBLE"
 include(":app")
 include(":sharedTest")
-include(":buildsrc")

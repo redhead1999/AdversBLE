@@ -1,9 +1,8 @@
-package com.aold.advers.ble.presentation.test
+package com.aold.advers.ble.presentation.timers
 
 import android.os.Build
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -19,10 +18,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -31,7 +27,6 @@ import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledIconButton
@@ -57,33 +52,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.aold.advers.R
 import com.aold.advers.ble.presentation.components.BasicBackTopAppBar
-import com.aold.advers.ble.presentation.components.BasicBackTopAppBarWithoutBack
-import com.aold.advers.ble.presentation.components.TopAppBarWithCentralImage
-import com.aold.advers.ble.presentation.components.aboutLink
-import com.aold.advers.ble.presentation.components.bugLink
-import com.aold.advers.ble.presentation.components.discussionsLink
-import com.aold.advers.ble.presentation.components.privacyPolicy
-import com.aold.advers.ble.presentation.components.termsLink
 import com.aold.advers.ble.presentation.previewparams.FeatureParams
 import com.aold.advers.ble.presentation.previewparams.LandscapeLayouts
 import com.aold.advers.ble.presentation.previewparams.LandscapeListParams
 import com.aold.advers.ble.presentation.previewparams.PortraitLayouts
 import com.aold.advers.ble.presentation.previewparams.PortraitListParams
 import com.aold.advers.ble.presentation.test.components.CircularSlider
-import com.aold.advers.ble.presentation.test.components.CustomCircularProgressIndicator
 import com.aold.advers.ble.presentation.theme.AdversBleTheme
 import com.aold.advers.ble.presentation.theme.appBarTitle
 import com.aold.advers.ble.presentation.theme.pagerHeaders
@@ -99,7 +82,7 @@ import java.time.format.DateTimeFormatter
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TestScreen(
+fun TimerScreen(
     appLayoutInfo: AppLayoutInfo,
     onBackClicked: () -> Unit
 ) {
@@ -118,13 +101,10 @@ fun TestScreen(
         snackbarHost = { SnackbarHost(hostState = appSnackBarHostState) },
         topBar = {
             if (!appLayoutInfo.appLayoutMode.isLandscape()) {
-                TopAppBarWithCentralImage(
-                    appLayoutInfo = appLayoutInfo,
-                    onBackClicked = onBackClicked
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.corporation),
-                        contentDescription = "Адверс"
+                BasicBackTopAppBar(appLayoutInfo = appLayoutInfo, onBackClicked = onBackClicked) {
+                    Text(
+                        text = "Таймеры",
+                        style = appBarTitle
                     )
                 }
             }
@@ -248,230 +228,62 @@ fun TestScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-                    Box(contentAlignment = Alignment.TopCenter) {
-                        Row(
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(30.dp)
-                        ) {
-                            Button(
-                                border = BorderStroke(1.dp, Color.Transparent),
-                                shape = RoundedCornerShape(15),
-                                modifier = Modifier
-                                    .width(80.dp)
-                                    .height(60.dp),
-                                onClick = {
-                                }) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.settings),
-                                    contentDescription = null,
-                                    tint = Color(0xff6ea0c3)// decorative element
-                                )
-                                Spacer(modifier = Modifier.size(10.dp))
-                            }
-                            Button(
-                                border = BorderStroke(1.dp, Color.Transparent),
-                                shape = RoundedCornerShape(15),
-                                modifier = Modifier
-                                    .width(100.dp)
-                                    .height(60.dp),
-                                onClick = {
-
-                                }) {
-                                Text(
-                                    text = "ПОИСК",
-                                    style = TextStyle(fontSize = 15.sp, color = Color(0xff6ea0c3))
-                                )
-                            }
-                            Button(
-                                border = BorderStroke(1.dp, Color.Transparent),
-                                shape = RoundedCornerShape(15),
-                                modifier = Modifier
-                                    .width(80.dp)
-                                    .height(60.dp),
-                                onClick = {
-                                    timeDialogState.show()
-                                }) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.timer),
-                                    contentDescription = null,
-                                    tint = Color(0xff6ea0c3)// decorative element
-                                )
-                                Spacer(modifier = Modifier.size(10.dp))
-                            }
-                        }
+                    Button(onClick = {
+                        dateDialogState.show()
+                    }) {
+                        Text(text = "Pick date")
                     }
-
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .background(Color.Transparent),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Spacer(modifier = Modifier.height(150.dp))
-                            CustomCircularProgressIndicator(
-                                modifier = Modifier
-                                    .size(350.dp)
-                                ,
-                                initialValue = 25,
-                                primaryColor = MaterialTheme.colorScheme.secondaryContainer,
-                                secondaryColor = MaterialTheme.colorScheme.background,
-                                circleRadius = 200f,
-                                onPositionChange = { position ->
-                                    //do something with this position value
-                                }
-                            )
-                        }
-
-
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(400.dp)
-                            .background(Color.Transparent),
-                        contentAlignment = Alignment.BottomEnd
-                    ) {
-
-                        Row(
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(30.dp)
-                        ) {
-
-                            val isShowing = remember { mutableStateOf(false) }
-                            val context = LocalContext.current
-
-                            Button(
-                                border = BorderStroke(1.dp, Color.Transparent),
-                                shape = RoundedCornerShape(15),
-                                modifier = Modifier
-                                    .width(90.dp)
-                                    .height(75.dp),
-                                onClick = {
-                                    Toast.makeText(
-                                        context,
-                                        "Команда отправлена",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                            ) {
-                                Column(
-                                    modifier = Modifier.fillMaxSize(),
-                                    verticalArrangement = Arrangement.Center,
-                                    horizontalAlignment = Alignment.CenterHorizontally
-                                ) {
-                                    Icon(
-                                        painter = painterResource(id = R.drawable.black_btn_voltage),
-                                        contentDescription = null,
-                                        tint = Color(0xff6ea0c3)// decorative element
-                                    )
-                                    Spacer(modifier = Modifier.height(2.dp))
-                                    Text(
-                                        text = stringResource(id = R.string.voltage_string),
-                                        style = TextStyle(fontSize = 13.sp, color = Color(0xff6ea0c3))
-                                    )
-                                }
-                            }
-//
-                            Button(
-                                border = BorderStroke(1.dp, Color.Transparent),
-                                shape = RoundedCornerShape(15),
-                                modifier = Modifier
-                                    .width(90.dp)
-                                    .height(75.dp),
-                                onClick = {
-
-                                }) {
-                                Column(
-                                    modifier = Modifier.fillMaxSize(),
-                                    verticalArrangement = Arrangement.Center,
-                                    horizontalAlignment = Alignment.CenterHorizontally
-                                ) {
-                                    Icon(
-                                        painter = painterResource(id = R.drawable.termo),
-                                        contentDescription = null, // decorative element
-                                        tint = Color(0xff6ea0c3)
-                                    )
-                                    Spacer(modifier = Modifier.height(2.dp))
-                                    Text(
-                                        text = stringResource(id = R.string.tempo_string),
-                                        style = TextStyle(fontSize = 13.sp, color = Color(0xff6ea0c3))
-                                    )
-                                }
-                            }
-                            Button(
-                                border = BorderStroke(1.dp, Color.Transparent),
-                                shape = RoundedCornerShape(15),
-                                modifier = Modifier
-                                    .width(90.dp)
-                                    .height(75.dp),
-                                onClick = {
-
-                                }) {
-                                Column(
-                                    modifier = Modifier.fillMaxSize(),
-                                    verticalArrangement = Arrangement.Center,
-                                    horizontalAlignment = Alignment.CenterHorizontally
-                                ) {
-                                    Icon(
-                                        painter = painterResource(id = R.drawable.black_btn_story),
-                                        contentDescription = "Descriptor Buttons",
-                                        tint = Color(0xff6ea0c3)
-                                    )
-                                    Spacer(modifier = Modifier.height(2.dp))
-                                    Text(
-                                        text = stringResource(id = R.string.history_string),
-                                        style = TextStyle(fontSize = 13.sp, color = Color(0xff6ea0c3))
-                                    )
-                                }
-                            }
-                        }
+                    Text(text = formattedDate)
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Button(onClick = {
+                        timeDialogState.show()
+                    }) {
+                        Text(text = "Pick time")
                     }
-                    MaterialDialog(
-                        dialogState = dateDialogState,
-                        buttons = {
-                            positiveButton(text = "Ok") {
-                                Toast.makeText(
-                                    context,
-                                    "Clicked ok",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                            negativeButton(text = "Cancel")
+                    Text(text = formattedTime)
+                }
+                MaterialDialog(
+                    dialogState = dateDialogState,
+                    buttons = {
+                        positiveButton(text = "Ok") {
+                            Toast.makeText(
+                                context,
+                                "Clicked ok",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                        negativeButton(text = "Cancel")
+                    }
+                ) {
+                    datepicker(
+                        initialDate = LocalDate.now(),
+                        title = "Pick a date",
+                        allowedDateValidator = {
+                            it.dayOfMonth % 2 == 1
                         }
                     ) {
-                        datepicker(
-                            initialDate = LocalDate.now(),
-                            title = "Pick a date",
-                            allowedDateValidator = {
-                                it.dayOfMonth % 2 == 1
-                            }
-                        ) {
-                            pickedDate = it
-                        }
+                        pickedDate = it
                     }
-                    MaterialDialog(
-                        dialogState = timeDialogState,
-                        buttons = {
-                            positiveButton(text = "Ok") {
-                                Toast.makeText(
-                                    context,
-                                    "Clicked ok",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                            negativeButton(text = "Cancel")
+                }
+                MaterialDialog(
+                    dialogState = timeDialogState,
+                    buttons = {
+                        positiveButton(text = "Ok") {
+                            Toast.makeText(
+                                context,
+                                "Clicked ok",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
+                        negativeButton(text = "Cancel")
+                    }
+                ) {
+                    timepicker(
+                        initialTime = LocalTime.NOON,
+                        title = "Pick a time",
+                        timeRange = LocalTime.MIDNIGHT..LocalTime.NOON
                     ) {
-                        timepicker(
-                            initialTime = LocalTime.NOON,
-                            title = "Pick a time",
-                            timeRange = LocalTime.MIDNIGHT..LocalTime.NOON
-                        ) {
-                            pickedTime = it
-                        }
+                        pickedTime = it
                     }
                 }
             }
@@ -765,6 +577,7 @@ fun BugCard(
     }
 }
 
+
 @Composable
 private fun AppInfo() {
     Row(
@@ -918,8 +731,8 @@ fun LegalStuff(
                 uriHandler.openUri(stringAnnotation.item)
             }
         })
-}
 
+}
 
 @RequiresApi(Build.VERSION_CODES.O)
 @PortraitLayouts
@@ -928,7 +741,7 @@ fun PreviewPortraitAbout(
     @PreviewParameter(PortraitListParams::class) featureParams: FeatureParams
 ) {
     AdversBleTheme() {
-        TestScreen(appLayoutInfo = featureParams.appLayoutInfo) {
+        TimerScreen(appLayoutInfo = featureParams.appLayoutInfo) {
         }
     }
 }
@@ -940,7 +753,7 @@ fun PreviewLandscapeAbout(
     @PreviewParameter(LandscapeListParams::class) featureParams: FeatureParams
 ) {
     AdversBleTheme() {
-        TestScreen(appLayoutInfo = featureParams.appLayoutInfo) {
+        TimerScreen(appLayoutInfo = featureParams.appLayoutInfo) {
         }
     }
 }

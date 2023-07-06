@@ -5,6 +5,9 @@
     <string name="heat_string">Heating</string>
     <string name="settings_string">Settings</string>
     <string name="timer_string">Timer</string>
+    <string name="history_string">Story</string>
+    <string name="tempo_string">Temperature</string>
+    <string name="voltage_string">Voltage</string>
     <string name="theme_string">Тheme</string>
     <string name="general_setting_string">General</string>
     <string name="support_setting_string">Support</string>

@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -46,6 +47,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -55,16 +57,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.aold.advers.R
 import com.aold.advers.ble.presentation.components.BasicBackTopAppBar
-import com.aold.advers.ble.presentation.components.aboutLink
-import com.aold.advers.ble.presentation.components.bugLink
-import com.aold.advers.ble.presentation.components.discussionsLink
-import com.aold.advers.ble.presentation.components.privacyPolicy
-import com.aold.advers.ble.presentation.components.termsLink
 import com.aold.advers.ble.presentation.previewparams.FeatureParams
 import com.aold.advers.ble.presentation.previewparams.LandscapeLayouts
 import com.aold.advers.ble.presentation.previewparams.LandscapeListParams
 import com.aold.advers.ble.presentation.previewparams.PortraitLayouts
 import com.aold.advers.ble.presentation.previewparams.PortraitListParams
+import com.aold.advers.ble.presentation.test.components.CircularSlider
 import com.aold.advers.ble.presentation.theme.AdversBleTheme
 import com.aold.advers.ble.presentation.theme.appBarTitle
 import com.aold.advers.ble.presentation.theme.pagerHeaders
@@ -131,7 +129,7 @@ fun Settings(
                             }
                         )
                         Spacer(modifier = Modifier.height(12.dp))
-                        AppInfo()
+                        //AppInfo()
                     }
                     Column(
                         modifier = Modifier
@@ -139,71 +137,87 @@ fun Settings(
                             .padding(horizontal = 16.dp)
                             .verticalScroll(rememberScrollState())
                     ) {
-                        AboutPager(currentPagingIndex = currentPagingIndex,
-                            pagingItemCount = pagingItemCount, pagingItems = pagingItems, onMove =
-                            {
-                                if (!it) currentPagingIndex-- else currentPagingIndex++
-                            }
-                        )
-
-                        when (currentPagingIndex) {
-                            0 -> AboutAndPrivacy(
-                                uriHandler = uriHandler,
-                                aboutLink = aboutLink,
-                                privacyPolicyLink = privacyPolicy,
-                                termsLink = termsLink
-                            )
-
-                            1 -> HelpCard(
-                                uriHandler = uriHandler,
-                                discussionsLink = discussionsLink,
-                            )
-
-                            else ->
-                                BugCard(uriHandler = uriHandler, bugLink = bugLink)
-                        }
+//                        AboutPager(currentPagingIndex = currentPagingIndex,
+//                            pagingItemCount = pagingItemCount, pagingItems = pagingItems, onMove =
+//                            {
+//                                if (!it) currentPagingIndex-- else currentPagingIndex++
+//                            }
+//                        )
+//
+//                        when (currentPagingIndex) {
+//                            0 -> AboutAndPrivacy(
+//                                uriHandler = uriHandler,
+//                                aboutLink = aboutLink,
+//                                privacyPolicyLink = privacyPolicy,
+//                                termsLink = termsLink
+//                            )
+//
+//                            1 -> HelpCard(
+//                                uriHandler = uriHandler,
+//                                discussionsLink = discussionsLink,
+//                            )
+//
+//                            else ->
+//                                BugCard(uriHandler = uriHandler, bugLink = bugLink)
+//                        }
+//                    }
                     }
                 }
 
             } else {
-                Row(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.secondaryContainer)
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    AppInfo()
-                    //SocialIcons(uriHandler, youTubeLink, linkedInLink, gitHubLink)
-                }
-                Spacer(modifier = Modifier.height(20.dp))
-                AboutPager(currentPagingIndex = currentPagingIndex,
-                    pagingItemCount = pagingItemCount, pagingItems = pagingItems, onMove =
-                    {
-                        if (!it) currentPagingIndex-- else currentPagingIndex++
-                    }
-                )
+//                Row(
+//                    modifier = Modifier
+//                        .background(MaterialTheme.colorScheme.secondaryContainer)
+//                        .fillMaxWidth(),
+//                    horizontalArrangement = Arrangement.SpaceBetween,
+//                    verticalAlignment = Alignment.CenterVertically
+//                ) {
+//                    AppInfo()
+//                    //SocialIcons(uriHandler, youTubeLink, linkedInLink, gitHubLink)
+//                }
+//                Spacer(modifier = Modifier.height(20.dp))
+//                AboutPager(currentPagingIndex = currentPagingIndex,
+//                    pagingItemCount = pagingItemCount, pagingItems = pagingItems, onMove =
+//                    {
+//                        if (!it) currentPagingIndex-- else currentPagingIndex++
+//                    }
+//                )
 
                 Column(
                     modifier = Modifier.verticalScroll(rememberScrollState())
-                ) {
-                    when (currentPagingIndex) {
-                        0 -> AboutAndPrivacy(
-                            uriHandler = uriHandler,
-                            aboutLink = aboutLink,
-                            privacyPolicyLink = privacyPolicy,
-                            termsLink = termsLink
-                        )
+                ){
+                    Box(
+                        contentAlignment = Alignment.Center){
+                        Button(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 16.dp),
+                            onClick = {
 
-                        1 -> HelpCard(
-                            uriHandler = uriHandler,
-                            discussionsLink = discussionsLink,
-                        )
-
-                        else ->
-                            BugCard(uriHandler = uriHandler, bugLink = bugLink)
+                            }) {
+                            Text(text = "Подробнее")
+                        }
+                        CircularSlider()
                     }
                 }
+//                ) {
+//                    when (currentPagingIndex) {
+//                        0 -> AboutAndPrivacy(
+//                            uriHandler = uriHandler,
+//                            aboutLink = aboutLink,
+//                            privacyPolicyLink = privacyPolicy,
+//                            termsLink = termsLink
+//                        )
+//
+//                        1 -> HelpCard(
+//                            uriHandler = uriHandler,
+//                            discussionsLink = discussionsLink,
+//                        )
+//
+//                        else ->
+//                            BugCard(uriHandler = uriHandler, bugLink = bugLink)
+//                    }
+//                }
 
             }
 
