@@ -44,7 +44,7 @@ fun MainMenu(
         onClick = { onExpanded(true) }) {
         Icon(
             //modifier = Modifier.then(Modifier.padding(0.dp)),
-            painter = painterResource(id = R.drawable.corporation),
+            painter = painterResource(id = R.drawable.black_btn_list),
             contentDescription = "Actions",
             tint = Color.Unspecified
         )

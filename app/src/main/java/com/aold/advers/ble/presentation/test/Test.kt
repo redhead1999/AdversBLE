@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
@@ -31,9 +30,7 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledIconButton
@@ -55,41 +52,23 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
-import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.aold.advers.R
 import com.aold.advers.ble.presentation.components.BasicBackTopAppBar
-import com.aold.advers.ble.presentation.components.BasicBackTopAppBarWithoutBack
 import com.aold.advers.ble.presentation.components.TopAppBarWithCentralImage
-import com.aold.advers.ble.presentation.components.aboutLink
-import com.aold.advers.ble.presentation.components.bugLink
-import com.aold.advers.ble.presentation.components.discussionsLink
-import com.aold.advers.ble.presentation.components.privacyPolicy
-import com.aold.advers.ble.presentation.components.termsLink
-import com.aold.advers.ble.presentation.previewparams.FeatureParams
-import com.aold.advers.ble.presentation.previewparams.LandscapeLayouts
-import com.aold.advers.ble.presentation.previewparams.LandscapeListParams
-import com.aold.advers.ble.presentation.previewparams.PortraitLayouts
-import com.aold.advers.ble.presentation.previewparams.PortraitListParams
-import com.aold.advers.ble.presentation.test.components.CircularSlider
 import com.aold.advers.ble.presentation.test.components.CustomCircularProgressIndicator
-import com.aold.advers.ble.presentation.theme.AdversBleTheme
-import com.aold.advers.ble.presentation.theme.appBarTitle
 import com.aold.advers.ble.presentation.theme.pagerHeaders
 import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo
 import com.aold.advers.presentation.components.charts.TemperatureChart
@@ -107,7 +86,7 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun TestScreen(
     appLayoutInfo: AppLayoutInfo,
-    onBackClicked: () -> Unit
+    onBackClicked: () -> Unit,
 ) {
 
     val appSnackBarHostState = remember { SnackbarHostState() }
@@ -1084,26 +1063,28 @@ fun LegalStuff(
 }
 
 
-@RequiresApi(Build.VERSION_CODES.O)
-@PortraitLayouts
-@Composable
-fun PreviewPortraitAbout(
-    @PreviewParameter(PortraitListParams::class) featureParams: FeatureParams
-) {
-    AdversBleTheme() {
-        TestScreen(appLayoutInfo = featureParams.appLayoutInfo) {
-        }
-    }
-}
-
-@RequiresApi(Build.VERSION_CODES.O)
-@LandscapeLayouts
-@Composable
-fun PreviewLandscapeAbout(
-    @PreviewParameter(LandscapeListParams::class) featureParams: FeatureParams
-) {
-    AdversBleTheme() {
-        TestScreen(appLayoutInfo = featureParams.appLayoutInfo) {
-        }
-    }
-}
+//@RequiresApi(Build.VERSION_CODES.O)
+//@PortraitLayouts
+//@Composable
+//fun PreviewPortraitAbout(
+//    @PreviewParameter(PortraitListParams::class) featureParams: FeatureParams
+//) {
+//    AdversBleTheme() {
+//        TestScreen(appLayoutInfo = featureParams.appLayoutInfo,
+//                    navController = NavController,
+//
+//
+//    }
+//}
+//
+//
+//@RequiresApi(Build.VERSION_CODES.O)
+//@LandscapeLayouts
+//@Composable
+//fun PreviewLandscapeAbout(
+//    @PreviewParameter(LandscapeListParams::class) featureParams: FeatureParams
+//) {
+//    AdversBleTheme() {
+//        TestScreen(appLayoutInfo = featureParams.appLayoutInfo,
+//        }
+//}

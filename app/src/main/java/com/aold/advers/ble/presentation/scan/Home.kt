@@ -21,6 +21,7 @@ import com.aold.advers.ble.domain.models.ScanState
 import com.aold.advers.ble.presentation.components.AppBarWithBackButton
 import com.aold.advers.ble.presentation.components.HomeAppBar
 import com.aold.advers.ble.presentation.components.ShowPermissions
+import com.aold.advers.ble.presentation.components.TopAppBarWithCentralImageAndDrawer
 import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
@@ -86,7 +87,6 @@ fun HomeRoute(
         onFilter = vm::onFilter,
         onShowUserMessage = vm::showUserMessage,
         onHelpClicked = onHelpClicked,
-        onSettingsClicked = onSettingsClicked
     )
 
 }
@@ -106,7 +106,6 @@ fun HomeLayout(
     onFilter: (ScanFilterOption?) -> Unit,
     onShowUserMessage: (String) -> Unit,
     onHelpClicked: () -> Unit,
-    onSettingsClicked: () -> Unit
 ) {
 
     val selectedDevice = scanState.scanUI.selectedDevice

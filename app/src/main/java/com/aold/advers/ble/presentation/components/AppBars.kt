@@ -1,7 +1,9 @@
 package com.aold.advers.ble.presentation.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -42,6 +44,76 @@ import com.aold.advers.ble.presentation.theme.appBarTitle
 import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo
 import com.aold.advers.ble.presentation.previewparams.LandscapeLayouts
 import com.aold.advers.ble.presentation.previewparams.PortraitLayouts
+
+
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+fun AppBarWithDrawer(
+    onNavigationIconClick: () -> Unit,
+    appLayoutInfo: AppLayoutInfo,
+    onBackClicked: () -> Unit,
+    scanUi: ScanUI,
+    deviceDetail: DeviceDetail,
+    deviceEvents: DeviceEvents,
+    bleConnectEvents: BleConnectEvents,
+    onControlClick: (String) -> Unit
+) {
+
+    var deviceMenuExpanded by rememberSaveable { mutableStateOf(false) }
+    val connectEnabled = !scanUi.bleMessage.isActive()
+    val disconnectEnabled = scanUi.bleMessage.isActive()
+
+    CenterAlignedTopAppBar(
+        //modifier = Modifier.border(2.dp, Color.Blue),
+        windowInsets = WindowInsets(
+            top = 0.dp,
+            bottom = 0.dp
+        ),
+        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+            containerColor = Color(0xff6ea0c3),
+            titleContentColor = Color(0xFFcaccd9),
+            navigationIconContentColor = androidx.compose.material3.MaterialTheme.colorScheme
+                .onPrimary.copy(.7f)
+        ),
+        title = {
+            if (appLayoutInfo.appLayoutMode.isLandscape()) {
+                DeviceButtons(
+                    connectEnabled = connectEnabled,
+                    onConnect = bleConnectEvents.onConnect,
+                    device = deviceDetail.scannedDevice,
+                    disconnectEnabled = disconnectEnabled,
+                    onDisconnect = bleConnectEvents.onDisconnect,
+                    services = deviceDetail.services,
+                    onControlClick = onControlClick
+                )
+            } else {
+                Image(
+                    painter = painterResource(id = R.drawable.corporation),
+                    contentDescription = "Адверс"
+                )
+            }
+        },
+        navigationIcon = {
+            IconButton(onClick = onNavigationIconClick) {
+                Icon(
+                    imageVector = Icons.Default.Menu,
+                    contentDescription = "Toggle drawer"
+                )
+            }
+        },
+        actions = {
+            DeviceMenu(
+                device = deviceDetail.scannedDevice,
+                expanded = deviceMenuExpanded,
+                onExpanded = { deviceMenuExpanded = it },
+                onEdit = deviceEvents.onIsEditing,
+                onFavorite = deviceEvents.onFavorite,
+                onForget = deviceEvents.onForget
+            )
+        }
+    )
+}
 
 
 @Composable
@@ -136,7 +208,6 @@ fun HomeAppBarNew(
                 expanded = homeMenuExpanded,
                 onExpanded = { homeMenuExpanded = it },
                 onHelp = onHelp,
-
                 )
         },
         title = {
@@ -191,7 +262,7 @@ fun HomeAppBar(
 
     var homeMenuExpanded by rememberSaveable { mutableStateOf(false) }
 
-    androidx.compose.material3.TopAppBar(
+    CenterAlignedTopAppBar(
         //modifier = Modifier.border(2.dp, Color.Blue),
         windowInsets = WindowInsets(
             top = 0.dp,
@@ -203,15 +274,16 @@ fun HomeAppBar(
             navigationIconContentColor = androidx.compose.material3.MaterialTheme.colorScheme
                 .onPrimary.copy(.7f)
         ),
-//        navigationIcon = {
-//            MainMenu(
-//                expanded = homeMenuExpanded,
-//                onExpanded = { homeMenuExpanded = it },
-//                onHelp = onHelp,
-//
-//                )
-//        },
+        navigationIcon = {
+            MainMenu(
+                expanded = homeMenuExpanded,
+                onExpanded = { homeMenuExpanded = it },
+                onHelp = onHelp,
+
+                )
+        },
         title = {
+            Spacer(modifier = Modifier.width(30.dp))
             Image(
                 painter = painterResource(id = R.drawable.corporation),
                 contentDescription = "Адверс"

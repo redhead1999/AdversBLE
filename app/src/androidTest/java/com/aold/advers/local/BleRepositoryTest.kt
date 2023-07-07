@@ -5,8 +5,6 @@ import com.aold.advers.ble.local.BleRepository
 import com.aold.advers.ble.local.entities.ScannedDevice
 import com.aold.advers.ble.local.entities.displayName
 import com.aold.advers.local.room.TestBleDatabase
-import com.aold.advers.sharedtest.deviceList
-import com.aold.advers.sharedtest.newDevice
 import com.aold.advers.util.KoinTestPerMethod
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
@@ -62,7 +60,7 @@ internal class BleRepositoryTest : KoinTest {
     @Test
     @DisplayName("Insert device and read from flow")
     fun insertDevice() = runTest {
-        bleRepository.insertDevice(newDevice)
+        bleRepository.insertDevice(newD)
         val scannedDevices = bleRepository.getScannedDevices(null).first()
         assertEquals(newDevice.address, scannedDevices.first().address)
     }

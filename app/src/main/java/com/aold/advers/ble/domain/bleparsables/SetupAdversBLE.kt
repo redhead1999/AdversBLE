@@ -1,8 +1,10 @@
 package com.aold.advers.ble.domain.bleparsables
 
+import android.content.SharedPreferences
 import com.aold.advers.ble.domain.models.UUID_DEFAULT
 import com.aold.advers.ble.utils.toHex
 import timber.log.Timber
+import java.util.Random
 
 object ADVERSBLEDOM : ParsableUuid("D973F2E1$UUID_DEFAULT".lowercase()) {
 
@@ -18,6 +20,8 @@ object ADVERSBLEDOM : ParsableUuid("D973F2E1$UUID_DEFAULT".lowercase()) {
     const val OFF = "0x7E0004000000FF00EF"
     const val COLOR = "0x7E000503xxxxxx00EF"
     const val BRIGHTNESS = "0x7E0001xx00000000EF"
+
+    const val idDevice =""
 
     /*
              0x7E 00 04 00 00 00 FF 00 EF
@@ -39,13 +43,14 @@ object ADVERSBLEDOM : ParsableUuid("D973F2E1$UUID_DEFAULT".lowercase()) {
     val colorsHex = arrayOf(white, yellow, cyan, green, magenta, blue, orange, red)
 
     fun onOffState(bytes: ByteArray): Boolean {
-        val onOffByte = bytes[2]
-        val onOffParam = bytes[5]
+        val onOffByte = bytes[6]
+        val onOffParam = bytes[2]
 
         Timber.d(bytes.toHex())
 
         return !(onOffByte.toInt() == 4 && onOffParam.toInt() == 0)
     }
+
 
     fun getLedStatus(bytes: ByteArray): String {
         val firstBytes = bytes.copyOfRange(0, 8)
@@ -55,21 +60,38 @@ object ADVERSBLEDOM : ParsableUuid("D973F2E1$UUID_DEFAULT".lowercase()) {
         return firstBytes.toHex()
     }
 
+    fun setSetup(bytes: ByteArray): Boolean {
+        //val sPref: SharedPreferences = getSharedPreferences(idDevice, Context.MODE_PRIVATE)
+        // val ed = sPref.edit()
+        val setupWorkTimeDays = bytes[3]
+        val setupWorkTimeHours = bytes[4]
+
+        val onConnectionSetup = bytes[5]
+
+        val setupWorkUnlimited = bytes[6]
+        val setupWarmUpAuto = bytes[7]
+        val setupWarmUpManual = bytes[8]
+        val setupWarmUpTempSetpoint = bytes[9]
+        val setupPreheaterTempSetpoint = bytes[10]
+        val setupPumpInStandby = bytes[11]
+        val setupPumpOnEngine = bytes[12]
+        val setupTurnOnFurnace = bytes[13]
+        val setupFurnaceTempSetpoint = bytes[14]
+        val setupExternalOperating = bytes[15]
+        val setupSystemCelsius = bytes[16]
+        val setupSystem12Hour = bytes[17]
+
+        Timber.d(bytes.toHex())
+
+        return !(onConnectionSetup.toInt() == 1 && setupWarmUpAuto.toInt() == 0)
+
+    }
+
     override fun commands(param: Any?): Array<String> {
         return arrayOf(
-
-            "Get: 010001"
-//            "01" +  // запрос
-//                    "00" +    // запрос гет-параметов
-//                    "01" +    //
-//                    "00" + //
-//                    "00" + //
-//                    "00" + //
-//                    "2" //
-
-//            "On: 7e0004f00001ff00ef",
-//            "Off: 7e0004000000ff00ef",
-//            "Color: 7e000503xxxxxx00ef"
+            "On: 7e0004f00001ff00ef",
+            "Off: 7e0004000000ff00ef",
+            "Color: 7e000503xxxxxx00ef"
         )
     }
 
