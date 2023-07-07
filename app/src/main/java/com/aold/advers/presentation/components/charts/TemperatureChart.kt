@@ -19,8 +19,27 @@ fun TemperatureChart(
     data: List<Pair<Int, Double>> = emptyList(),
     modifier: Modifier = Modifier
 ) {
+
+    val data = listOf(
+        Pair(6, 111.45),
+        Pair(7, 111.0),
+        Pair(8, 113.45),
+        Pair(9, 112.25),
+        Pair(10, 116.45),
+        Pair(11, 113.35),
+        Pair(12, 118.65),
+        Pair(13, 110.15),
+        Pair(14, 113.05),
+        Pair(15, 114.25),
+        Pair(16, 116.35),
+        Pair(17, 117.45),
+        Pair(18, 112.65),
+        Pair(19, 115.45),
+        Pair(20, 111.85)
+    )
+
     val spacing = 100f
-    val graphColor = Color.Cyan
+    val graphColor = Color(0xff6ea0c3)
     val transparentGraphColor = remember { graphColor.copy(alpha = 0.5f) }
     val upperValue = remember { (data.maxOfOrNull { it.second }?.plus(1))?.roundToInt() ?: 0 }
     val lowerValue = remember { (data.minOfOrNull { it.second }?.toInt() ?: 0) }
@@ -28,7 +47,7 @@ fun TemperatureChart(
 
     val textPaint = remember(density) {
         Paint().apply {
-            color = android.graphics.Color.WHITE
+            color = android.graphics.Color.GRAY
             textAlign = Paint.Align.CENTER
             textSize = density.run { 12.sp.toPx() }
         }
@@ -96,7 +115,7 @@ fun TemperatureChart(
             brush = Brush.verticalGradient(
                 colors = listOf(
                     transparentGraphColor,
-                    Color.Transparent
+                    Color(0xff6ea0c3)
                 ),
                 endY = size.height - spacing
             )

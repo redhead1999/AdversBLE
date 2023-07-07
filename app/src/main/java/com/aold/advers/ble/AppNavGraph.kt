@@ -36,23 +36,23 @@ fun AppNavGraph(
 
         //ЭКРАН ДЛЯ ТЕСТОВ
 
-//        composable(HOME) {
-//            TestScreen(
-//                appLayoutInfo = appLayoutInfo,
-//                onBackClicked = { navController.popBackStack() })
-//        }
-
-
         composable(HOME) {
-            HomeRoute(
-                onControlClick = { deviceAddress ->
-                    navController.navigate("$CONTROL_SCREEN/$deviceAddress")
-                },
+            TestScreen(
                 appLayoutInfo = appLayoutInfo,
-                onHelpClicked = { navController.navigate(HELP_ABOUT) },
-                onSettingsClicked = { navController.navigate(SETTINGS) }
-            )
+                onBackClicked = { navController.popBackStack() })
         }
+
+//
+//        composable(HOME) {
+//            HomeRoute(
+//                onControlClick = { deviceAddress ->
+//                    navController.navigate("$CONTROL_SCREEN/$deviceAddress")
+//                },
+//                appLayoutInfo = appLayoutInfo,
+//                onHelpClicked = { navController.navigate(HELP_ABOUT) },
+//                onSettingsClicked = { navController.navigate(SETTINGS) }
+//            )
+//        }
 
 
         composable(CONTROL) {

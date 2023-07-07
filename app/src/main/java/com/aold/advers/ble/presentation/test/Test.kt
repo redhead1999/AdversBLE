@@ -3,6 +3,7 @@ package com.aold.advers.ble.presentation.test
 import android.os.Build
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -30,6 +31,7 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
@@ -52,6 +54,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -88,6 +92,8 @@ import com.aold.advers.ble.presentation.theme.AdversBleTheme
 import com.aold.advers.ble.presentation.theme.appBarTitle
 import com.aold.advers.ble.presentation.theme.pagerHeaders
 import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo
+import com.aold.advers.presentation.components.charts.TemperatureChart
+import com.aold.advers.presentation.components.charts.VoltageChart
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.datetime.time.timepicker
@@ -111,6 +117,7 @@ fun TestScreen(
     val pagingItems = listOf("Таймеры")
     val pagingItemCount by rememberSaveable { mutableStateOf(pagingItems.count()) }
     var currentPagingIndex by rememberSaveable { mutableStateOf(0) }
+
 
     Scaffold(
         // modifier = Modifier.border(2.dp, Color.Magenta),
@@ -217,7 +224,7 @@ fun TestScreen(
 
                 val dateDialogState = rememberMaterialDialogState()
                 val timeDialogState = rememberMaterialDialogState()
-                //todo начало
+                //todo начало (ориентация портрет/телефон)
 
                 var pickedDate by remember {
                     mutableStateOf(LocalDate.now())
@@ -244,7 +251,8 @@ fun TestScreen(
 
                 Column(
                     modifier = Modifier
-                        .fillMaxSize(),
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState()),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
@@ -303,17 +311,35 @@ fun TestScreen(
                         }
                     }
 
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .background(Color.Transparent),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Spacer(modifier = Modifier.height(150.dp))
-                            CustomCircularProgressIndicator(
+//                        Box(
+//                            modifier = Modifier
+//                                .fillMaxWidth()
+//                                .background(Color.Transparent),
+//                            contentAlignment = Alignment.Center
+//                        ) {
+//                            Spacer(modifier = Modifier.height(150.dp))
+//
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        var isVisibleVoltageChart by remember {
+                            mutableStateOf(false)
+                        }
+
+                        var isVisibleTemperatureChart by remember {
+                            mutableStateOf(false)
+                        }
+
+                        var isVisibleHistoryLog by remember {
+                            mutableStateOf(false)
+                        }
+
+                        CustomCircularProgressIndicator(
                                 modifier = Modifier
-                                    .size(350.dp)
-                                ,
+                                    .size(250.dp),
                                 initialValue = 25,
                                 primaryColor = MaterialTheme.colorScheme.secondaryContainer,
                                 secondaryColor = MaterialTheme.colorScheme.background,
@@ -322,17 +348,31 @@ fun TestScreen(
                                     //do something with this position value
                                 }
                             )
+                        AnimatedVisibility(isVisibleVoltageChart) {
+                                VoltageChart(modifier = Modifier
+                                    .width(300.dp)
+                                    .height(150.dp))
+                            }
+                        AnimatedVisibility(isVisibleTemperatureChart) {
+                            TemperatureChart(modifier = Modifier
+                                .width(300.dp)
+                                .height(150.dp))
                         }
+                        AnimatedVisibility(isVisibleHistoryLog) {
+                            Row(modifier = Modifier
+                                .fillMaxWidth()
+                                .align(CenterHorizontally)) {
+                                Spacer(modifier = Modifier
+                                    .width(100.dp)
+                                )
+                                Text("Запуск команды")
+                                Spacer(modifier = Modifier
+                                    .width(20.dp)
+                                )
+                                Text("00:00")
+                            }
 
-
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(400.dp)
-                            .background(Color.Transparent),
-                        contentAlignment = Alignment.BottomEnd
-                    ) {
-
+                        }
                         Row(
                             horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier
@@ -350,11 +390,7 @@ fun TestScreen(
                                     .width(90.dp)
                                     .height(75.dp),
                                 onClick = {
-                                    Toast.makeText(
-                                        context,
-                                        "Команда отправлена",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                    isVisibleVoltageChart = !isVisibleVoltageChart
                                 }
                             ) {
                                 Column(
@@ -370,7 +406,10 @@ fun TestScreen(
                                     Spacer(modifier = Modifier.height(2.dp))
                                     Text(
                                         text = stringResource(id = R.string.voltage_string),
-                                        style = TextStyle(fontSize = 13.sp, color = Color(0xff6ea0c3))
+                                        style = TextStyle(
+                                            fontSize = 13.sp,
+                                            color = Color(0xff6ea0c3)
+                                        )
                                     )
                                 }
                             }
@@ -382,7 +421,7 @@ fun TestScreen(
                                     .width(90.dp)
                                     .height(75.dp),
                                 onClick = {
-
+                                    isVisibleTemperatureChart = !isVisibleTemperatureChart
                                 }) {
                                 Column(
                                     modifier = Modifier.fillMaxSize(),
@@ -397,7 +436,10 @@ fun TestScreen(
                                     Spacer(modifier = Modifier.height(2.dp))
                                     Text(
                                         text = stringResource(id = R.string.tempo_string),
-                                        style = TextStyle(fontSize = 13.sp, color = Color(0xff6ea0c3))
+                                        style = TextStyle(
+                                            fontSize = 13.sp,
+                                            color = Color(0xff6ea0c3)
+                                        )
                                     )
                                 }
                             }
@@ -408,7 +450,7 @@ fun TestScreen(
                                     .width(90.dp)
                                     .height(75.dp),
                                 onClick = {
-
+                                    isVisibleHistoryLog = !isVisibleHistoryLog
                                 }) {
                                 Column(
                                     modifier = Modifier.fillMaxSize(),
@@ -423,12 +465,134 @@ fun TestScreen(
                                     Spacer(modifier = Modifier.height(2.dp))
                                     Text(
                                         text = stringResource(id = R.string.history_string),
-                                        style = TextStyle(fontSize = 13.sp, color = Color(0xff6ea0c3))
+                                        style = TextStyle(
+                                            fontSize = 13.sp,
+                                            color = Color(0xff6ea0c3)
+                                        )
                                     )
                                 }
                             }
                         }
+
+
+                        }
                     }
+
+
+//                    Box(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .height(400.dp)
+//                            .background(Color.Transparent),
+//                        contentAlignment = Alignment.BottomEnd
+//                    ) {
+//
+//                        Row(
+//                            horizontalArrangement = Arrangement.SpaceBetween,
+//                            modifier = Modifier
+//                                .fillMaxWidth()
+//                                .padding(30.dp)
+//                        ) {
+//
+//                            val isShowing = remember { mutableStateOf(false) }
+//                            val context = LocalContext.current
+//
+//
+//                            Button(
+//                                border = BorderStroke(1.dp, Color.Transparent),
+//                                shape = RoundedCornerShape(15),
+//                                modifier = Modifier
+//                                    .width(90.dp)
+//                                    .height(75.dp),
+//                                onClick = {
+////                                    Toast.makeText(
+////                                        context,
+////                                        "Команда отправлена",
+////                                        Toast.LENGTH_SHORT
+////                                    ).show()
+//                                }
+//                            ) {
+//                                Column(
+//                                    modifier = Modifier.fillMaxSize(),
+//                                    verticalArrangement = Arrangement.Center,
+//                                    horizontalAlignment = Alignment.CenterHorizontally
+//                                ) {
+//                                    Icon(
+//                                        painter = painterResource(id = R.drawable.black_btn_voltage),
+//                                        contentDescription = null,
+//                                        tint = Color(0xff6ea0c3)// decorative element
+//                                    )
+//                                    Spacer(modifier = Modifier.height(2.dp))
+//                                    Text(
+//                                        text = stringResource(id = R.string.voltage_string),
+//                                        style = TextStyle(
+//                                            fontSize = 13.sp,
+//                                            color = Color(0xff6ea0c3)
+//                                        )
+//                                    )
+//                                }
+//                            }
+////
+//                            Button(
+//                                border = BorderStroke(1.dp, Color.Transparent),
+//                                shape = RoundedCornerShape(15),
+//                                modifier = Modifier
+//                                    .width(90.dp)
+//                                    .height(75.dp),
+//                                onClick = {
+//
+//                                }) {
+//                                Column(
+//                                    modifier = Modifier.fillMaxSize(),
+//                                    verticalArrangement = Arrangement.Center,
+//                                    horizontalAlignment = Alignment.CenterHorizontally
+//                                ) {
+//                                    Icon(
+//                                        painter = painterResource(id = R.drawable.termo),
+//                                        contentDescription = null, // decorative element
+//                                        tint = Color(0xff6ea0c3)
+//                                    )
+//                                    Spacer(modifier = Modifier.height(2.dp))
+//                                    Text(
+//                                        text = stringResource(id = R.string.tempo_string),
+//                                        style = TextStyle(
+//                                            fontSize = 13.sp,
+//                                            color = Color(0xff6ea0c3)
+//                                        )
+//                                    )
+//                                }
+//                            }
+//                            Button(
+//                                border = BorderStroke(1.dp, Color.Transparent),
+//                                shape = RoundedCornerShape(15),
+//                                modifier = Modifier
+//                                    .width(90.dp)
+//                                    .height(75.dp),
+//                                onClick = {
+//
+//                                }) {
+//                                Column(
+//                                    modifier = Modifier.fillMaxSize(),
+//                                    verticalArrangement = Arrangement.Center,
+//                                    horizontalAlignment = Alignment.CenterHorizontally
+//                                ) {
+//                                    Icon(
+//                                        painter = painterResource(id = R.drawable.black_btn_story),
+//                                        contentDescription = "Descriptor Buttons",
+//                                        tint = Color(0xff6ea0c3)
+//                                    )
+//                                    Spacer(modifier = Modifier.height(2.dp))
+//                                    Text(
+//                                        text = stringResource(id = R.string.history_string),
+//                                        style = TextStyle(
+//                                            fontSize = 13.sp,
+//                                            color = Color(0xff6ea0c3)
+//                                        )
+//                                    )
+//                                }
+//                            }
+//                        }
+//                    }
                     MaterialDialog(
                         dialogState = dateDialogState,
                         buttons = {
@@ -477,7 +641,6 @@ fun TestScreen(
             }
         }
     }
-}
 //                ) {
 //                    when (currentPagingIndex) {
 //                        0 -> AboutAndPrivacy(
@@ -497,273 +660,273 @@ fun TestScreen(
 //                    }
 //                }
 
-@Composable
-fun AboutPager(
-    currentPagingIndex: Int,
-    pagingItemCount: Int,
-    pagingItems: List<String>,
-    onMove: (Boolean) -> Unit,
-) {
-
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        //.background(Color.White.copy(.3f)),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+    @Composable
+    fun AboutPager(
+        currentPagingIndex: Int,
+        pagingItemCount: Int,
+        pagingItems: List<String>,
+        onMove: (Boolean) -> Unit,
     ) {
-        IconButton(
-            colors = IconButtonDefaults.iconButtonColors(
-                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                disabledContentColor = MaterialTheme.colorScheme.onPrimaryContainer.copy(.3f)
-            ),
-            enabled = (currentPagingIndex > 0),
-            onClick = {
-                onMove(false)
-            }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            //.background(Color.White.copy(.3f)),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Icon(
-                //modifier = Modifier.align(Alignment.Top),
-                imageVector = Icons.Default.KeyboardArrowLeft,
-                contentDescription = "Next",
-            )
+            IconButton(
+                colors = IconButtonDefaults.iconButtonColors(
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    disabledContentColor = MaterialTheme.colorScheme.onPrimaryContainer.copy(.3f)
+                ),
+                enabled = (currentPagingIndex > 0),
+                onClick = {
+                    onMove(false)
+                }
+            ) {
+                Icon(
+                    //modifier = Modifier.align(Alignment.Top),
+                    imageVector = Icons.Default.KeyboardArrowLeft,
+                    contentDescription = "Next",
+                )
+            }
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = pagingItems[currentPagingIndex],
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+            }
+
+            IconButton(
+                colors = IconButtonDefaults.iconButtonColors(
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    disabledContentColor = MaterialTheme.colorScheme.onPrimaryContainer.copy(.3f)
+                ),
+                enabled = (currentPagingIndex != (pagingItemCount - 1)),
+                onClick = {
+                    onMove(true)
+                }
+            ) {
+                Icon(
+                    //modifier = Modifier.align(Alignment.Top),
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = "Next Service",
+                )
+            }
         }
+
+
+    }
+
+    @Composable
+    fun AboutAndPrivacy(
+        uriHandler: UriHandler,
+        aboutLink: String,
+        privacyPolicyLink: String,
+        termsLink: String
+    ) {
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier = Modifier.fillMaxSize(),
         ) {
-            Text(
-                text = pagingItems[currentPagingIndex],
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-        }
 
-        IconButton(
-            colors = IconButtonDefaults.iconButtonColors(
-                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                disabledContentColor = MaterialTheme.colorScheme.onPrimaryContainer.copy(.3f)
-            ),
-            enabled = (currentPagingIndex != (pagingItemCount - 1)),
-            onClick = {
-                onMove(true)
-            }
-        ) {
-            Icon(
-                //modifier = Modifier.align(Alignment.Top),
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = "Next Service",
-            )
-        }
-    }
-
-
-}
-
-@Composable
-fun AboutAndPrivacy(
-    uriHandler: UriHandler,
-    aboutLink: String,
-    privacyPolicyLink: String,
-    termsLink: String
-) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-    ) {
-
-        OutlinedCard(
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Column(
-                modifier = Modifier.padding(12.dp),
+            OutlinedCard(
+                modifier = Modifier.padding(16.dp)
             ) {
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Start,
-                    verticalAlignment = Alignment.CenterVertically
+                Column(
+                    modifier = Modifier.padding(12.dp),
                 ) {
-                    Icon(
-                        modifier = Modifier.size(36.dp),
-                        imageVector = Icons.Default.Info,
-                        contentDescription = "About Icon",
-                        tint = MaterialTheme.colorScheme.onSecondary
-                    )
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Start,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            modifier = Modifier.size(36.dp),
+                            imageVector = Icons.Default.Info,
+                            contentDescription = "About Icon",
+                            tint = MaterialTheme.colorScheme.onSecondary
+                        )
+                        Text(
+                            modifier = Modifier.padding(start = 6.dp),
+                            text = "Learn More",
+                            style = pagerHeaders,
+                            color = MaterialTheme.colorScheme.onSecondary
+                        )
+                    }
+                    Divider(modifier = Modifier.padding(top = 8.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
+
                     Text(
-                        modifier = Modifier.padding(start = 6.dp),
-                        text = "Learn More",
-                        style = pagerHeaders,
-                        color = MaterialTheme.colorScheme.onSecondary
+                        text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam," +
+                                " quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum " +
+                                "dolore eu fugiat nulla pariatur. " +
+                                "Excepteur sint occaecat cupidatat non proident, " +
+                                "sunt in culpa qui officia deserunt mollit anim id est laborum. "
                     )
+                    Spacer(modifier = Modifier.height(10.dp))
+                    LegalStuff(
+                        privacyPolicyLink = privacyPolicyLink,
+                        termsLink = termsLink,
+                        uriHandler = uriHandler
+                    )
+                    Spacer(modifier = Modifier.height(30.dp))
+
+                    val buttonTextColor = if (isSystemInDarkTheme())
+                        MaterialTheme.colorScheme.surface
+                    else
+                        MaterialTheme.colorScheme.onPrimary
+
+                    Button(
+                        colors = ButtonDefaults.buttonColors(
+                            contentColor = MaterialTheme.colorScheme.onPrimary
+                        ),
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = {
+                            uriHandler.openUri(aboutLink)
+                        }) {
+                        Text(text = "Политика конфиденциальности")
+                    }
+
                 }
-                Divider(modifier = Modifier.padding(top = 8.dp))
-                Spacer(modifier = Modifier.height(20.dp))
-
-                Text(
-                    text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam," +
-                            " quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum " +
-                            "dolore eu fugiat nulla pariatur. " +
-                            "Excepteur sint occaecat cupidatat non proident, " +
-                            "sunt in culpa qui officia deserunt mollit anim id est laborum. "
-                )
-                Spacer(modifier = Modifier.height(10.dp))
-                LegalStuff(
-                    privacyPolicyLink = privacyPolicyLink,
-                    termsLink = termsLink,
-                    uriHandler = uriHandler
-                )
-                Spacer(modifier = Modifier.height(30.dp))
-
-                val buttonTextColor = if (isSystemInDarkTheme())
-                    MaterialTheme.colorScheme.surface
-                else
-                    MaterialTheme.colorScheme.onPrimary
-
-                Button(
-                    colors = ButtonDefaults.buttonColors(
-                        contentColor = MaterialTheme.colorScheme.onPrimary
-                    ),
-                    modifier = Modifier.fillMaxWidth(),
-                    onClick = {
-                        uriHandler.openUri(aboutLink)
-                    }) {
-                    Text(text = "Политика конфиденциальности")
-                }
-
             }
         }
     }
-}
 
 
-@Composable
-fun HelpCard(
-    uriHandler: UriHandler,
-    discussionsLink: String,
-) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
+    @Composable
+    fun HelpCard(
+        uriHandler: UriHandler,
+        discussionsLink: String,
     ) {
-
-        OutlinedCard(
-            modifier = Modifier.padding(16.dp)
+        Column(
+            modifier = Modifier.fillMaxSize(),
         ) {
-            Column(
-                modifier = Modifier.padding(12.dp),
+
+            OutlinedCard(
+                modifier = Modifier.padding(16.dp)
             ) {
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Start,
-                    verticalAlignment = Alignment.CenterVertically
+                Column(
+                    modifier = Modifier.padding(12.dp),
                 ) {
-                    Icon(
-                        modifier = Modifier.size(36.dp),
-                        painter = painterResource(id = R.drawable.github_logo),
-                        contentDescription = "GitHub Icon",
-                        tint = MaterialTheme.colorScheme.onSecondary
-                    )
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Start,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            modifier = Modifier.size(36.dp),
+                            painter = painterResource(id = R.drawable.github_logo),
+                            contentDescription = "GitHub Icon",
+                            tint = MaterialTheme.colorScheme.onSecondary
+                        )
+                        Text(
+                            modifier = Modifier.padding(start = 6.dp),
+                            text = "GitHub Discussions",
+                            style = pagerHeaders,
+                            color = MaterialTheme.colorScheme.onSecondary
+                        )
+                    }
+                    Divider(modifier = Modifier.padding(top = 8.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
                     Text(
-                        modifier = Modifier.padding(start = 6.dp),
-                        text = "GitHub Discussions",
-                        style = pagerHeaders,
-                        color = MaterialTheme.colorScheme.onSecondary
+                        text = "orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
                     )
+
+                    Spacer(modifier = Modifier.height(30.dp))
+
+                    val buttonTextColor = if (isSystemInDarkTheme())
+                        MaterialTheme.colorScheme.surface
+                    else
+                        MaterialTheme.colorScheme.onPrimary
+
+                    Button(
+                        colors = ButtonDefaults.buttonColors(
+                            contentColor = MaterialTheme.colorScheme.onPrimary
+                        ),
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = {
+                            uriHandler.openUri(discussionsLink)
+                        }) {
+                        Text(text = "Go to Discussions")
+                    }
+
                 }
-                Divider(modifier = Modifier.padding(top = 8.dp))
-                Spacer(modifier = Modifier.height(20.dp))
-                Text(
-                    text = "orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-                )
-
-                Spacer(modifier = Modifier.height(30.dp))
-
-                val buttonTextColor = if (isSystemInDarkTheme())
-                    MaterialTheme.colorScheme.surface
-                else
-                    MaterialTheme.colorScheme.onPrimary
-
-                Button(
-                    colors = ButtonDefaults.buttonColors(
-                        contentColor = MaterialTheme.colorScheme.onPrimary
-                    ),
-                    modifier = Modifier.fillMaxWidth(),
-                    onClick = {
-                        uriHandler.openUri(discussionsLink)
-                    }) {
-                    Text(text = "Go to Discussions")
-                }
-
             }
         }
     }
-}
 
 
-@Composable
-fun BugCard(
-    uriHandler: UriHandler,
-    bugLink: String,
-) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
+    @Composable
+    fun BugCard(
+        uriHandler: UriHandler,
+        bugLink: String,
     ) {
-
-        OutlinedCard(
-            modifier = Modifier.padding(16.dp)
+        Column(
+            modifier = Modifier.fillMaxSize(),
         ) {
-            Column(
-                modifier = Modifier.padding(12.dp),
+
+            OutlinedCard(
+                modifier = Modifier.padding(16.dp)
             ) {
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Start,
-                    verticalAlignment = Alignment.CenterVertically
+                Column(
+                    modifier = Modifier.padding(12.dp),
                 ) {
-                    Icon(
-                        modifier = Modifier.size(36.dp),
-                        painter = painterResource(id = R.drawable.github_logo),
-                        contentDescription = "GitHub Icon",
-                        tint = MaterialTheme.colorScheme.onSecondary
-                    )
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Start,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            modifier = Modifier.size(36.dp),
+                            painter = painterResource(id = R.drawable.github_logo),
+                            contentDescription = "GitHub Icon",
+                            tint = MaterialTheme.colorScheme.onSecondary
+                        )
+                        Text(
+                            modifier = Modifier.padding(start = 6.dp),
+                            text = "GitHub Issues",
+                            style = pagerHeaders,
+                            color = MaterialTheme.colorScheme.onSecondary
+                        )
+                    }
+                    Divider(modifier = Modifier.padding(top = 8.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
                     Text(
-                        modifier = Modifier.padding(start = 6.dp),
-                        text = "GitHub Issues",
-                        style = pagerHeaders,
-                        color = MaterialTheme.colorScheme.onSecondary
+                        text = "orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
                     )
-                }
-                Divider(modifier = Modifier.padding(top = 8.dp))
-                Spacer(modifier = Modifier.height(20.dp))
-                Text(
-                    text = "orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = "You can also use our GitHub issues " +
-                            "to search for existing, work-in-progress bugs and features.",
-                )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Text(
+                        text = "You can also use our GitHub issues " +
+                                "to search for existing, work-in-progress bugs and features.",
+                    )
 
-                Spacer(modifier = Modifier.height(30.dp))
+                    Spacer(modifier = Modifier.height(30.dp))
 
-                val buttonTextColor = if (isSystemInDarkTheme())
-                    MaterialTheme.colorScheme.surface
-                else
-                    MaterialTheme.colorScheme.onPrimary
+                    val buttonTextColor = if (isSystemInDarkTheme())
+                        MaterialTheme.colorScheme.surface
+                    else
+                        MaterialTheme.colorScheme.onPrimary
 
-                Button(
-                    colors = ButtonDefaults.buttonColors(
-                        contentColor = MaterialTheme.colorScheme.onPrimary
-                    ),
-                    modifier = Modifier.fillMaxWidth(),
-                    onClick = {
-                        uriHandler.openUri(bugLink)
-                    }) {
-                    Text(text = "Go to GitHub Issues")
+                    Button(
+                        colors = ButtonDefaults.buttonColors(
+                            contentColor = MaterialTheme.colorScheme.onPrimary
+                        ),
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = {
+                            uriHandler.openUri(bugLink)
+                        }) {
+                        Text(text = "Go to GitHub Issues")
+                    }
                 }
             }
         }
     }
-}
 
 @Composable
 private fun AppInfo() {

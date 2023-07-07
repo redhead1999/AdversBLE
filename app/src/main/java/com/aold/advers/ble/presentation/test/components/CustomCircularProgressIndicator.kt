@@ -7,6 +7,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -65,9 +67,9 @@ fun CustomCircularProgressIndicator(
         Canvas(
             modifier = Modifier
                 .fillMaxSize()
-                .pointerInput(true){
+                .pointerInput(true) {
                     detectDragGestures(
-                        onDragStart = {offset ->
+                        onDragStart = { offset ->
                             dragStartedAngle = -atan2(
                                 x = circleCenter.y - offset.y,
                                 y = circleCenter.x - offset.x
@@ -81,14 +83,15 @@ fun CustomCircularProgressIndicator(
                             ) * (180f / PI).toFloat()
                             touchAngle = (touchAngle + 180f).mod(360f)
 
-                            val currentAngle = oldPositionValue*360f/(maxValue-minValue)
+                            val currentAngle = oldPositionValue * 360f / (maxValue - minValue)
                             changeAngle = touchAngle - currentAngle
 
-                            val lowerThreshold = currentAngle - (360f / (maxValue-minValue) * 5)
-                            val higherThreshold = currentAngle + (360f / (maxValue-minValue) * 5)
+                            val lowerThreshold = currentAngle - (360f / (maxValue - minValue) * 5)
+                            val higherThreshold = currentAngle + (360f / (maxValue - minValue) * 5)
 
-                            if(dragStartedAngle in lowerThreshold .. higherThreshold){
-                                positionValue = (oldPositionValue + (changeAngle/(360f/(maxValue-minValue))).roundToInt())
+                            if (dragStartedAngle in lowerThreshold..higherThreshold) {
+                                positionValue =
+                                    (oldPositionValue + (changeAngle / (360f / (maxValue - minValue))).roundToInt())
                             }
 
                         },
@@ -184,7 +187,7 @@ fun CustomCircularProgressIndicator(
             drawContext.canvas.nativeCanvas.apply {
                 drawIntoCanvas {
                     drawText(
-                        "$positionValue %",
+                        "$positionValue С",
                         circleCenter.x,
                         circleCenter.y + 45.dp.toPx()/3f,
                         Paint().apply {
