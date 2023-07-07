@@ -37,7 +37,7 @@ fun AppNavGraph(
         //ЭКРАН ДЛЯ ТЕСТОВ
 
         composable(HOME) {
-            TestScreen(
+            Settings(
                 appLayoutInfo = appLayoutInfo,
                 onBackClicked = { navController.popBackStack() })
         }

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.compose.ui.platform.ComposeView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_check_update"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background_light"
+
+    android:visibility="visible"
+    tools:context=".CheckUpdateActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:clipToPadding="true"
+            android:fillViewport="true"
+            android:scrollbarStyle="insideInset"
+            android:scrollbarSize="10dp"
+            android:scrollbarThumbVertical="@drawable/custom_scroll_style">
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:visibility="visible"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical"> <!--  gone  -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@drawable/white_border">
+
+                        <TextView
+                            android:id="@+id/text_updatePanelName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/updatePanel"
+                            style="@style/setupTextTitle"/>
+
+                        <ListView
+                            android:id="@+id/list_panel"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="20"
+                            android:choiceMode="singleChoice"
+                            android:clickable="true"
+                            android:listSelector="@color/update_select"
+                            android:scrollbarSize="10dp"
+                            android:scrollbarThumbVertical="@drawable/custom_scroll_style"
+                            android:divider="@drawable/list_divider"
+                            android:dividerHeight="4dip"
+                            android:focusable="true" />
+
+                    </LinearLayout> <!--  Panel -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@drawable/white_border">
+
+                        <TextView
+                            android:id="@+id/text_updateHeaterName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/updateHeater"
+                            style="@style/setupTextTitle"/>
+
+                        <ListView
+                            android:id="@+id/list_heater"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_weight="20"
+                            android:choiceMode="singleChoice"
+                            android:clickable="true"
+                            android:listSelector="@color/update_select"
+                            android:scrollbarSize="10dp"
+                            android:scrollbarThumbVertical="@drawable/custom_scroll_style"
+                            android:divider="@drawable/list_divider"
+                            android:dividerHeight="4dip"
+                            android:focusable="true" />
+
+                    </LinearLayout> <!--  Heater -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp">
+
+                        <TextView
+                            android:id="@+id/text_updateInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            style="@style/setupTextName"/>
+
+                        <SeekBar
+                            android:id="@+id/seek_updateInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:fadeScrollbars="true"
+                            android:progressDrawable="@drawable/track_update"
+                            android:thumb="@drawable/thumb"
+                            android:indeterminate="false"
+                            android:max="99"
+                            android:progress="0" />
+
+                        <TextView
+                            android:id="@+id/text_updateInfo2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            style="@style/setupTextName"/>
+
+                    </LinearLayout> <!--  Heater -->
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:orientation="vertical"
+                android:background="@drawable/control_line">
+
+            </LinearLayout>     <!--  Line -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_update"
+                        android:onClick="onClickUpdate"
+                        android:layout_width="100dp"
+                        android:layout_height="35dp"
+                        android:text="@string/updateUpdate"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        style="@style/boldStyle"
+                        android:textColor="@color/text_light"
+                        android:background="@drawable/white_border"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_exit"
+                        android:onClick="onClickCancel"
+                        android:layout_width="100dp"
+                        android:layout_height="35dp"
+                        android:text="@string/updateExit"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        style="@style/boldStyle"
+                        android:textColor="@color/text_light"
+                        android:background="@drawable/white_border"/>
+
+                </LinearLayout>
+
+            </LinearLayout>     <!--  Save|cancel button -->
+
+        </LinearLayout>         <!--  Save|cancel -->
+
+    </LinearLayout>
+
+</LinearLayout>
+    </androidx.compose.ui.platform.ComposeView>

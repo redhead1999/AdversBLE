@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.compose.ui.platform.ComposeView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_timers"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/background_light"
+
+        android:visibility="visible"
+        tools:context=".TimersActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:clipToPadding="true"
+                android:fillViewport="true"
+                android:scrollbarSize="10dp"
+                android:scrollbarStyle="insideInset"
+                android:scrollbarThumbVertical="@drawable/custom_scroll_style">
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <LinearLayout
+                        android:id="@+id/linear_timers_main"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <ToggleButton
+                                    android:id="@+id/setup_btn_alarm1_clock"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginEnd="10dp"
+                                    android:background="@drawable/btn_alarm_clock"
+                                    android:checked="false"
+                                    android:text=""
+                                    android:textOff=""
+                                    android:textOn="" />
+
+                                <ImageView
+                                    android:layout_width="2dp"
+                                    android:layout_height="80dp"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/setup_alarm_line" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:orientation="horizontal">
+
+                                        <Button
+                                            android:id="@+id/setup_text_alarm1_time"
+                                            style="@style/timersTime"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:background="@android:color/transparent"
+                                            android:onClick="onClickPicker1" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm1_week1"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_mo"
+                                            android:textOn="@string/setup2_mo" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm1_week2"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_tu"
+                                            android:textOn="@string/setup2_tu" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm1_week3"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_we"
+                                            android:textOn="@string/setup2_we" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm1_week4"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_th"
+                                            android:textOn="@string/setup2_th" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm1_week5"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_fr"
+                                            android:textOn="@string/setup2_fr" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm1_week6"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_sa"
+                                            android:textOn="@string/setup2_sa" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm1_week7"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_su"
+                                            android:textOn="@string/setup2_su" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <ToggleButton
+                                    android:id="@+id/setup_btn_alarm2_clock"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginEnd="10dp"
+                                    android:background="@drawable/btn_alarm_clock"
+                                    android:checked="false"
+                                    android:text=""
+                                    android:textOff=""
+                                    android:textOn="" />
+
+                                <ImageView
+                                    android:layout_width="2dp"
+                                    android:layout_height="80dp"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/setup_alarm_line" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    android:layout_gravity="center"
+                                    android:orientation="vertical">
+
+                                    <Button
+                                        android:id="@+id/setup_text_alarm2_time"
+                                        style="@style/timersTime"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:background="@android:color/transparent"
+                                        android:onClick="onClickPicker2" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm2_week1"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_mo"
+                                            android:textOn="@string/setup2_mo" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm2_week2"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_tu"
+                                            android:textOn="@string/setup2_tu" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm2_week3"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_we"
+                                            android:textOn="@string/setup2_we" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm2_week4"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_th"
+                                            android:textOn="@string/setup2_th" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm2_week5"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_fr"
+                                            android:textOn="@string/setup2_fr" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm2_week6"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_sa"
+                                            android:textOn="@string/setup2_sa" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm2_week7"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_su"
+                                            android:textOn="@string/setup2_su" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <ToggleButton
+                                    android:id="@+id/setup_btn_alarm3_clock"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginEnd="10dp"
+                                    android:background="@drawable/btn_alarm_clock"
+                                    android:checked="false"
+                                    android:text=""
+                                    android:textOff=""
+                                    android:textOn="" />
+
+                                <ImageView
+                                    android:layout_width="2dp"
+                                    android:layout_height="80dp"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/setup_alarm_line" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:orientation="vertical">
+
+                                    <Button
+                                        android:id="@+id/setup_text_alarm3_time"
+                                        style="@style/timersTime"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:background="@android:color/transparent"
+                                        android:onClick="onClickPicker3" />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm3_week1"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_mo"
+                                            android:textOn="@string/setup2_mo" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm3_week2"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_tu"
+                                            android:textOn="@string/setup2_tu" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm3_week3"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_we"
+                                            android:textOn="@string/setup2_we" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm3_week4"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_th"
+                                            android:textOn="@string/setup2_th" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm3_week5"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_fr"
+                                            android:textOn="@string/setup2_fr" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm3_week6"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_sa"
+                                            android:textOn="@string/setup2_sa" />
+
+                                        <ToggleButton
+                                            android:id="@+id/setup_btn_alarm3_week7"
+                                            style="@style/timersWeekName"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="#00000000"
+                                            android:checked="false"
+                                            android:textOff="@string/setup2_su"
+                                            android:textOn="@string/setup2_su" />
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/text_timerDoNotReset"
+                                    style="@style/setupTextName"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="5"
+                                    android:text="@string/timerDoNotReset" />
+
+                                <androidx.appcompat.widget.SwitchCompat
+                                    android:id="@+id/switch_timerDoNotReset"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="1"
+                                    android:theme="@style/MySwitch" />
+                            </LinearLayout> <!--  do not reset timers(on/off)  -->
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+            </ScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@drawable/control_line"
+                    android:orientation="vertical">
+
+                </LinearLayout>     <!--  Line -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_day"
+                            style="@style/boldStyle"
+                            android:layout_width="100dp"
+                            android:layout_height="35dp"
+                            android:background="@drawable/white_border"
+                            android:onClick="onClickSave"
+                            android:text="@string/setupSave"
+                            android:textColor="@color/text_light"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btn_night"
+                            style="@style/boldStyle"
+                            android:layout_width="100dp"
+                            android:layout_height="35dp"
+                            android:background="@drawable/white_border"
+                            android:onClick="onClickCancel"
+                            android:text="@string/setupCancel"
+                            android:textColor="@color/text_light"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>     <!--  Save|cancel button -->
+
+            </LinearLayout>         <!--  Save|cancel -->
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/setupCont_timePicker1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_picker"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TimePicker
+                    android:id="@+id/timePicker1"
+                    style="@style/boldStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numbersSelectorColor="@color/text_light"
+                    android:spinnersShown="false"
+                    android:theme="@style/my_time_picker_style"
+                    android:timePickerMode="spinner" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@drawable/control_line"
+                    android:orientation="vertical">
+
+                </LinearLayout>     <!--  Line -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:orientation="horizontal">
+
+                        <Button
+                            style="@style/boldStyle"
+                            android:layout_width="100dp"
+                            android:layout_height="35dp"
+                            android:background="@drawable/white_border"
+                            android:onClick="onClickOkPicker"
+                            android:text="@string/setupSave"
+                            android:textColor="@color/text_light"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <Button
+                            style="@style/boldStyle"
+                            android:layout_width="100dp"
+                            android:layout_height="35dp"
+                            android:background="@drawable/white_border"
+                            android:onClick="onClickCancelPicker"
+                            android:text="@string/setupCancel"
+                            android:textColor="@color/text_light"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>     <!--  Save|cancel button -->
+
+            </LinearLayout>         <!--  Ok|cancel -->
+
+        </LinearLayout>         <!--  Time Picker -->
+
+    </FrameLayout>
+</androidx.compose.ui.platform.ComposeView>

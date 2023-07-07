@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.compose.ui.platform.ComposeView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activty_setup_14tcmini"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background_light"
+
+    android:visibility="visible"
+    tools:context=".Setup14TCMiniActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:clipToPadding="true"
+            android:fillViewport="true"
+            android:scrollbarStyle="insideInset"
+            android:scrollbarSize="10dp"
+            android:scrollbarThumbVertical="@drawable/custom_scroll_style">
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:visibility="visible"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical"> <!--  gone  -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@drawable/white_border">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/setupWorkTime"
+                            style="@style/setupTextTitle"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:layout_gravity="center_vertical"
+                                android:text="@string/setupWorkUnlimited"
+                                style="@style/setupTextName"/>
+
+                            <androidx.appcompat.widget.SwitchCompat
+                                android:id="@+id/switch_setupWorkUnlimited"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:theme="@style/MySwitch"
+                                android:layout_weight="1"
+                                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="2"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="@string/setupWorkTime"
+                                    style="@style/setupTextName"/>
+
+                                <TextView
+                                    android:id="@+id/text_setupWorkTime"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="end"
+                                    android:text=""
+                                    style="@style/setupTextValue"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="@string/setupWorkTimeDays"
+                                    android:textColor="@color/text_light"
+                                    style="@style/regularStyle"
+                                    android:textSize="12sp" />
+
+                                <SeekBar
+                                    android:id="@+id/seek_setupWorkTimeDays"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:fadeScrollbars="true"
+                                    android:progressDrawable="@drawable/track"
+                                    android:thumb="@drawable/thumb"
+                                    android:indeterminate="false"
+                                    android:max="7"
+                                    android:progress="0" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="@string/setupWorkTimeHours"
+                                    android:textColor="@color/text_light"
+                                    style="@style/regularStyle"
+                                    android:textSize="12sp" />
+
+                                <SeekBar
+                                    android:id="@+id/seek_setupWorkTimeHours"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:fadeScrollbars="false"
+                                    android:progressDrawable="@drawable/track"
+                                    android:thumb="@drawable/thumb"
+                                    android:indeterminate="false"
+                                    android:max="23"
+                                    android:progress="0" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="@string/setupWorkTimeMinutes"
+                                    android:textColor="@color/text_light"
+                                    style="@style/regularStyle"
+                                    android:textSize="12sp" />
+
+                                <SeekBar
+                                    android:id="@+id/seek_setupWorkTimeMinutes"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:fadeScrollbars="false"
+                                    android:progressDrawable="@drawable/track"
+                                    android:thumb="@drawable/thumb"
+                                    android:indeterminate="false"
+                                    android:max="11"
+                                    android:progress="0" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout> <!-- Work Time -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@drawable/white_border">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/setupSystem"
+                            style="@style/setupTextTitle"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:layout_gravity="center_vertical"
+                                android:text="@string/setupCelsius"
+                                style="@style/setupTextName"/>
+
+                            <androidx.appcompat.widget.SwitchCompat
+                                android:id="@+id/switch_setupSystemCelsius"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:theme="@style/MySwitch"
+                                android:layout_weight="1"
+                                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                        </LinearLayout> <!--  celsius  -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:layout_gravity="center_vertical"
+                                android:text="@string/setupFahrenheit"
+                                style="@style/setupTextName"/>
+
+                            <androidx.appcompat.widget.SwitchCompat
+                                android:id="@+id/switch_setupSystemFahrenheit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:theme="@style/MySwitch"
+                                android:layout_weight="1"
+                                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                        </LinearLayout> <!--  fahrenheit  -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:layout_gravity="center_vertical"
+                                android:text="@string/setupSystem12Hour"
+                                style="@style/setupTextName"/>
+
+                            <androidx.appcompat.widget.SwitchCompat
+                                android:id="@+id/switch_setupSystem12Hour"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:theme="@style/MySwitch"
+                                android:layout_weight="1"
+                                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                        </LinearLayout> <!--  12-hour clock -->
+
+                    </LinearLayout> <!--  System -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@drawable/white_border">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/setupInfo"
+                            style="@style/setupTextTitle"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:layout_gravity="center_vertical"
+                                android:text="@string/setupDeviceName"
+                                style="@style/setupTextName"/>
+
+                            <EditText
+                                android:id="@+id/edit_setupDeviceName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:inputType="textNoSuggestions"
+                                android:background="@android:color/transparent"
+                                android:layout_gravity="end"
+                                android:gravity="end"
+                                android:hint="@string/setupEnterName"
+                                style="@style/setupTextValue"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:layout_gravity="center_vertical"
+                                android:text="@string/setupInfoHeaterSv"
+                                style="@style/setupTextName"/>
+
+                            <TextView
+                                android:id="@+id/text_setupInfoHeaterSv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:layout_gravity="end"
+                                style="@style/setupTextValue"/>
+                        </LinearLayout> <!--  heater sv  -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:layout_gravity="center_vertical"
+                                android:text="@string/setupInfoPanelSv"
+                                style="@style/setupTextName"/>
+
+                            <TextView
+                                android:id="@+id/text_setupInfoPanelSv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:layout_gravity="end"
+                                style="@style/setupTextValue"/>
+                        </LinearLayout> <!--  panel sv  -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:visibility="gone"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:layout_gravity="center_vertical"
+                                android:text="@string/setupInfoTotalHours"
+                                style="@style/setupTextName"/>
+
+                            <TextView
+                                android:id="@+id/text_setupInfoTotalHours"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:layout_gravity="end"
+                                style="@style/setupTextValue"/>
+                        </LinearLayout> <!--  total heater hours  -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:visibility="visible"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:onClick="onClickCheckUpdate"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:layout_gravity="center_vertical"
+                                android:text="@string/setupInfoCheckUpdate"
+                                style="@style/setupTextName"
+                                android:background="@drawable/white_border"/>
+
+                        </LinearLayout> <!--  check update  -->
+
+                    </LinearLayout> <!--  System info -->
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:orientation="vertical"
+                android:background="@drawable/control_line">
+
+            </LinearLayout>     <!--  Line -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_day"
+                        android:onClick="onClickSave"
+                        android:layout_width="100dp"
+                        android:layout_height="35dp"
+                        android:text="@string/setupSave"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        style="@style/boldStyle"
+                        android:textColor="@color/text_light"
+                        android:background="@drawable/white_border"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_night"
+                        android:onClick="onClickCancel"
+                        android:layout_width="100dp"
+                        android:layout_height="35dp"
+                        android:text="@string/setupCancel"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        style="@style/boldStyle"
+                        android:textColor="@color/text_light"
+                        android:background="@drawable/white_border"/>
+
+                </LinearLayout>
+
+            </LinearLayout>     <!--  Save|cancel button -->
+
+        </LinearLayout>         <!--  Save|cancel -->
+
+    </LinearLayout>
+
+</LinearLayout>
+</androidx.compose.ui.platform.ComposeView>
