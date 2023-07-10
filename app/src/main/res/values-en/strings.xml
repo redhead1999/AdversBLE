@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Advers</string>
+    <string name="pump_string">Pump</string>
+    <string name="heat_string">Heating</string>
+    <string name="settings_string">Settings</string>
+    <string name="app_setup">App settings</string>
+    <string name="timer_string">Timer</string>
+    <string name="history_string">Story</string>
+    <string name="tempo_string">Temperature</string>
+    <string name="voltage_string">Voltage</string>
+    <string name="theme_string">Тheme</string>
+    <string name="general_setting_string">General</string>
+    <string name="support_setting_string">Support</string>
+    <string name="set_time_setting_string">Work time</string>
+    <string name="contact_setting_string">Contact</string>
+    <string name="feedback_setting_string">Feedback</string>
+    <string name="privacy_policy_setting_string">Privacy Policy</string>
+    <string name="notifications_setting_string">Notifications</string>
+    <string name="about_setting_string">About</string>
+    <string name="charts_heading_string">Charts</string>
+
+    <!--Settings-->
+
+    <string name="worktime_string">Work time</string>
+    <string name="unlimited_worktime_string">Unlimited working time</string>
+
+    <string name="automatic_reheater_string">Automatic reheater</string>
+    <string name="heater_and_reheater_string">Heater and reheater</string>
+
+    <string name="temperature_heater_string">Reheater temperature</string>
+    <string name="temperature_reheater_string">Heater temperature</string>
+
+    <string name="pump_and_heating_string">Pump and heating</string>
+    <string name="pump_operation_in_standby_mode_string">Pump operation in standby mode</string>
+    <string name="operation_of_the_pump_with_the_engine">Operation of the pump with the engine</string>
+    <string name="сabin_heater_operation">Cabin heater operation</string>
+    <string name="cabin_heater_start_temperature">Cabin heater start temperature</string>
+
+    <string name="system_string">System</string>
+    <string name="remote_control_string">Remote control</string>
+    <string name="temperature_string">Temperature</string>
+    <string name="celsius_string">Celsius</string>
+    <string name="fahrenheit_string">Fahrengeit</string>
+
+    <string name="heater_string">Heater</string>
+    <string name="device_name_string">Device name</string>
+    <string name="serial_number_string">Serial number</string>
+    <string name="software_version_string">Software</string>
+    <string name="total_worktime_string">Total</string>
+    <string name="informtaion_string">Info</string>
+
+    <string name="agreement_string">Consent to personal data processing </string>
+
+    <string name="ble_playground">BLE Playground</string>
+    <string name="tap_twice_to_exit">Press back again to exit </string>
+    <string name="start_ble_connection">Connecting to a device</string>
+
+    <string name="devices" translatable="false">Bluetooth LE Devices</string>
+
+    <string name="location_permission_title">Location permission required</string>
+    <string name="location_permission_message">This app does not use location information, but scanning for Bluetooth LE devices requires this permission</string>
+
+    <string name="bluetooth_enabled_title">Turning on Bluetooth</string>
+    <string name="bluetooth_enabled_message">This app requires Bluetooth to work</string>
+
+    <string name="location_denied_title">Location permission denied</string>
+    <string name="location_denied_message">As location permission has not been granted, this app cannot scan for Bluetooth LE devices.</string>
+    <string name="pairing_request" translatable="false">PAIRING requested\n-> Perform pairing steps. Connect again</string>
+
+    <string name="dialog_message">Remove device?</string>
+    <string name="dialog_title" translatable="false">dialog_title</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+
+    <string name="heater">Heater</string>
+    <string name="ventilation">Ventilation</string>
+    <string name="pump">Pump</string>
+    <string name="eco">Eco</string>
+    <string name="timer">Timer</string>
+    <string name="setup">Setup</string>
+
+    <string name="chartTimeTempCelsiusInt">"at %1$s it was %2$d°С"</string>
+    <string name="chartTimeTempCelsiusFloat">"at %1$s it was %2$.1f°С"</string>
+    <string name="chartTimeTempFahrenheit">"at %1$s it was %2$d°F"</string>
+    <string name="chartTimeVoltage">"at %1s it was %2$.1fv"</string>
+
+    <string name="story">Story</string>
+
+    <string name="fan_auto">Fan\nAuto</string>
+
+    <string name="about_version">"Program version: 1.9"</string>
+    <string name="about_address" translatable="false">"680-C South 28th St.Washougal,\n WA 98671"</string>
+    <string name="about_phone" translatable="false">"360-608-0916"</string>
+    <string name="about_mail" translatable="false">"support@autoterm.ru"</string>
+
+    <string name="search_device">Search devices</string>
+    <string name="about">About</string>
+    <string name="device">Devices</string>
+
+    <string name="_connect_to">connect to %1$s…</string>
+    <string name="_disconnected">"%1$s <small>is disconnected</small>"</string>
+
+    <string name="workTime" translatable="false">"%1$d:%2$02d:%3$02d"</string>
+
+    <string name="story_mo">"Monday"</string>
+    <string name="story_tu">"Tuesday"</string>
+    <string name="story_we">"Wednesday"</string>
+    <string name="story_th">"Thursday"</string>
+    <string name="story_fr">"Friday"</string>
+    <string name="story_sa">"Saturday"</string>
+    <string name="story_su">"Sunday"</string>
+
+    <string name="story_0">"Power on"</string>
+    <string name="story_1">"Start command"</string>
+    <string name="story_2">"Stop command"</string>
+    <string name="story_3">"Ventilation command"</string>
+    <string name="story_4">"Pump command"</string>
+    <string name="story_5">"Ignition"</string>
+    <string name="story_6">"Running"</string>
+    <string name="story_7">"Standby"</string>
+    <string name="story_8">"Blowing"</string>
+    <string name="story_9">"Stop"</string>
+    <string name="story_10">"Ventilation"</string>
+    <string name="story_11">"Pump"</string>
+    <string name="story_12">"Change setup"</string>
+    <string name="story_fault">"Fault code: "</string>
+
+    <string name="short_day">d</string>
+    <string name="short_hour">h</string>
+    <string name="short_minute">m</string>
+
+    <string name="setupClock">"Clock"</string>
+    <string name="setupClockShowClockInSleep">"Show clock in sleep"</string>
+    <string name="setupClockDaytime">"Daytime"</string>
+    <string name="setupClockDaytimeFrom">"From"</string>
+    <string name="setupClockDaytimeTo">"To"</string>
+
+    <string name="setupLimit">"Limitation of heating duration"</string>
+    <string name="setupLimitWater">"Domestic water"</string>
+    <string name="setupLimitSystem">"System"</string>
+
+    <string name="setupSystem">"System"</string>
+    <string name="setupDeviceName">"Device name: "</string>
+    <string name="setupEnterName">"Enter name"</string>
+    <string name="setupCelsius">"Celsius"</string>
+    <string name="setupFahrenheit">"Fahrenheit"</string>
+    <string name="setupSystem12Hour">"12-hour clock"</string>
+    <string name="setupSystemPanelSensor">"Panel sensor"</string>
+
+    <string name="setupInfo">"System info"</string>
+    <string name="setupInfoHeaterSv">"Heater SV: "</string>
+    <string name="setupInfoControlSv">"Control Box SV: "</string>
+    <string name="setupInfoPanelSv">"Panel SV: "</string>
+    <string name="setupInfoTotalHours">"Total heater hours: "</string>
+    <string name="setupInfoCheckUpdate">"Check update"</string>
+
+    <string name="setupInfoUpdate">"Update"</string>
+
+    <string name="setupCancel">Cancel</string>
+    <string name="setupSave">Save</string>
+
+    <string name="updateExit">Exit</string>
+    <string name="updateUpdate">Update</string>
+
+    <string name="updatePanel">"Panel"</string>
+    <string name="updateHeater">"Heater"</string>
+    <string name="updateUseExternalStorage">"Use external storage"</string>
+
+    <string name="accept_device">"Please confirm on the remote"</string>
+    <string name="cancel_device">"Connection canceled on the remote"</string>
+    <string name="cancel">Connection was canceled</string>
+    <string name="unknown_device">Unknown device, connection was canceled</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <string name="bluetooth_on">Bluetooth is turned on</string>
+    <string name="bluetooth_off">Bluetooth is turned off</string>
+    <string name="turn_bluetooth">Please turn on bluetooth</string>
+    <string name="scan_again2">Click the scan button in list menu to search devices</string>
+    <string name="action_settings">Settings</string>
+    <string name="search_devices">"Searching devices"</string>
+    <string name="search_heaters">"Searching heaters"</string>
+    <string name="wait_select">"Waiting for device selection"</string>
+    <string name="select_device">"Please select device from the list"</string>
+    <string name="connection_issues">"Connection issues, trying to connect again"</string>
+    <string name="not_found">"No devices found, please try again"</string>
+    <string name="connecting">"Connecting to device, please wait"</string>
+    <string name="device_connected">This device is already connected</string>
+    <string name="connected">Connected</string>
+    <string name="disconnected">Device disconnected</string>
+    <string name="reconnect">Trying reconnect</string>
+    <string name="drawer_addDevice">Add device</string>
+    <string name="control_title_timers">Timers</string>
+    <string name="control_title_control">Control</string>
+    <string name="control_title_setup">Settings</string>
+    <string name="timerTime" translatable="false">"%1$d:%2$02d"</string>
+    <string name="setup2_mo">"MO"</string>
+    <string name="setup2_tu">"TU"</string>
+    <string name="setup2_we">"WE"</string>
+    <string name="setup2_th">"TH"</string>
+    <string name="setup2_fr">"FR"</string>
+    <string name="setup2_sa">"SA"</string>
+    <string name="setup2_su">"SU"</string>
+    <string name="timerDoNotReset">"Do not reset timers"</string>
+    <string name="setupDay">"%1$d day"</string>
+    <string name="setupTime" translatable="false">"%1$d:%2$02d"</string>
+    <string name="setupPreheaterAndWarmUp">"Preheater and auxiliary"</string>
+    <string name="setupWarmUpAuto">"Auxiliary auto"</string>
+    <string name="setupWarmUpManual">"Auxiliary manual"</string>
+    <string name="setupWarmUpTSetPoint">"Engine temperature"</string>
+    <string name="setupPreheaterTSetPoint">"Preheater temperature"</string>
+    <string name="voltage">"v"</string>
+    <string name="celsiusTemperature">"°С"</string>
+    <string name="fahrenheitTemperature">"°F"</string>
+    <string name="celsiusTemperatureLong">"Celsius"</string>
+    <string name="fahrenheitTemperatureLong">"Fahrenheit"</string>
+    <string name="percent">"%"</string>
+    <string name="setupPumpAndVehicleHeater">"Pump and vehicle heater"</string>
+    <string name="setupTemperatureUnits">"Temperature units"</string>
+    <string name="setupPumpInStandby">"Pump in standby mode"</string>
+    <string name="setupPumpOnEngine">"Pump on with engine"</string>
+    <string name="setupTurnOnFurnace">"Turn on auxiliary blower"</string>
+    <string name="setupFurnaceTSetPoint">"Auxiliary blower temp"</string>
+    <string name="setupWorkTime">"Work time"</string>
+    <string name="setupWorkTimeDays">"Days"</string>
+    <string name="setupWorkTimeHours">"Hours"</string>
+    <string name="setupWorkTimeMinutes">"Minutes"</string>
+
+    <string name="setupExternalOperating">"External operating"</string>
+    <string name="setupHeaterWorkBy">"Heater work by"</string>
+    <string name="setupWorkByHeater">"Heater sensor"</string>
+    <string name="setupWorkByPanel">"Panel sensor"</string>
+    <string name="setupWorkByOutside">"External sensor"</string>
+    <string name="setupWorkByPower">"Power"</string>
+    <string name="setupVentilationOnStandby">"Ventilation on standby"</string>
+    <string name="setupWorkUnlimited">"Unlimited"</string>
+    <string name="setup_toast_unlock">Press the key button on top to unlock</string>
+    <string name="control_online">Online</string>
+    <string name="control_offline">"Offline since "</string>
+    <string name="search_ble">Searching for devices</string>
+    <string name="add_ble">Add device</string>
+    <string name="story_list_60">Failure,\n code: </string>
+    <string name="story_list_60_1">overheat</string>
+    <string name="story_list_60_2">possible overheat</string>
+    <string name="story_list_60_3">overheat temperature sensor</string>
+    <string name="story_list_60_4">liquid temperature sensor</string>
+    <string name="story_list_60_5">flame temperature sensor</string>
+    <string name="story_list_60_6">PCB temperature sensor</string>
+    <string name="story_list_60_9">glow plug failure</string>
+    <string name="story_list_60_10">revolutions mismatch</string>
+    <string name="story_list_60_12">overvoltage</string>
+    <string name="story_list_60_13">non-ignition</string>
+    <string name="story_list_60_14">pump short circuit</string>
+    <string name="story_list_60_15">undervoltage</string>
+    <string name="story_list_60_16">flame sensor is not cold</string>
+    <string name="story_list_60_17">fuel pump broken</string>
+    <string name="story_list_60_20">connection faulty</string>
+    <string name="story_list_60_21">flame failure</string>
+    <string name="story_list_60_22">fuel pump broken</string>
+    <string name="story_list_60_24">temperature sensor overshooting</string>
+    <string name="story_list_60_25">overheat during ignition</string>
+    <string name="story_list_60_26" translatable="false">motor overload</string>
+    <string name="story_list_60_27">the motor does not rotate</string>
+    <string name="story_list_60_28">motor self-rotation</string>
+    <string name="story_list_60_29">flame break</string>
+    <string name="story_list_60_30">no connection to the remote control</string>
+    <string name="story_list_60_37">blocking by non-ignition</string>
+    <string name="story_list_60_50">no connection to the heater</string>
+    <string name="story_list_60_78">flame failure during operation</string>
+    <string name="title_activity_setup" translatable="false">FullscreenActivity</string>
+    <string name="dummy_button" translatable="false">Dummy Button</string>
+    <string name="dummy_content" translatable="false">DUMMY\nCONTENT</string>
+
+
+</resources>

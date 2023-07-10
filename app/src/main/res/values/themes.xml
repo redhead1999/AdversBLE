@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.AdversTheme" parent="android:Theme.Material.Light.NoActionBar" >
+        <item name="android:windowBackground">#6ea0c3</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:fontFamily">@font/balsamiq</item>
+    </style>
+
+
+    <style name="Theme.AdversBLE" parent="android:ThemeOverlay.Material.Dark">
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#3F51B5</item>
+        <item name="colorPrimaryDark">#303F9F</item>
+        <item name="colorAccent">#FFFFFF</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+<!--        <item name="android:colorBackgroundFloating">#000000</item>-->
+        <item name="android:panelColorBackground">#303F9F</item>
+        <item name="android:navigationBarColor">#00000000</item>
+    </style>
+
+    <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.WhiteAccent">
+        <item name="colorAccent">#FFFFFF</item>
+    </style>
+
+    <style name="AppTheme.GrayAccent">
+        <item name="colorAccent">#FFFFFF</item>
+    </style>
+
+    <style name="MySwitch" parent="Theme.AppCompat.Light">
+        <!-- активное состояние (30% прозрачности для фона) -->
+        <item name="colorControlActivated">@color/track_1</item>
+
+        <!-- неактивное состояние ползунка -->
+        <item name="colorSwitchThumbNormal">@color/track_2</item>
+
+        <!-- цвет дорожки для неактивного состояния (30% прозрачности) -->
+        <item name="android:colorForeground">@color/track_2</item>
+    </style>
+
+    <style name="MySwitchTmp" parent="Theme.AppCompat.Light">
+        <!-- активное состояние (30% прозрачности для фона) -->
+        <item name="colorControlActivated">#cccccc</item>
+
+        <!-- неактивное состояние ползунка -->
+        <item name="colorSwitchThumbNormal">#888888</item>
+
+        <!-- цвет дорожки для неактивного состояния (30% прозрачности) -->
+        <item name="android:colorForeground">#cccccc</item>
+    </style>
+
+    <style name="circularProgress" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">#aaffffff</item>
+    </style>
+
+    <style name="Widget.AppTheme.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="Widget.AppTheme.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style>
+
+    <style name="boldStyle" parent="">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_light</item>
+        <item name="android:fontFamily">@font/balsamiq_bold</item>
+    </style>
+
+    <style name="regularStyle" parent="">
+        <item name="android:textColor">@color/text_light</item>
+        <item name="android:fontFamily">@font/balsamiq</item>
+    </style>
+
+    <style name="setupTextTitle" parent="@style/boldStyle">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="setupTextName" parent="@style/regularStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="setupTextValue" parent="@style/regularStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="timersWeekName" parent="@style/boldStyle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@drawable/btn_alarm_week</item>
+    </style>
+
+    <style name="timersTime" parent="@style/regularStyle">
+        <item name="android:textSize">44sp</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="controlBigButton" parent="@style/boldStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="controlTimeData" parent="@style/regularStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="controlListUpdate" parent="@style/regularStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="controlFaultText" parent="@style/boldStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="controlOutTemp" parent="@style/boldStyle">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="controlGraphValue" parent="@style/boldStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="controlSetpointTemp" parent="@style/boldStyle">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="controlZoneText" parent="@style/boldStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_white</item>
+    </style>
+
+    <style name="controlValTemp" parent="@style/boldStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="controlWorkTime" parent="@style/boldStyle">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="controlWeek" parent="@style/boldStyle">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="controlMiddleButton" parent="@style/boldStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="controlListData" parent="@style/regularStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="controlZoneButton" parent="@style/boldStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="drawerText" parent="@style/regularStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="drawerDevices" parent="@style/boldStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="my_time_picker_style" parent="@style/boldStyle">
+        <item name="android:textSize">24sp</item>
+        <item name="android:colorAccent">@color/text_light</item>
+        <item name="colorPrimary">@color/text_light</item>
+        <item name="colorPrimaryDark">@color/text_light</item>
+        <item name="android:textColorPrimary">@color/text_light</item>
+        <item name="android:buttonTint">@color/text_light</item>
+        <item name="colorControlActivated">@color/text_light</item>
+        <item name="colorControlHighlight">@color/text_light</item>
+        <item name="android:windowBackground">@color/text_light</item>
+        <item name="colorControlNormal">@color/text_light</item>
+    </style>
+</resources>

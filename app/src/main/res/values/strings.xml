@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Адверс</string>
+    <string name="pump_string">Помпа</string>
+    <string name="heat_string">Подогрев</string>
+    <string name="settings_string">Настройки</string>
+    <string name="history_string">История</string>
+    <string name="timer_string">Таймер</string>
+    <string name="tempo_string">Температура</string>
+    <string name="voltage_string">Напряжение</string>
+    <string name="theme_string">Тема</string>
+    <string name="general_setting_string">Основные</string>
+    <string name="support_setting_string">Поддержка</string>
+    <string name="set_time_setting_string">Время работы</string>
+    <string name="contact_setting_string">Контакты</string>
+    <string name="feedback_setting_string">Обратная связь</string>
+    <string name="privacy_policy_setting_string">О компании</string>
+    <string name="notifications_setting_string">Уведомления</string>
+    <string name="about_setting_string">О нас</string>
+    <string name="charts_heading_string">Графики</string>
+
+    <!--Settings-->
+
+    <string name="worktime_string">Время работы</string>
+    <string name="unlimited_worktime_string">Неограниченное</string>
+
+    <string name="automatic_reheater_string">Автоматический догреватель</string>
+    <string name="heater_and_reheater_string">Подогреватель и догреватель</string>
+
+    <string name="temperature_heater_string">Температура догревателя</string>
+    <string name="temperature_reheater_string">Температура подогревателя</string>
+
+    <string name="pump_and_heating_string">Помпа и отопление</string>
+
+    <string name="pump_operation_in_standby_mode_string">Работа помпы в ждущем режиме</string>
+    <string name="operation_of_the_pump_with_the_engine">Работа помпы с двигателем</string>
+    <string name="сabin_heater_operation">Работа отопителя салона</string>
+    <string name="cabin_heater_start_temperature">Температура включения отопителя салона</string>
+    <string name="agreement_string">Согласие на обработку персональных данных</string>
+    <string name="informtaion_string">Cправка</string>
+
+    <string name="system_string">Система</string>
+    <string name="remote_control_string">Внешнее управление</string>
+    <string name="temperature_string">Температура</string>
+    <string name="celsius_string">Цельсий</string>
+    <string name="fahrenheit_string">Фаренгейт</string>
+
+    <string name="heater_string">Подогреватель</string>
+    <string name="device_name_string">Имя устройства</string>
+    <string name="serial_number_string">Серийный номер</string>
+    <string name="software_version_string">Версия ПО</string>
+    <string name="total_worktime_string">Общее время работы</string>
+
+    <string name="ble_playground">Полигон</string>
+    <string name="tap_twice_to_exit">Нажмите еще раз, чтобы выйти</string>
+
+    <string name="start_ble_connection">Подключение к устройству</string>
+
+
+    <string name="location_permission_title">Требуется разрешение на местоположение</string>
+    <string name="location_permission_message">Это приложение не использует информацию о местоположении, но для сканирования устройств Bluetooth LE требуется это разрешение.</string>
+    <string name="bluetooth_enabled_title">Включение Bluetooth</string>
+    <string name="bluetooth_enabled_message">Это приложение требует для работы Bluetooth</string>
+    <string name="location_denied_title">В разрешении на определение местоположения отказано</string>
+    <string name="location_denied_message">Поскольку разрешение на определение местоположения не предоставлено, это приложение не может сканировать устройства Bluetooth LE.</string>
+    <string name="dialog_message">Удалить устройство?</string>
+    <string name="dialog_ok">Да</string>
+    <string name="dialog_cancel">Отмена</string>
+    <string name="heater">Подогрев</string>
+    <string name="ventilation">Вентиляция</string>
+    <string name="pump">Помпа</string>
+    <string name="eco">Эко</string>
+    <string name="timer">Таймеры</string>
+    <string name="setup">Настройки</string>
+    <string name="app_setup">Настройки приложения</string>
+    <string name="chartTimeTempCelsiusInt">в %1$s было %2$d°С</string>
+    <string name="chartTimeTempCelsiusFloat">в %1$s было %2$.1f°С</string>
+    <string name="chartTimeTempFahrenheit">в %1$s было %2$d°F</string>
+    <string name="chartTimeVoltage">в %1s было %2$.1fv</string>
+    <string name="about_version">Версия программы: 1.9</string>
+    <string name="search_device">Поиск устройств</string>
+    <string name="about">О программе</string>
+    <string name="device">Устройства</string>
+    <string name="_connect_to">подключение к %1$s…</string>
+    <string name="_disconnected">%1$s <small>отключено</small></string>
+    <string name="story_mo">Понедельник</string>
+    <string name="story_tu">Вторник</string>
+    <string name="story_we">Среда</string>
+    <string name="story_th">Четверг</string>
+    <string name="story_fr">Пятница</string>
+    <string name="story_sa">Суббота</string>
+    <string name="story_su">Воскресенье</string>
+    <string name="story_0">Подача питания</string>
+    <string name="story_1">Команда запуска</string>
+    <string name="story_2">Команда остановки</string>
+    <string name="story_3">Команда вентиляции</string>
+    <string name="story_4">Команда запуска помпы</string>
+    <string name="story_5">Розжиг</string>
+    <string name="story_6">Работа</string>
+    <string name="story_7">Ждущий</string>
+    <string name="story_8">Продувка</string>
+    <string name="story_9">Остановка</string>
+    <string name="story_10">Вентиляция</string>
+    <string name="story_11">Работа помпы</string>
+    <string name="story_12">Изменение настроек</string>
+    <string name="story_fault">"Код неисправности: "</string>
+    <string name="setupClock">Часы</string>
+    <string name="setupClockShowClockInSleep">Показывать часы в спящем режиме</string>
+    <string name="setupClockDaytime">Дневное время</string>
+    <string name="setupClockDaytimeFrom">От</string>
+    <string name="setupClockDaytimeTo">До</string>
+    <string name="setupLimit">Ограничение продолжительности нагрева</string>
+    <string name="setupLimitWater">Бытовая вода</string>
+    <string name="setupLimitSystem">Система</string>
+    <string name="setupSystem">Система</string>
+    <string name="setupDeviceName">"Имя устройства: "</string>
+    <string name="setupEnterName">Введите имя</string>
+    <string name="setupCelsius">Цельсий</string>
+    <string name="setupFahrenheit">Фаренгейт</string>
+    <string name="setupSystem12Hour">12-часовой формат</string>
+    <string name="setupSystemPanelSensor">Использовать датчик пульта</string>
+    <string name="setupInfo">Системная информация</string>
+    <string name="setupInfoHeaterSv">"Версия ПО подогревателя: "</string>
+    <string name="setupInfoControlSv">"Версия ПО модуля: "</string>
+    <string name="setupInfoPanelSv">"Версия ПО пульта: "</string>
+    <string name="setupInfoTotalHours">"Общее время работы подогревателя: "</string>
+    <string name="setupInfoCheckUpdate">Проверить обновления</string>
+    <string name="setupInfoUpdate"><small>Обновить</small></string>
+    <string name="setupCancel"><small>Отмена</small></string>
+    <string name="setupSave"><small>Сохранить</small></string>
+    <string name="updateExit"><small>Выход</small></string>
+    <string name="updateUpdate"><small>Обновить</small></string>
+    <string name="updatePanel">Пульт</string>
+    <string name="updateHeater">Отопитель</string>
+    <string name="updateUseExternalStorage">Карта памяти</string>
+    <string name="accept_device">Пожалуйста, подтвердите на пульте</string>
+    <string name="cancel_device">Соединение отменено на пульте</string>
+    <string name="cancel">Соединение было отменено</string>
+    <string name="unknown_device">Неизвестное устройство, соединение отменено</string>
+    <string name="bluetooth_on">Bluetooth включен</string>
+    <string name="bluetooth_off">Bluetooth отключен</string>
+    <string name="turn_bluetooth">Пожалуйста, включите Bluetooth</string>
+    <string name="scan_again2">Нажмите поиск устройств в меню</string>
+    <string name="action_settings">Настройки</string>
+    <string name="search_devices">Поиск устройств</string>
+    <string name="search_heaters">Поиск подогревателей</string>
+    <string name="wait_select">Ожидание выбора устройства</string>
+    <string name="select_device">Пожалуйста, выберите устройство в списке</string>
+    <string name="connection_issues">Проблемы с подключением, повторная попытка подключения</string>
+    <string name="not_found">Устройства не найдены, попробуйте еще раз</string>
+    <string name="connecting">Подключение к устройству, подождите</string>
+    <string name="device_connected">Это устройство уже подключено</string>
+    <string name="connected">Подключено</string>
+    <string name="disconnected">Устройство отключено</string>
+    <string name="reconnect">Попытка переподключения</string>
+    <string name="drawer_addDevice">Добавление устройства</string>
+    <string name="control_title_timers">Таймеры</string>
+    <string name="control_title_control">Управление</string>
+    <string name="control_title_setup">Настройки</string>
+    <string name="setup2_mo">ПН</string>
+    <string name="setup2_tu">ВТ</string>
+    <string name="setup2_we">СР</string>
+    <string name="setup2_th">ЧТ</string>
+    <string name="setup2_fr">ПТ</string>
+    <string name="setup2_sa">СБ</string>
+    <string name="setup2_su">ВС</string>
+    <string name="timerDoNotReset">Не отключать таймер</string>
+    <string name="setupDay">%1$d день</string>
+    <string name="setupPreheaterAndWarmUp">Подогреватель и догреватель</string>
+    <string name="setupWarmUpAuto">Догреватель автоматически</string>
+    <string name="setupWarmUpManual">Догреватель вручную</string>
+    <string name="setupWarmUpTSetPoint">Температура догревателя</string>
+    <string name="setupPreheaterTSetPoint">Температура подогревателя</string>
+    <string name="voltage">в</string>
+    <string name="celsiusTemperatureLong">Цельсий</string>
+    <string name="fahrenheitTemperatureLong">Фаренгейт</string>
+    <string name="setupPumpAndVehicleHeater">Помпа и отопление</string>
+    <string name="setupTemperatureUnits">Единицы измерения температуры</string>
+    <string name="setupPumpInStandby">Работа помпы в ждущем</string>
+    <string name="setupPumpOnEngine">Работа помпы с двигателем</string>
+    <string name="setupTurnOnFurnace">Работа отопителя салона</string>
+    <string name="setupFurnaceTSetPoint">Температура включения отопителя салона</string>
+    <string name="setupWorkTime">Время работы</string>
+    <string name="setupWorkTimeDays">Дни</string>
+    <string name="setupWorkTimeHours">Часы</string>
+    <string name="setupWorkTimeMinutes">Минуты</string>
+    <string name="setupExternalOperating">Внешнее управление</string>
+    <string name="setupHeaterWorkBy">Режим работы</string>
+    <string name="setupWorkByHeater">По датчику отопителя</string>
+    <string name="setupWorkByPanel">По датчику пульта</string>
+    <string name="setupWorkByOutside">По выносному датчику</string>
+    <string name="setupWorkByPower">По мощности</string>
+    <string name="setupVentilationOnStandby">Вентиляция в ждущем</string>
+    <string name="setupWorkUnlimited">Неограниченное время работы</string>
+    <string name="setup_toast_unlock">Нажмите кнопку вверху, чтобы разблокировать</string>
+    <string name="control_online">В сети</string>
+    <string name="control_offline">Не в сети</string>
+    <string name="search_ble">Поиск устройств</string>
+    <string name="add_ble">Добавление устройства</string>
+    <string name="story_list_60_1">перегрев</string>
+    <string name="story_list_60_2">возможный перегрев</string>
+    <string name="story_list_60_3">датчик температуры перегрева</string>
+    <string name="story_list_60_4">датчик температуры жидкости</string>
+    <string name="story_list_60_5">датчик температуры пламени</string>
+    <string name="story_list_60_6">датчик температуры платы</string>
+    <string name="story_list_60_9">отказ свечи накаливания</string>
+    <string name="story_list_60_10">несоответствие оборотов</string>
+    <string name="story_list_60_12">перенапряжение</string>
+    <string name="story_list_60_13">нерозжиг</string>
+    <string name="story_list_60_14">отказ помпы</string>
+    <string name="story_list_60_15">низкое напряжение</string>
+    <string name="story_list_60_16">индикатор пламени не остыл</string>
+    <string name="story_list_60_17">отказ топливного насоса</string>
+    <string name="story_list_60_20">нет связи</string>
+    <string name="story_list_60_21">индикатор пламени</string>
+    <string name="story_list_60_22">отказ топливного насоса</string>
+    <string name="story_list_60_24">резкое изменение температуры на одном из датчиков</string>
+    <string name="story_list_60_25">слишком быстрый нагрев охлаждающей жидкости</string>
+    <string name="story_list_60_26">перегружен мотор нагнетателя</string>
+    <string name="story_list_60_27">двигатель нагнетателя не вращается</string>
+    <string name="story_list_60_28">самовращение нагнетателя</string>
+    <string name="story_list_60_29">срыв пламени</string>
+    <string name="story_list_60_30">нет связи</string>
+    <string name="story_list_60_37">подогреватель заблокирован</string>
+    <string name="story_list_60_50">нет связи</string>
+    <string name="story_list_60_78">срыв пламени во время работы</string>
+    <string name="story_list_60">Неисправность,\n код: </string>
+    <string name="fan_auto">Нагнетатель\nАвто</string>
+    <string name="story"><small>История</small></string>
+    <string name="celsiusTemperature">°С</string>
+    <string name="fahrenheitTemperature">°F</string>
+    <string name="percent">%</string>
+    <string name="short_day">д</string>
+    <string name="short_hour">ч</string>
+    <string name="short_minute">м</string>
+
+    <string name="title_activity_setup" translatable="false">FullscreenActivity</string>
+    <string name="dummy_button" translatable="false">Dummy Button</string>
+    <string name="dummy_content" translatable="false">DUMMY\nCONTENT</string>
+    <string name="setupTime" translatable="false">"%1$d:%2$02d"</string>
+    <string name="about_address" translatable="false">"680-C South 28th St.Washougal,\n WA 98671"</string>
+    <string name="about_phone" translatable="false">"360-608-0916"</string>
+    <string name="about_mail" translatable="false">"support@autoterm.ru"</string>
+    <string name="timerTime" translatable="false">"%1$d:%2$02d"</string>
+    <string name="workTime" translatable="false">"%1$d:%2$02d:%3$02d"</string>
+    <string name="devices" translatable="false">Bluetooth LE Devices</string>
+    <string name="dialog_title" translatable="false">dialog_title</string>
+    <string name="pairing_request" translatable="false">PAIRING requested\n-> Perform pairing steps. Connect again</string>
+</resources>
