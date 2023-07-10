@@ -2,6 +2,7 @@ package com.aold.advers.ble.domain.interfaces
 
 import android.os.ParcelUuid
 import com.aold.advers.ble.domain.models.ScanFilterOption
+import com.aold.advers.ble.handlers.JavaPackages
 import com.aold.advers.ble.local.entities.BleCharacteristic
 import com.aold.advers.ble.local.entities.Company
 import com.aold.advers.ble.local.entities.Descriptor
@@ -39,14 +40,7 @@ interface IBleRepository {
     suspend fun getDescriptorById(uuid: String): Descriptor?
 
     suspend fun updateDevice(scannedDevice: ScannedDevice)
-
     suspend fun deleteNotSeen()
-
-    suspend fun valToPacket(
-        isSetter: Boolean,
-        typeParam: IntArray,
-        numParam: IntArray,
-        param: LongArray
-    )
-    suspend fun packetToVal()
+    suspend fun valToPacket(valToPackages: JavaPackages)
+    suspend fun packetToVal(packageToVal: JavaPackages)
 }

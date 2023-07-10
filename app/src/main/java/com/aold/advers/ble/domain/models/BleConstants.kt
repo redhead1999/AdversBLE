@@ -35,7 +35,6 @@ enum class BleWriteTypes(val value: Int) {
     WRITE_TYPE_SIGNED(4);
 
     companion object {
-
         fun getAllTypes(bleValue: Int): List<BleWriteTypes> {
             var propertyList = mutableListOf<BleWriteTypes>()
 
@@ -44,7 +43,6 @@ enum class BleWriteTypes(val value: Int) {
                     propertyList.add(it)
             }
             return propertyList
-
         }
     }
 }

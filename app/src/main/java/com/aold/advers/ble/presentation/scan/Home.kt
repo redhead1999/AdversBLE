@@ -1,7 +1,9 @@
 package com.aold.advers.ble.presentation.scan
 
 import android.annotation.SuppressLint
+import android.os.Build
 import androidx.activity.compose.BackHandler
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -16,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.aold.advers.ble.domain.models.ScanFilterOption
 import com.aold.advers.ble.domain.models.ScanState
 import com.aold.advers.ble.presentation.components.AppBarWithBackButton
@@ -29,6 +32,7 @@ import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.aold.advers.ble.utils.permissionsList
 import org.koin.androidx.compose.koinViewModel
 
+@RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalPermissionsApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -37,7 +41,8 @@ fun HomeRoute(
     onControlClick: (String) -> Unit,
     appLayoutInfo: AppLayoutInfo,
     onHelpClicked: () -> Unit,
-    onSettingsClicked: () -> Unit
+    onSettingsClicked: () -> Unit,
+    navController: NavController,
 ) {
 
     val scanState = vm.scanState.collectAsStateWithLifecycle().value
@@ -87,10 +92,12 @@ fun HomeRoute(
         onFilter = vm::onFilter,
         onShowUserMessage = vm::showUserMessage,
         onHelpClicked = onHelpClicked,
+        navController = navController
     )
 
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalPermissionsApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun HomeLayout(
@@ -106,6 +113,7 @@ fun HomeLayout(
     onFilter: (ScanFilterOption?) -> Unit,
     onShowUserMessage: (String) -> Unit,
     onHelpClicked: () -> Unit,
+    navController: NavController,
 ) {
 
     val selectedDevice = scanState.scanUI.selectedDevice
@@ -155,7 +163,8 @@ fun HomeLayout(
                     scanFilterOption = scanState.scanUI.scanFilterOption,
                     onFavorite = scanState.deviceEvents.onFavorite,
                     onForget = scanState.deviceEvents.onForget,
-                    appLayoutInfo = appLayoutInfo
+                    appLayoutInfo = appLayoutInfo,
+                    navController = navController,
                 )
             } else {
 

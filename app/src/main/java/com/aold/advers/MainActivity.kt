@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.aold.advers.ble.handlers.BleObserver
+import com.aold.advers.ble.utils.KEY_DEVICE
 import com.aold.advers.ble.utils.windowinfo.getFoldableInfoFlow
 import com.aold.advers.ble.utils.windowinfo.getWindowLayoutType
 import com.aold.advers.ble.utils.windowinfo.getWindowSizeClasses
@@ -29,7 +30,6 @@ import java.util.UUID
 const val TAG = "SharedPreferencesHelper"
 
 class MainActivity : ComponentActivity() {
-    var KEY_DEVICE = "phoneKey"
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("HardwareIds")
@@ -42,32 +42,16 @@ class MainActivity : ComponentActivity() {
                 getSharedPreferences(KEY_DEVICE, MODE_PRIVATE)
             val value: String? = sharedPreferences.getString("phoneKey", "")
             if (TextUtils.isEmpty(value)) {
-                val phoneKey= UUID.randomUUID().toString().replace("-", "")
+                val phoneKey = UUID.randomUUID().toString().replace("-", "")
                 val editor = sharedPreferences.edit()
                 editor.putString("phoneKey", phoneKey)
                 editor.commit()
                 Timber.d("Ключ телефона: " + phoneKey)
             }
-
         }
         Timber.d("activity created...")
         val bleObserver = BleObserver(this)
         this.lifecycle.addObserver(bleObserver)
-
-        /*try {
-            throw RuntimeException("RELEASE_TEST")
-        } catch (e: Exception) {
-            Timber.e(e, "test", "RELEASE")
-        }*/
-
-        //val deleteNotSeenRequest: WorkRequest = get(named("DeleteNotSeenWorker"))
-
-        /*
-                WorkManager
-                    .getInstance(this)
-                    .enqueue(deleteNotSeenRequest)
-        */
-
 
         val devicePostureFlow = getFoldableInfoFlow(this)
 

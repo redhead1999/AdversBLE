@@ -65,7 +65,9 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.aold.advers.R
+import com.aold.advers.ble.domain.models.AppDestinations.SETTINGS
 import com.aold.advers.ble.presentation.components.BasicBackTopAppBar
 import com.aold.advers.ble.presentation.components.TopAppBarWithCentralImage
 import com.aold.advers.ble.presentation.test.components.CustomCircularProgressIndicator
@@ -85,6 +87,7 @@ import java.time.format.DateTimeFormatter
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TestScreen(
+    navController: NavController,
     appLayoutInfo: AppLayoutInfo,
     onBackClicked: () -> Unit,
 ) {
@@ -249,6 +252,10 @@ fun TestScreen(
                                     .width(80.dp)
                                     .height(60.dp),
                                 onClick = {
+                                    navController.navigate(SETTINGS) {
+                                        launchSingleTop = true
+                                        restoreState = true
+                                    }
                                 }) {
                                 Icon(
                                     painter = painterResource(id = R.drawable.settings),

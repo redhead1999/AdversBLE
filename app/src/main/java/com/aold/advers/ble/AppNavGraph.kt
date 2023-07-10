@@ -3,6 +3,7 @@ package com.aold.advers.ble
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.BlendMode.Companion.Screen
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -47,11 +48,11 @@ fun AppNavGraph(
                     navController.navigate("$CONTROL_SCREEN/$deviceAddress")
                 },
                 appLayoutInfo = appLayoutInfo,
+                navController = navController,
                 onHelpClicked = { navController.navigate(HELP_ABOUT) },
                 onSettingsClicked = { navController.navigate(SETTINGS) }
             )
         }
-
 
         composable(CONTROL) {
             ControlScreen(

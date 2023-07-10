@@ -225,6 +225,9 @@ android {
 
         //TimePicker
         implementation("io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc")
+
+        //NordicLib
+        implementation("no.nordicsemi.android:ble:2.6.1")
     }
 }
 

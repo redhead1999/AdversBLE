@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.aold.advers.ble.domain.models.ScanFilterOption
 import com.aold.advers.ble.local.entities.ScannedDevice
 import com.aold.advers.ble.presentation.previewparams.FeatureParams
@@ -41,6 +42,7 @@ fun DeviceListScreen(
     scanFilterOption: ScanFilterOption?,
     onFavorite: (ScannedDevice) -> Unit,
     onForget: (ScannedDevice) -> Unit,
+    navController: NavController,
     appLayoutInfo: AppLayoutInfo
 ) {
     Column(
@@ -69,6 +71,7 @@ fun DeviceListScreen(
         }
 
         TestScreen(
+            navController = navController,
             appLayoutInfo = appLayoutInfo,
             onBackClicked = {})
     }
@@ -109,68 +112,69 @@ fun ScannedDeviceList(
 }
 
 
-@RequiresApi(Build.VERSION_CODES.O)
-@PortraitLayouts
-@Composable
-fun PreviewDeviceListScreen(
-    @PreviewParameter(PortraitListParams::class) featureParams: FeatureParams
-) {
-    AdversBleTheme() {
-        Column {
-            DeviceListScreen(
-                paddingValues = PaddingValues(),
-                devices = featureParams.scannedDevice,
-                onClick = {},
-                onFilter = {},
-                scanFilterOption = ScanFilterOption.FAVORITES,
-                onFavorite = {},
-                onForget = {},
-                appLayoutInfo = featureParams.appLayoutInfo
-            )
-        }
-    }
-}
-
-@RequiresApi(Build.VERSION_CODES.O)
-@LandscapeLayouts
-@Composable
-fun PreviewLandscapeDeviceListScreen(
-    @PreviewParameter(LandscapeListParams::class) featureParams: FeatureParams
-) {
-    AdversBleTheme() {
-        Column {
-            DeviceListScreen(
-                paddingValues = PaddingValues(),
-                devices = featureParams.scannedDevice,
-                onClick = {},
-                onFilter = {},
-                scanFilterOption = ScanFilterOption.FAVORITES,
-                onFavorite = {},
-                onForget = {},
-                appLayoutInfo = featureParams.appLayoutInfo
-            )
-        }
-    }
-}
-
-@RequiresApi(Build.VERSION_CODES.O)
-@LandscapeBig
-@Composable
-fun PreviewLandscapeBigListScreen(
-    @PreviewParameter(LandscapeBigListParams::class) featureParams: FeatureParams
-) {
-    AdversBleTheme() {
-        Column {
-            DeviceListScreen(
-                paddingValues = PaddingValues(),
-                devices = featureParams.scannedDevice,
-                onClick = {},
-                onFilter = {},
-                scanFilterOption = ScanFilterOption.FAVORITES,
-                onFavorite = {},
-                onForget = {},
-                appLayoutInfo = featureParams.appLayoutInfo
-            )
-        }
-    }
-}
+//@RequiresApi(Build.VERSION_CODES.O)
+//@PortraitLayouts
+//@Composable
+//fun PreviewDeviceListScreen(
+//    @PreviewParameter(PortraitListParams::class) featureParams: FeatureParams
+//) {
+//    AdversBleTheme() {
+//        Column {
+//            DeviceListScreen(
+//                paddingValues = PaddingValues(),
+//                devices = featureParams.scannedDevice,
+//                onClick = {},
+//                onFilter = {},
+//                scanFilterOption = ScanFilterOption.FAVORITES,
+//                onFavorite = {},
+//                onForget = {},
+//                appLayoutInfo = featureParams.appLayoutInfo,
+//                navController = navController,
+//            )
+//        }
+//    }
+//}
+//
+//@RequiresApi(Build.VERSION_CODES.O)
+//@LandscapeLayouts
+//@Composable
+//fun PreviewLandscapeDeviceListScreen(
+//    @PreviewParameter(LandscapeListParams::class) featureParams: FeatureParams
+//) {
+//    AdversBleTheme() {
+//        Column {
+//            DeviceListScreen(
+//                paddingValues = PaddingValues(),
+//                devices = featureParams.scannedDevice,
+//                onClick = {},
+//                onFilter = {},
+//                scanFilterOption = ScanFilterOption.FAVORITES,
+//                onFavorite = {},
+//                onForget = {},
+//                appLayoutInfo = featureParams.appLayoutInfo
+//            )
+//        }
+//    }
+//}
+//
+//@RequiresApi(Build.VERSION_CODES.O)
+//@LandscapeBig
+//@Composable
+//fun PreviewLandscapeBigListScreen(
+//    @PreviewParameter(LandscapeBigListParams::class) featureParams: FeatureParams
+//) {
+//    AdversBleTheme() {
+//        Column {
+//            DeviceListScreen(
+//                paddingValues = PaddingValues(),
+//                devices = featureParams.scannedDevice,
+//                onClick = {},
+//                onFilter = {},
+//                scanFilterOption = ScanFilterOption.FAVORITES,
+//                onFavorite = {},
+//                onForget = {},
+//                appLayoutInfo = featureParams.appLayoutInfo
+//            )
+//        }
+//    }
+//}
