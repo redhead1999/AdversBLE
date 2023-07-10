@@ -42,4 +42,11 @@ interface IBleRepository {
 
     suspend fun deleteNotSeen()
 
+    suspend fun valToPacket(
+        isSetter: Boolean,
+        typeParam: IntArray,
+        numParam: IntArray,
+        param: LongArray
+    )
+    suspend fun packetToVal()
 }

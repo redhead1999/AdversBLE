@@ -27,8 +27,8 @@ val devices = listOf(
     ),
     ScannedDevice(
         deviceId = 0,
-        deviceName = "ELK-BLEDOM",
-        address = "BE:00:FA:00:XX:00",
+        deviceName = "Autoterm",
+        address = "31:F1:1E:1D:10:86",
         rssi = -77,
         manufacturer = null,
         services = listOf("[Human Interface Device"),

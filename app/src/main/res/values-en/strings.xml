@@ -4,6 +4,7 @@
     <string name="pump_string">Pump</string>
     <string name="heat_string">Heating</string>
     <string name="settings_string">Settings</string>
+    <string name="app_setup">App settings</string>
     <string name="timer_string">Timer</string>
     <string name="history_string">Story</string>
     <string name="tempo_string">Temperature</string>

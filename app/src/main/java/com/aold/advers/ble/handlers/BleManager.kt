@@ -17,8 +17,9 @@ import timber.log.Timber
 class BleManager(
     private val bleRepository: IBleRepository,
     private val scope: CoroutineScope,
-    private val parseScanResult: ParseScanResult
-) : KoinComponent {
+    private val parseScanResult: ParseScanResult,
+
+    ) : KoinComponent {
 
     private val btAdapter: BluetoothAdapter = get()
     private val btScanner = btAdapter.bluetoothLeScanner
@@ -78,7 +79,8 @@ class BleManager(
             if (scanEnabled) {
                 if (btAdapter.isEnabled) {
                     isScanning.value = true
-                    btScanner?.startScan(null, scanSettings, scanCallback) ?: Timber.d("btScanner is null")
+                    btScanner?.startScan(null, scanSettings, scanCallback)
+                        ?: Timber.d("btScanner is null")
                     lastCleanupTimestamp = System.currentTimeMillis()
                     Timber.d("started scan")
                 } else {
@@ -97,8 +99,7 @@ class BleManager(
                 btScanner.stopScan(scanCallback)
         } catch (e: Exception) {
             Timber.d(e.message)
-        }
-        finally {
+        } finally {
             isScanning.value = false
         }
     }
@@ -106,5 +107,4 @@ class BleManager(
     fun userMessageShown() {
         userMessage.value = null
     }
-
 }

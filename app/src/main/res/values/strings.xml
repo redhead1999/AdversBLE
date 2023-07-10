@@ -72,6 +72,7 @@
     <string name="eco">Эко</string>
     <string name="timer">Таймеры</string>
     <string name="setup">Настройки</string>
+    <string name="app_setup">Настройки приложения</string>
     <string name="chartTimeTempCelsiusInt">в %1$s было %2$d°С</string>
     <string name="chartTimeTempCelsiusFloat">в %1$s было %2$.1f°С</string>
     <string name="chartTimeTempFahrenheit">в %1$s было %2$d°F</string>

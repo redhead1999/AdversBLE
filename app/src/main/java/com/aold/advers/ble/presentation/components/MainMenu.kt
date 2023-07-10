@@ -41,7 +41,7 @@ fun MainMenu(
         colors = IconButtonDefaults.iconButtonColors(
             contentColor = MaterialTheme.colorScheme.outline
         ),
-        onClick = { onExpanded(true) }) {
+        onClick = { onHelp() }) {
         Icon(
             //modifier = Modifier.then(Modifier.padding(0.dp)),
             painter = painterResource(id = R.drawable.black_btn_list),

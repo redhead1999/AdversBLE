@@ -29,7 +29,7 @@ class AppNavigationActions(private val navController: NavHostController) {
         }
     }
 }
-}
+
 
 object AppRouteArgs {
     const val ADDRESS = "address"

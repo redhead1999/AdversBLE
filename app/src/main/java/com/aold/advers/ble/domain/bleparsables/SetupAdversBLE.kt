@@ -94,10 +94,8 @@ object ADVERSBLEDOM : ParsableUuid("D973F2E1$UUID_DEFAULT".lowercase()) {
             "Color: 7e000503xxxxxx00ef"
         )
     }
-
     override fun getReadStringFromBytes(byteArray: ByteArray): String {
         TODO("Not yet implemented")
     }
-
 }
 

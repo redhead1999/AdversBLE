@@ -12,6 +12,7 @@ import com.aold.advers.ble.presentation.control.ControlViewModel
 import com.aold.advers.ble.presentation.scan.ScanViewModel
 import com.aold.advers.ble.utils.logging.Analytics
 import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.crashlytics.internal.common.CommonUtils
 import com.google.firebase.crashlytics.internal.common.CommonUtils.getSharedPrefs
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineDispatcher
@@ -28,6 +29,11 @@ val appModule = module {
     single { Firebase.analytics }
     single<IAnalytics> { Analytics(get()) }
 
+
+    fun getSharedPrefs(androidApplication: Application): SharedPreferences {
+        return androidApplication.getSharedPreferences("phoneKey", android.content.Context.MODE_PRIVATE)
+    }
+
     single{
         getSharedPrefs(androidApplication())
     }
@@ -35,12 +41,6 @@ val appModule = module {
     single<SharedPreferences.Editor> {
         getSharedPrefs(androidApplication()).edit()
     }
-
-
-fun getSharedPrefs(androidApplication: Application): SharedPreferences {
-    return androidApplication.getSharedPreferences("deviceID", android.content.Context.MODE_PRIVATE)
-}
-
 
     fun provideBluetoothManager(app: Application): BluetoothManager {
         return app.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager

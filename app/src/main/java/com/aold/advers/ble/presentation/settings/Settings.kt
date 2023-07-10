@@ -206,7 +206,6 @@ fun Settings(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-                        GeneralOptionsUI()
                         SupportOptionsUI()
                         displayVersion()
                 }
@@ -642,29 +641,13 @@ fun GeneralOptionsUI() {
             .padding(horizontal = 10.dp)
             .padding(top = 10.dp)
     ) {
-        Text(
-            color = MaterialTheme.colorScheme.primary,
-            text = stringResource(id = R.string.worktime_string),
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(vertical = 2.dp)
-        )
         GeneralSettingItem(
-            mainText = stringResource(id = R.string.unlimited_worktime_string),
+            mainText = stringResource(id = R.string.app_setup),
             subText = "",
             onClick = {}
         )
-        Text(
-            color = MaterialTheme.colorScheme.primary,
-            text = stringResource(id = R.string.heater_and_reheater_string),
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(vertical = 8.dp)
-        )
         GeneralSettingItem(
-            mainText = stringResource(id = R.string.automatic_reheater_string),
+            mainText = stringResource(id = R.string.notifications_setting_string),
             subText = "",
             onClick = {}
         )
@@ -711,29 +694,10 @@ fun SupportOptionsUI() {
             .padding(horizontal = 10.dp)
 
     ) {
-        Text(
-            color = MaterialTheme.colorScheme.primary,
-            text = stringResource(id = R.string.pump_and_heating_string),
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(vertical = 2.dp)
-        )
         SettingsItem(
-            mainText = stringResource(id = R.string.pump_operation_in_standby_mode_string),
+            mainText = stringResource(id = R.string.app_setup),
             onClick = {}
         )
-        Spacer(modifier = Modifier.height(5.dp))
-        SettingsItem(
-            mainText = stringResource(id = R.string.operation_of_the_pump_with_the_engine),
-            onClick = {}
-        )
-        Spacer(modifier = Modifier.height(5.dp))
-        SettingsItem(
-            mainText = stringResource(id = R.string.pump_string),
-            onClick = {}
-        )
-        Spacer(modifier = Modifier.height(5.dp))
 
         val showDialog = remember { mutableStateOf(false) }
         if (showDialog.value) {
@@ -743,7 +707,7 @@ fun SupportOptionsUI() {
                 onDismiss = { showDialog.value = false })
         }
         SettingsItem(
-            mainText = stringResource(id = R.string.cabin_heater_start_temperature),
+            mainText = stringResource(id = R.string.notifications_setting_string),
             onClick = { showDialog.value = true })
 
         if (showDialog.value) {
@@ -755,7 +719,6 @@ fun SupportOptionsUI() {
             mainText = stringResource(id = R.string.agreement_string),
             onClick = { showDialog.value = true })
 
-
         Spacer(modifier = Modifier.height(5.dp))
 
         val context = LocalContext.current
@@ -765,13 +728,6 @@ fun SupportOptionsUI() {
                 Uri.parse("https://advers.ru/storage/app/media/certificate/privacy_policy.pdf")
             )
         }
-        SettingsItem(
-            mainText = stringResource(id = R.string.privacy_policy_setting_string),
-            onClick = { context.startActivity(intent) }
-//                    val urlIntent = Intent(
-//                        Intent.ACTION_VIEW,
-//                        Uri.parse("https://advers.ru/storage/app/media/certificate/privacy_policy.pdf")
-        )
     }
 }
 @OptIn(ExperimentalMaterial3Api::class)

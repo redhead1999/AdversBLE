@@ -1,6 +1,8 @@
 package com.aold.advers.ble.presentation.help
 
 import android.util.Log
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -16,7 +18,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -25,6 +29,8 @@ import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledIconButton
@@ -36,6 +42,7 @@ import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -46,11 +53,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -68,11 +80,16 @@ import com.aold.advers.ble.presentation.previewparams.LandscapeLayouts
 import com.aold.advers.ble.presentation.previewparams.LandscapeListParams
 import com.aold.advers.ble.presentation.previewparams.PortraitLayouts
 import com.aold.advers.ble.presentation.previewparams.PortraitListParams
+import com.aold.advers.ble.presentation.settings.GeneralOptionsUI
+import com.aold.advers.ble.presentation.settings.SupportOptionsUI
 import com.aold.advers.ble.presentation.test.components.CircularSlider
+import com.aold.advers.ble.presentation.test.components.CustomCircularProgressIndicator
 import com.aold.advers.ble.presentation.theme.AdversBleTheme
 import com.aold.advers.ble.presentation.theme.appBarTitle
 import com.aold.advers.ble.presentation.theme.pagerHeaders
 import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo
+import com.aold.advers.presentation.components.charts.TemperatureChart
+import com.aold.advers.presentation.components.charts.VoltageChart
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -97,7 +114,7 @@ fun AboutScreen(
             if (!appLayoutInfo.appLayoutMode.isLandscape()) {
                 BasicBackTopAppBar(appLayoutInfo = appLayoutInfo, onBackClicked = onBackClicked) {
                     Text(
-                        text = "Autoterm",
+                        text = "О приложении",
                         style = appBarTitle
                     )
                 }
@@ -143,79 +160,157 @@ fun AboutScreen(
                             .padding(horizontal = 16.dp)
                             .verticalScroll(rememberScrollState())
                     ) {
-                        AboutPager(currentPagingIndex = currentPagingIndex,
-                            pagingItemCount = pagingItemCount, pagingItems = pagingItems, onMove =
-                            {
-                                if (!it) currentPagingIndex-- else currentPagingIndex++
-                            }
-                        )
-
-                        when (currentPagingIndex) {
-                            0 -> AboutAndPrivacy(
-                                uriHandler = uriHandler,
-                                aboutLink = aboutLink,
-                                privacyPolicyLink = privacyPolicy,
-                                termsLink = termsLink
-                            )
-
-                            1 -> HelpCard(
-                                uriHandler = uriHandler,
-                                discussionsLink = discussionsLink,
-                            )
-
-                            else ->
-                                BugCard(uriHandler = uriHandler, bugLink = bugLink)
-                        }
                     }
                 }
 
             } else {
+//                Column(
+//                    modifier = Modifier
+//                        .fillMaxSize(),
+//                    verticalArrangement = Arrangement.Center,
+//                    horizontalAlignment = Alignment.CenterHorizontally
+//                ) {
+                var isVisibleSettings by remember {
+                    mutableStateOf(false)
+                }
+
+                var isVisibleNotifications by remember {
+                    mutableStateOf(false)
+                }
+
+                var isVisibleAboutApp by remember {
+                    mutableStateOf(false)
+                }
                 Row(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.secondaryContainer)
-                        .fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(30.dp)
                 ) {
-                    AppInfo()
-                    //SocialIcons(uriHandler, youTubeLink, linkedInLink, gitHubLink)
-                }
-                Spacer(modifier = Modifier.height(20.dp))
-                AboutPager(currentPagingIndex = currentPagingIndex,
-                    pagingItemCount = pagingItemCount, pagingItems = pagingItems, onMove =
-                    {
-                        if (!it) currentPagingIndex-- else currentPagingIndex++
+
+                    val isShowing = remember { mutableStateOf(false) }
+                    val context = LocalContext.current
+
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .verticalScroll(rememberScrollState()),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Top
+                    ) {
+                        Card(
+                            onClick = {isVisibleSettings = !isVisibleSettings},
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
+                            modifier = Modifier
+                                .padding(bottom = 8.dp)
+                                .fillMaxWidth(),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                            shape = RoundedCornerShape(20.dp),
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(vertical = 10.dp, horizontal = 2.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Spacer(modifier = Modifier.width(14.dp))
+                                    Column(
+                                        modifier = Modifier.offset(y = (2).dp)
+                                    ) {
+                                        Text(text = "Настройки")
+                                    }
+                                }
+                                //Switch(checked =true , onCheckedChange = null)
+                            }
+                        }
+                        AnimatedVisibility(isVisibleSettings) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .align(Alignment.CenterHorizontally)
+                            ) {
+                                displayVersion()
+                            }
+                        }
+                        Card(
+                            onClick = {isVisibleNotifications = !isVisibleNotifications},
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
+                            modifier = Modifier
+                                .padding(bottom = 8.dp)
+                                .fillMaxWidth(),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                            shape = RoundedCornerShape(20.dp),
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(vertical = 10.dp, horizontal = 2.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Spacer(modifier = Modifier.width(14.dp))
+                                    Column(
+                                        modifier = Modifier.offset(y = (2).dp)
+                                    ) {
+                                        Text(text = "Уведомления")
+                                    }
+                                }
+                                //Switch(checked =true , onCheckedChange = null)
+                            }
+                        }
+                        AnimatedVisibility(isVisibleNotifications) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .align(Alignment.CenterHorizontally)
+                            ) {
+                                displayVersion()
+                            }
+                        }
+                        Card(
+                            onClick = {isVisibleAboutApp = !isVisibleAboutApp},
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
+                            modifier = Modifier
+                                .padding(bottom = 8.dp)
+                                .fillMaxWidth(),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                            shape = RoundedCornerShape(20.dp),
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(vertical = 10.dp, horizontal = 2.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Spacer(modifier = Modifier.width(14.dp))
+                                    Column(
+                                        modifier = Modifier.offset(y = (2).dp)
+                                    ) {
+                                        Text(text = "О приложении")
+                                    }
+                                }
+                                //Switch(checked =true , onCheckedChange = null)
+                            }
+
+                        }
+                        AnimatedVisibility(isVisibleAboutApp) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .align(Alignment.CenterHorizontally)
+                            ) {
+                                displayVersion()
+                            }
+                        }
+//                        GeneralOptionsUI()
+//                        SupportOptionsUI()
+//                        AnimatedVisibility(isVisibleAboutApp) {
+//                        displayVersion()
                     }
-                )
-
-                Column(
-                    modifier = Modifier.verticalScroll(rememberScrollState())
-                ) {
-                    when (currentPagingIndex) {
-                        0 -> AboutAndPrivacy(
-                            uriHandler = uriHandler,
-                            aboutLink = aboutLink,
-                            privacyPolicyLink = privacyPolicy,
-                            termsLink = termsLink
-                        )
-
-                        1 -> HelpCard(
-                            uriHandler = uriHandler,
-                            discussionsLink = discussionsLink,
-                        )
-
-                        else ->
-//                            BugCard(uriHandler = uriHandler, bugLink = bugLink)
-                            CircleSeek(uriHandler = uriHandler, bugLink = bugLink)
                     }
                 }
-
             }
-
         }
     }
-}
-
 @Composable
 fun AboutPager(
     currentPagingIndex: Int,
@@ -416,95 +511,6 @@ fun HelpCard(
     }
 }
 
-@Composable
-fun CircleSeek(
-    uriHandler: UriHandler,
-    bugLink: String,
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        OutlinedCard(
-            modifier = Modifier
-                .padding(16.dp)
-                .height(500.dp)
-        ) {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ){
-                CircularSlider(
-                    modifier = Modifier.size(300.dp),
-                ){
-                    Log.d("progress",it.toString())
-                }
-            }
-        }
-    }
-}
-
-
-@Composable
-fun BugCard(
-    uriHandler: UriHandler,
-    bugLink: String,
-) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-    ) {
-
-        OutlinedCard(
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Column(
-                modifier = Modifier.padding(12.dp),
-            ) {
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Start,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        modifier = Modifier.size(36.dp),
-                        painter = painterResource(id = R.drawable.github_logo),
-                        contentDescription = "GitHub Icon",
-                        tint = MaterialTheme.colorScheme.onSecondary
-                    )
-                    Text(
-                        modifier = Modifier.padding(start = 6.dp),
-                        text = "GitHub Issues",
-                        style = pagerHeaders,
-                        color = MaterialTheme.colorScheme.onSecondary
-                    )
-                }
-                Divider(modifier = Modifier.padding(top = 8.dp))
-                Spacer(modifier = Modifier.height(20.dp))
-                CircularSlider()
-
-                Spacer(modifier = Modifier.height(30.dp))
-
-                val buttonTextColor = if (isSystemInDarkTheme())
-                    MaterialTheme.colorScheme.surface
-                else
-                    MaterialTheme.colorScheme.onPrimary
-
-                Button(
-                    colors = ButtonDefaults.buttonColors(
-                        contentColor = MaterialTheme.colorScheme.onPrimary
-                    ),
-                    modifier = Modifier.fillMaxWidth(),
-                    onClick = {
-                        uriHandler.openUri(bugLink)
-                    }) {
-                    Text(text = "Go to GitHub Issues")
-                }
-            }
-        }
-    }
-}
-
 
 @Composable
 private fun AppInfo() {
@@ -544,57 +550,6 @@ private fun AppInfo() {
 }
 
 @Composable
-private fun SocialIcons(
-    uriHandler: UriHandler,
-    youTubeLink: String,
-    linkedInLink: String,
-    gitHubLink: String
-) {
-    Row() {
-        FilledIconButton(
-            colors = IconButtonDefaults.filledIconButtonColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-            ),
-            onClick = { uriHandler.openUri(youTubeLink) },
-            content = {
-                Icon(
-                    painter = painterResource(id = R.drawable.youtube_logo),
-                    contentDescription = "YouTube",
-                )
-            })
-
-        FilledIconButton(
-            colors = IconButtonDefaults.filledIconButtonColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-            ),
-            onClick = { uriHandler.openUri(linkedInLink) },
-            content = {
-                Icon(
-                    painter = painterResource(
-                        id = R.drawable.linkedin_logo
-                    ),
-                    contentDescription = "LinkedIn"
-                )
-            })
-
-        FilledIconButton(
-            colors = IconButtonDefaults.filledIconButtonColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-            ),
-            onClick = { uriHandler.openUri(gitHubLink) },
-            content = {
-                Icon(
-                    painter = painterResource(
-                        id = R.drawable.github_logo
-                    ),
-                    contentDescription = "LinkedIn",
-                )
-            })
-
-    }
-}
-
-@Composable
 fun LegalStuff(
     privacyPolicyLink: String,
     termsLink: String,
@@ -602,31 +557,42 @@ fun LegalStuff(
 ) {
 
     val annotatedString = buildAnnotatedString {
-        withStyle(style = SpanStyle(
-            fontSize = 12.sp,
-            color = MaterialTheme.colorScheme.onSurface)
+        withStyle(
+            style = SpanStyle(
+                fontSize = 12.sp,
+                color = MaterialTheme.colorScheme.onSurface
+            )
         ) {
             append("Примечание. Используя Autoterm Connect, вы соглашаетесь с ")
         }
 
         pushStringAnnotation(tag = "policy", annotation = privacyPolicyLink)
-        withStyle(style = SpanStyle(
-            fontSize = 12.sp,
-            color = MaterialTheme.colorScheme.primary)) {
+        withStyle(
+            style = SpanStyle(
+                fontSize = 12.sp,
+                color = MaterialTheme.colorScheme.primary
+            )
+        ) {
             append("Политикой конфиденциальности")
         }
         pop()
 
-        withStyle(style = SpanStyle(
-            fontSize = 12.sp,
-            color = MaterialTheme.colorScheme.onSurface)) {
+        withStyle(
+            style = SpanStyle(
+                fontSize = 12.sp,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+        ) {
             append(" и ")
         }
         pushStringAnnotation(tag = "terms", annotation = termsLink)
 
-        withStyle(style = SpanStyle(
-            fontSize = 12.sp,
-            color = MaterialTheme.colorScheme.primary)) {
+        withStyle(
+            style = SpanStyle(
+                fontSize = 12.sp,
+                color = MaterialTheme.colorScheme.primary
+            )
+        ) {
             append("Условиями использования")
         }
         pop()
@@ -648,7 +614,94 @@ fun LegalStuff(
                 uriHandler.openUri(stringAnnotation.item)
             }
         })
+}
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SettingsItemWithSwitcher(mainText: String, onClick: () -> Unit) {
+    Card(
+        onClick = { onClick() },
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
+        modifier = Modifier
+            .padding(bottom = 8.dp)
+            .fillMaxWidth(),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        shape = RoundedCornerShape(20.dp),
+    ) {
+        Row(
+            modifier = Modifier.padding(vertical = 10.dp, horizontal = 19.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = mainText,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+            Switch(checked = true, onCheckedChange = null)
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SettingsItem(mainText: String, onClick: () -> Unit) {
+    Card(
+        onClick = { onClick() },
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
+        modifier = Modifier
+            .padding(bottom = 8.dp)
+            .fillMaxWidth(),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        shape = RoundedCornerShape(20.dp),
+    ) {
+        Row(
+            modifier = Modifier.padding(vertical = 10.dp, horizontal = 19.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = mainText,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+            //Switch(checked =true , onCheckedChange = null)
+        }
+    }
+}
+
+@Composable
+fun displayVersion() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 1.dp)
+            .height(50.dp)
+            .background(Color.Transparent),
+        contentAlignment = Alignment.Center
+    )
+    {
+
+        val version =
+            "Версия: " + BuildConfig.VERSION_NAME + "\n" + "Cборка : " + BuildConfig.VERSION_CODE.toString()
+
+        Text(
+            textAlign = TextAlign.Center,
+            color = MaterialTheme.colorScheme.primary,
+            text = version,
+            modifier = Modifier.padding(5.dp),
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold
+        )
+    }
 }
 
 @PortraitLayouts

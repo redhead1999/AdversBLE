@@ -450,8 +450,8 @@ fun PreviewAppBar(
     @PreviewParameter(PortraitLayoutParams::class) featureParams: FeatureParams
 ) {
     val device = ScannedDevice(
-        0, "ELK-BLEDOM", "24:A9:30:53:5A:97", -45,
-        "Microsoft", listOf("Human Readable Device"),
+        0, "Autoterm", "31:F1:1E:1D:10:86", -45,
+        "Advers", listOf("Human Readable Device"),
         listOf("Windows 10 Desktop"), 0L,
         customName = null,
         baseRssi = 0, favorite = false, forget = false

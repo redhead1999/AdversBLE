@@ -1,13 +1,18 @@
 package com.aold.advers.ble.presentation.scan
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -21,10 +26,12 @@ import com.aold.advers.ble.presentation.previewparams.LandscapeLayouts
 import com.aold.advers.ble.presentation.previewparams.LandscapeListParams
 import com.aold.advers.ble.presentation.previewparams.PortraitLayouts
 import com.aold.advers.ble.presentation.previewparams.PortraitListParams
+import com.aold.advers.ble.presentation.test.TestScreen
 import com.aold.advers.ble.presentation.theme.AdversBleTheme
 import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo
 import com.aold.advers.ble.utils.windowinfo.AppLayoutMode
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun DeviceListScreen(
     paddingValues: PaddingValues,
@@ -44,11 +51,11 @@ fun DeviceListScreen(
 
         if (appLayoutInfo.appLayoutMode.isLandscape()) {
             Row() {
-                    ScanFilters(
-                        onFilter = onFilter,
-                        scanFilterOption = scanFilterOption,
-                        appLayoutInfo = appLayoutInfo
-                    )
+                ScanFilters(
+                    onFilter = onFilter,
+                    scanFilterOption = scanFilterOption,
+                    appLayoutInfo = appLayoutInfo
+                )
                 ScannedDeviceList(appLayoutInfo, devices, onClick, onFavorite, onForget)
             }
         } else {
@@ -61,6 +68,9 @@ fun DeviceListScreen(
             ScannedDeviceList(appLayoutInfo, devices, onClick, onFavorite, onForget)
         }
 
+        TestScreen(
+            appLayoutInfo = appLayoutInfo,
+            onBackClicked = {})
     }
 }
 
@@ -82,8 +92,9 @@ fun ScannedDeviceList(
 
 
 
-    LazyColumn(
+    LazyRow(
         modifier = Modifier.padding(sidePadding)
+
     ) {
         items(devices) { device ->
 
@@ -91,13 +102,14 @@ fun ScannedDeviceList(
                 device = device, onClick = onClick, onFavorite = onFavorite,
                 onForget = onForget
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.width(30.dp))
 
         }
     }
 }
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @PortraitLayouts
 @Composable
 fun PreviewDeviceListScreen(
@@ -119,6 +131,7 @@ fun PreviewDeviceListScreen(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @LandscapeLayouts
 @Composable
 fun PreviewLandscapeDeviceListScreen(
@@ -140,6 +153,7 @@ fun PreviewLandscapeDeviceListScreen(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @LandscapeBig
 @Composable
 fun PreviewLandscapeBigListScreen(

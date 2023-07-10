@@ -102,19 +102,19 @@ fun TestScreen(
         // modifier = Modifier.border(2.dp, Color.Magenta),
         containerColor = Color.Transparent,
         snackbarHost = { SnackbarHost(hostState = appSnackBarHostState) },
-        topBar = {
-            if (!appLayoutInfo.appLayoutMode.isLandscape()) {
-                TopAppBarWithCentralImage(
-                    appLayoutInfo = appLayoutInfo,
-                    onBackClicked = onBackClicked
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.corporation),
-                        contentDescription = "Адверс"
-                    )
-                }
-            }
-        }
+//        topBar = {
+//            if (!appLayoutInfo.appLayoutMode.isLandscape()) {
+//                TopAppBarWithCentralImage(
+//                    appLayoutInfo = appLayoutInfo,
+//                    onBackClicked = onBackClicked
+//                ) {
+//                    Image(
+//                        painter = painterResource(id = R.drawable.corporation),
+//                        contentDescription = "Адверс"
+//                    )
+//                }
+//            }
+//        }
     ) { padding ->
 
         val controlPadding = if (appLayoutInfo.appLayoutMode.isLandscape()) 0.dp

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CardDefaults
@@ -55,7 +56,7 @@ fun ScannedDevice(
         )
     ) {
 
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box(modifier = Modifier.height(100.dp)) {
 
 
             Row(

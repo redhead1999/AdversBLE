@@ -51,7 +51,6 @@ fun DeviceDescriptor.getWriteCommands(): Array<String> {
         CCCD.uuid -> {
             CCCD.commands(notificationProperty!!)
         }
-
         else -> {
             emptyArray()
         }
