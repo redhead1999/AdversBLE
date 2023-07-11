@@ -3,6 +3,7 @@ package com.aold.advers.sharedtest.mocks
 import android.os.ParcelUuid
 import com.aold.advers.ble.domain.interfaces.IBleRepository
 import com.aold.advers.ble.domain.models.ScanFilterOption
+import com.aold.advers.ble.handlers.JavaPackages
 import com.aold.advers.ble.local.entities.BleCharacteristic
 import com.aold.advers.ble.local.entities.Company
 import com.aold.advers.ble.local.entities.Descriptor
@@ -65,6 +66,14 @@ class BleRepositoryMock: IBleRepository {
     }
 
     override suspend fun deleteNotSeen() {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun valToPacket(valToPackages: JavaPackages) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun packetToVal(packageToVal: JavaPackages) {
         TODO("Not yet implemented")
     }
 }

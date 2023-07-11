@@ -119,7 +119,6 @@ class BleRepository(
 
     override suspend fun getDescriptorById(uuid: String): Descriptor? =
         dao.getDescriptorByUuid(uuid)
-
     override suspend fun updateDevice(scannedDevice: ScannedDevice) =
         dao.updateDevice(scannedDevice)
 

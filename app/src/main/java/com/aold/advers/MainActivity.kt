@@ -27,7 +27,6 @@ import timber.log.Timber
 import java.util.UUID
 
 
-const val TAG = "SharedPreferencesHelper"
 
 class MainActivity : ComponentActivity() {
 
