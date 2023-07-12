@@ -10,7 +10,7 @@ import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
-import com.aold.advers.MainActivity
+import com.aold.advers.ble.presentation.MainActivity
 import com.aold.advers.ble.domain.interfaces.IBleRepository
 import com.aold.advers.ble.domain.models.ConnectionState
 import com.aold.advers.ble.domain.models.ScanFilterOption

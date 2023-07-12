@@ -13,6 +13,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface IBleRepository {
 
+    //from Database
+
     suspend fun getCompanyById(id: Int): Company?
 
     suspend fun getServiceById(uuid: String): Service?
@@ -41,6 +43,11 @@ interface IBleRepository {
 
     suspend fun updateDevice(scannedDevice: ScannedDevice)
     suspend fun deleteNotSeen()
+
+    //manually
+
+    suspend fun onMtuChanged()
+
     suspend fun valToPacket(valToPackages: JavaPackages)
     suspend fun packetToVal(packageToVal: JavaPackages)
 }

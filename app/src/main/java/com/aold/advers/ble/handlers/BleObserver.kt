@@ -117,6 +117,4 @@ class BleObserver(
             //bleManager.scan()
         }
     }
-
-
 }

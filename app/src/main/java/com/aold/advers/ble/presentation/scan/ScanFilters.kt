@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.aold.advers.ble.domain.models.SCAN_FILTERS
 import com.aold.advers.ble.domain.models.ScanFilterOption
 import com.aold.advers.ble.presentation.previewparams.landscapeBig
@@ -43,7 +44,7 @@ fun ScanFilters(
 
     //val filterState = rememberSaveable { mutableStateOf(-1) }
     Surface(
-        color = MaterialTheme.colorScheme.primary,
+        color = Color.Transparent,
         contentColor = MaterialTheme.colorScheme.onSecondaryContainer
     ) {
         if (appLayoutInfo.appLayoutMode.isLandscape()) {
@@ -121,11 +122,11 @@ private fun ScanFilterButtons(
             },
             label = {
                 Text(
-                    modifier = Modifier.offset(x = (-5).dp),
+                    modifier = Modifier.offset(x = (-1).dp),
                     text = scanFilter.text,
-                    style = MaterialTheme.typography.bodySmall,
-                    textAlign = TextAlign.Justify,
-                    color = Color.White
+                    fontSize = 11.sp,
+                    textAlign = TextAlign.Center,
+                    color = Color.Black
                 )
             }
         )

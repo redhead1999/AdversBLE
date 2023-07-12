@@ -1,4 +1,4 @@
-package com.aold.advers
+package com.aold.advers.ble.presentation
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
@@ -16,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.aold.advers.BleApp
 import com.aold.advers.ble.handlers.BleObserver
 import com.aold.advers.ble.utils.KEY_DEVICE
 import com.aold.advers.ble.utils.windowinfo.getFoldableInfoFlow

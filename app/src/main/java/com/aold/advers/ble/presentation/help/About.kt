@@ -1,16 +1,13 @@
 package com.aold.advers.ble.presentation.help
 
-import android.content.Intent
-import android.net.Uri
-import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -21,6 +18,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
@@ -35,7 +33,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
@@ -46,6 +43,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -60,9 +58,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -70,38 +66,27 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat.startActivity
 import com.aold.advers.BuildConfig
 import com.aold.advers.R
 import com.aold.advers.ble.presentation.components.BasicBackTopAppBar
-import com.aold.advers.ble.presentation.components.aboutLink
-import com.aold.advers.ble.presentation.components.bugLink
-import com.aold.advers.ble.presentation.components.discussionsLink
-import com.aold.advers.ble.presentation.components.privacyPolicy
-import com.aold.advers.ble.presentation.components.termsLink
+import com.aold.advers.ble.presentation.components.BasicBackTopAppBarWithImage
 import com.aold.advers.ble.presentation.previewparams.FeatureParams
 import com.aold.advers.ble.presentation.previewparams.LandscapeLayouts
 import com.aold.advers.ble.presentation.previewparams.LandscapeListParams
 import com.aold.advers.ble.presentation.previewparams.PortraitLayouts
 import com.aold.advers.ble.presentation.previewparams.PortraitListParams
-import com.aold.advers.ble.presentation.settings.GeneralOptionsUI
-import com.aold.advers.ble.presentation.settings.SupportOptionsUI
 import com.aold.advers.ble.presentation.settings.displayVersion
-import com.aold.advers.ble.presentation.test.components.CircularSlider
-import com.aold.advers.ble.presentation.test.components.CustomCircularProgressIndicator
 import com.aold.advers.ble.presentation.theme.AdversBleTheme
 import com.aold.advers.ble.presentation.theme.appBarTitle
 import com.aold.advers.ble.presentation.theme.pagerHeaders
 import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo
-import com.aold.advers.presentation.components.charts.TemperatureChart
-import com.aold.advers.presentation.components.charts.VoltageChart
 import com.aold.advers.presentation.components.dialog.AgreementAlertDialog
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AboutScreen(
     appLayoutInfo: AppLayoutInfo,
-    onBackClicked: () -> Unit
+    onBackClicked: () -> Unit,
 ) {
 
     val appSnackBarHostState = remember { SnackbarHostState() }
@@ -118,11 +103,11 @@ fun AboutScreen(
         snackbarHost = { SnackbarHost(hostState = appSnackBarHostState) },
         topBar = {
             if (!appLayoutInfo.appLayoutMode.isLandscape()) {
-                BasicBackTopAppBar(appLayoutInfo = appLayoutInfo, onBackClicked = onBackClicked) {
-                    Text(
-                        text = "О приложении",
-                        style = appBarTitle
-                    )
+                BasicBackTopAppBarWithImage(appLayoutInfo = appLayoutInfo, onBackClicked = onBackClicked) {
+                    Image(
+                        modifier = Modifier.width(120.dp).height(100.dp),
+                        painter = painterResource(id = R.drawable.corporation),
+                        contentDescription = "Адверс")
                 }
             }
         }
@@ -205,8 +190,8 @@ fun AboutScreen(
                         verticalArrangement = Arrangement.Top
                     ) {
                         Card(
-                            onClick = {isVisibleSettings = !isVisibleSettings},
-                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
+                            onClick = { isVisibleSettings = !isVisibleSettings },
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
                             modifier = Modifier
                                 .padding(bottom = 8.dp)
                                 .fillMaxWidth(),
@@ -220,10 +205,19 @@ fun AboutScreen(
                             ) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Spacer(modifier = Modifier.width(14.dp))
-                                    Column(
-                                        modifier = Modifier.offset(y = (2).dp)
+                                    Row(
+                                        Modifier.fillMaxWidth().padding(all = 8.dp),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.Start
                                     ) {
-                                        Text(text = "Настройки")
+                                        Icon(
+                                            modifier = Modifier.size(24.dp),
+                                            painter = painterResource(id = R.drawable.settings),
+                                            contentDescription = null,
+                                            tint = Color.White// decorative element
+                                        )
+                                        Spacer(Modifier.width(20.dp))
+                                        Text(text = "Настройки приложения", textAlign = TextAlign.Start)
                                     }
                                 }
                                 //Switch(checked =true , onCheckedChange = null)
@@ -247,8 +241,8 @@ fun AboutScreen(
                             }
                         }
                         Card(
-                            onClick = {isVisibleNotifications = !isVisibleNotifications},
-                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
+                            onClick = { isVisibleNotifications = !isVisibleNotifications },
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
                             modifier = Modifier
                                 .padding(bottom = 8.dp)
                                 .fillMaxWidth(),
@@ -262,9 +256,18 @@ fun AboutScreen(
                             ) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Spacer(modifier = Modifier.width(14.dp))
-                                    Column(
-                                        modifier = Modifier.offset(y = (2).dp)
+                                    Row(
+                                        Modifier.fillMaxWidth().padding(all = 8.dp),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.Start
                                     ) {
+                                            Icon(
+                                                modifier = Modifier.size(24.dp),
+                                                painter = painterResource(id = R.drawable.bell),
+                                            contentDescription = null,
+                                            tint = Color.White// decorative element
+                                        )
+                                        Spacer(Modifier.width(20.dp))
                                         Text(text = "Уведомления")
                                     }
                                 }
@@ -277,12 +280,17 @@ fun AboutScreen(
                                     .fillMaxWidth()
                                     .align(Alignment.CenterHorizontally)
                             ) {
-                                Text(text = "Уведомления")
+//                                NotificationItem(
+//                                    icon = R.drawable.about_icon,
+//                                    mainText = "test",
+//                                    subText = "2"
+//                                )
+                                NotificationList()
                             }
                         }
                         Card(
-                            onClick = {isVisibleAboutApp = !isVisibleAboutApp},
-                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
+                            onClick = { isVisibleAboutApp = !isVisibleAboutApp },
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
                             modifier = Modifier
                                 .padding(bottom = 8.dp)
                                 .fillMaxWidth(),
@@ -294,13 +302,20 @@ fun AboutScreen(
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
                                     Spacer(modifier = Modifier.width(14.dp))
-                                    Column(
-                                        modifier = Modifier.offset(y = (2).dp)
+                                    Row(
+                                        Modifier.fillMaxWidth().padding(all = 8.dp),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.Start
                                     ) {
-                                        Text(text = "О приложении")
-                                    }
+                                        Icon(
+                                            modifier = Modifier.size(24.dp),
+                                            painter = painterResource(id = R.drawable.info),
+                                            contentDescription = null,
+                                            tint = Color.White// decorative element
+                                        )
+                                        Spacer(Modifier.width(20.dp))
+                                        Text(text = "О приложении", textAlign = TextAlign.Center)
                                 }
                                 //Switch(checked =true , onCheckedChange = null)
                             }
@@ -320,11 +335,12 @@ fun AboutScreen(
 //                        AnimatedVisibility(isVisibleAboutApp) {
 //                        displayVersion()
                     }
-                    }
                 }
             }
         }
     }
+}
+
 @Composable
 fun AboutPager(
     currentPagingIndex: Int,
@@ -391,7 +407,7 @@ fun AboutAndPrivacy(
     uriHandler: UriHandler,
     aboutLink: String,
     privacyPolicyLink: String,
-    termsLink: String
+    termsLink: String,
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -567,7 +583,7 @@ private fun AppInfo() {
 fun LegalStuff(
     privacyPolicyLink: String,
     termsLink: String,
-    uriHandler: UriHandler
+    uriHandler: UriHandler,
 ) {
 
     val annotatedString = buildAnnotatedString {
@@ -717,10 +733,146 @@ fun displayVersion() {
     }
 }
 
+@Composable
+fun NotificationList() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp),
+    ) {
+
+        NotificationItem(
+            icon = com.aold.advers.R.drawable.ic_launcher,
+            mainText = "Вы скачали наше приложение!",
+            subText = "Если у вас есть вопросы или предложения по приложению, вы можете связаться с нами по адресу info@dd-inform.com"
+        )
+        NotificationItem(
+            icon = com.aold.advers.R.drawable.ic_launcher,
+            mainText = "Вы скачали наше приложение!",
+            subText = "Если у вас есть вопросы или предложения по приложению, вы можете связаться с нами по адресу info@dd-inform.com"
+        )
+        NotificationItem(
+            icon = com.aold.advers.R.drawable.ic_launcher,
+            mainText = "Вы скачали наше приложение!",
+            subText = "Если у вас есть вопросы или предложения по приложению, вы можете связаться с нами по адресу info@dd-inform.com"
+        )
+        NotificationItem(
+            icon = com.aold.advers.R.drawable.ic_launcher,
+            mainText = "Вы скачали наше приложение!",
+            subText = "Если у вас есть вопросы или предложения по приложению, вы можете связаться с нами по адресу info@dd-inform.com"
+        )
+    }
+
+    Text(
+        text = "Сегодня",
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 14.sp,
+        modifier = Modifier.padding(top = 20.dp)
+    )
+
+    NotificationItem(
+        icon = com.aold.advers.R.drawable.ic_launcher,
+        mainText = "Вы скачали наше приложение!",
+        subText = "Если у вас есть вопросы или предложения по приложению, вы можете связаться с нами по адресу info@dd-inform.com"
+    )
+    NotificationItem(
+        icon = com.aold.advers.R.drawable.ic_launcher,
+        mainText = "Вы скачали наше приложение!",
+        subText = "Если у вас есть вопросы или предложения по приложению, вы можете связаться с нами по адресу info@dd-inform.com"
+    )
+    NotificationItem(
+        icon = com.aold.advers.R.drawable.ic_launcher,
+        mainText = "Вы скачали наше приложение!",
+        subText = "Если у вас есть вопросы или предложения по приложению, вы можете связаться с нами по адресу info@dd-inform.com"
+    )
+    NotificationItem(
+        icon = com.aold.advers.R.drawable.ic_launcher,
+        mainText = "Вы скачали наше приложение!",
+        subText = "Если у вас есть вопросы или предложения по приложению, вы можете связаться с нами по адресу info@dd-inform.com"
+    )
+
+    Text(
+        text = "Mon, 22 jan",
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 14.sp,
+        modifier = Modifier.padding(top = 20.dp)
+    )
+
+    NotificationItem(
+        icon = com.aold.advers.R.drawable.ic_launcher,
+        mainText = "Вы скачали наше приложение!",
+        subText = "Если у вас есть вопросы или предложения по приложению, вы можете связаться с нами по адресу info@dd-inform.com"
+    )
+    NotificationItem(
+        icon = com.aold.advers.R.drawable.ic_launcher,
+        mainText = "Вы скачали наше приложение!",
+        subText = "Если у вас есть вопросы или предложения по приложению, вы можете связаться с нами по адресу info@dd-inform.com"
+    )
+    NotificationItem(
+        icon = com.aold.advers.R.drawable.ic_launcher,
+        mainText = "Вы скачали наше приложение!",
+        subText = "Если у вас есть вопросы или предложения по приложению, вы можете связаться с нами по адресу info@dd-inform.com"
+    )
+    NotificationItem(
+        icon = com.aold.advers.R.drawable.ic_launcher,
+        mainText = "Вы скачали наше приложение!",
+        subText = "Если у вас есть вопросы или предложения по приложению, вы можете связаться с нами по адресу info@dd-inform.com"
+    )
+}
+
+
+@Composable
+fun NotificationItem(icon: Int, mainText: String, subText: String) {
+    TextButton(
+        onClick = {},
+        modifier = Modifier.fillMaxWidth(),
+        contentPadding = PaddingValues(0.dp),
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(vertical = 10.dp)
+                .fillMaxWidth()
+                .height(80.dp)
+//            .border(width = 1.dp, shape = RectangleShape, color = IconColor)
+            ,
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Row() {
+                Icon(
+                    painter = painterResource(id = icon), contentDescription = "",
+                    modifier = Modifier.size(30.dp),
+                    tint = Color.Black
+                )
+                Column(
+                    modifier = Modifier.padding(start = 10.dp)
+                ) {
+                    Text(
+                        text = mainText,
+                        fontWeight = FontWeight.SemiBold,
+                        lineHeight = 10.sp,
+                        fontSize = 12.sp,
+                        letterSpacing = 0.sp
+                    )
+                    Text(
+                        text = subText,
+                        fontWeight = FontWeight.Medium,
+                        lineHeight = 10.sp,
+                        fontSize = 11.sp,
+                        letterSpacing = 0.sp,
+                        modifier = Modifier
+                            .offset(y = (-4).dp)
+                    )
+                }
+            }
+        }
+    }
+}
+
 @PortraitLayouts
 @Composable
 fun PreviewPortraitAbout(
-    @PreviewParameter(PortraitListParams::class) featureParams: FeatureParams
+    @PreviewParameter(PortraitListParams::class) featureParams: FeatureParams,
 ) {
     AdversBleTheme() {
         AboutScreen(appLayoutInfo = featureParams.appLayoutInfo) {
@@ -732,7 +884,7 @@ fun PreviewPortraitAbout(
 @LandscapeLayouts
 @Composable
 fun PreviewLandscapeAbout(
-    @PreviewParameter(LandscapeListParams::class) featureParams: FeatureParams
+    @PreviewParameter(LandscapeListParams::class) featureParams: FeatureParams,
 ) {
     AdversBleTheme() {
         AboutScreen(appLayoutInfo = featureParams.appLayoutInfo) {

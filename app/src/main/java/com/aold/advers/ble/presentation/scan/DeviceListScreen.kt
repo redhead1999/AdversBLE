@@ -59,6 +59,10 @@ fun DeviceListScreen(
                     appLayoutInfo = appLayoutInfo
                 )
                 ScannedDeviceList(appLayoutInfo, devices, onClick, onFavorite, onForget)
+                TestScreen(
+                    navController = navController,
+                    appLayoutInfo = appLayoutInfo,
+                    onBackClicked = {})
             }
         } else {
 
@@ -68,12 +72,13 @@ fun DeviceListScreen(
                 appLayoutInfo = appLayoutInfo
             )
             ScannedDeviceList(appLayoutInfo, devices, onClick, onFavorite, onForget)
+            TestScreen(
+                navController = navController,
+                appLayoutInfo = appLayoutInfo,
+                onBackClicked = {})
         }
 
-        TestScreen(
-            navController = navController,
-            appLayoutInfo = appLayoutInfo,
-            onBackClicked = {})
+
     }
 }
 

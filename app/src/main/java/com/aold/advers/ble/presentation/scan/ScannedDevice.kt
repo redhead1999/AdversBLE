@@ -56,7 +56,7 @@ fun ScannedDevice(
         )
     ) {
 
-        Box(modifier = Modifier.height(100.dp)) {
+        Box(modifier = Modifier.height(75.dp)) {
 
 
             Row(
@@ -122,32 +122,32 @@ fun ScannedDevice(
                     )
                 }
             }
-
-            IconButton(
-                modifier = Modifier.align(Alignment.TopEnd),
-                onClick = {
-                    onForget(device)
-                }) {
-                Icon(
-                    //modifier = Modifier.size(24.dp),
-                    painter = painterResource(id = R.drawable.delete_forever),
-                    contentDescription = "Forget",
-                    tint = MaterialTheme.colorScheme.onSurface.copy(.5f)
-                )
-            }
-
-            val favoriteIcon = if (device.favorite) R.drawable.favorite_selected
-            else R.drawable.favorite_unselected
-
-            IconButton(
-                modifier = Modifier.align(Alignment.BottomEnd),
-                onClick = { onFavorite(device) }) {
-                Icon(
-                    painter = painterResource(id = favoriteIcon),
-                    contentDescription = "Favorite",
-                    tint = MaterialTheme.colorScheme.primary
-                )
-            }
+//
+//            IconButton(
+//                modifier = Modifier.align(Alignment.TopEnd),
+//                onClick = {
+//                    onForget(device)
+//                }) {
+//                Icon(
+//                    //modifier = Modifier.size(24.dp),
+//                    painter = painterResource(id = R.drawable.delete_forever),
+//                    contentDescription = "Forget",
+//                    tint = MaterialTheme.colorScheme.onSurface.copy(.5f)
+//                )
+//            }
+//
+//            val favoriteIcon = if (device.favorite) R.drawable.favorite_selected
+//            else R.drawable.favorite_unselected
+//
+//            IconButton(
+//                modifier = Modifier.align(Alignment.BottomEnd),
+//                onClick = { onFavorite(device) }) {
+//                Icon(
+//                    painter = painterResource(id = favoriteIcon),
+//                    contentDescription = "Favorite",
+//                    tint = MaterialTheme.colorScheme.primary
+//                )
+//            }
 
 
         }

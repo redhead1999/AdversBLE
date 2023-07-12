@@ -7,7 +7,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
-import com.aold.advers.MainActivity
+import com.aold.advers.ble.presentation.MainActivity
 import com.aold.advers.R
 
 class CounterNotificationService(

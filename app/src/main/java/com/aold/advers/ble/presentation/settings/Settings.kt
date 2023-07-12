@@ -204,8 +204,9 @@ fun Settings(
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState()),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+                    verticalArrangement = Arrangement.Top
                 ) {
+                        Spacer(modifier = Modifier.height(20.dp))
                         SupportOptionsUI()
                         displayVersion()
                 }

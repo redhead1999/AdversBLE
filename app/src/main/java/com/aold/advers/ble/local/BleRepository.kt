@@ -123,6 +123,10 @@ class BleRepository(
         dao.updateDevice(scannedDevice)
 
     override suspend fun deleteNotSeen() = dao.deleteNotSeen()
+    override suspend fun onMtuChanged() {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun valToPacket(valToPackages: JavaPackages) {
     }
     override suspend fun packetToVal(packageToVal: JavaPackages) {

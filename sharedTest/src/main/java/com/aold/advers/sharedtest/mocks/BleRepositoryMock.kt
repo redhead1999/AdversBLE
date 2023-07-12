@@ -69,6 +69,10 @@ class BleRepositoryMock: IBleRepository {
         TODO("Not yet implemented")
     }
 
+    override suspend fun onMtuChanged() {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun valToPacket(valToPackages: JavaPackages) {
         TODO("Not yet implemented")
     }

@@ -3,6 +3,7 @@ package com.aold.advers.ble.presentation.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
@@ -89,9 +90,9 @@ fun AppBarWithDrawer(
                 )
             } else {
                 Image(
+                    modifier = Modifier.width(120.dp).height(100.dp),
                     painter = painterResource(id = R.drawable.corporation),
-                    contentDescription = "Адверс"
-                )
+                    contentDescription = "Адверс")
             }
         },
         navigationIcon = {
@@ -139,7 +140,7 @@ fun AppBarWithBackButton(
             bottom = 0.dp
         ),
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = Color(0xff6ea0c3),
+            containerColor = Color.White,
             titleContentColor = Color(0xFFcaccd9),
             navigationIconContentColor = androidx.compose.material3.MaterialTheme.colorScheme
                 .onPrimary.copy(.7f)
@@ -157,6 +158,7 @@ fun AppBarWithBackButton(
                 )
             } else {
                 Image(
+                    modifier = Modifier.width(120.dp).height(100.dp),
                     painter = painterResource(id = R.drawable.corporation),
                     contentDescription = "Адверс")
             }
@@ -269,7 +271,7 @@ fun HomeAppBar(
             bottom = 0.dp
         ),
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = Color(0xff6ea0c3),
+            containerColor = Color.White,
             titleContentColor = Color(0xFFcaccd9),
             navigationIconContentColor = androidx.compose.material3.MaterialTheme.colorScheme
                 .onPrimary.copy(.7f)
@@ -285,9 +287,9 @@ fun HomeAppBar(
         title = {
             Spacer(modifier = Modifier.width(30.dp))
             Image(
+                modifier = Modifier.width(120.dp).height(100.dp),
                 painter = painterResource(id = R.drawable.corporation),
-                contentDescription = "Адверс"
-            )
+                contentDescription = "Адверс")
         },
         actions = {
             FilledIconButton(
@@ -336,7 +338,35 @@ fun BasicBackTopAppBar(
             bottom = 0.dp
         ),
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = Color(0xff6ea0c3),
+            containerColor = Color.White,
+            titleContentColor = Color.Black,
+            navigationIconContentColor = MaterialTheme.colorScheme.primary
+        ),
+        title = { titleContent() },
+        navigationIcon = {
+            androidx.compose.material3.IconButton(onClick = onBackClicked) {
+                BackIcon(contentDesc = "Go Back")
+            }
+        },
+    )
+}
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+fun BasicBackTopAppBarWithImage(
+    appLayoutInfo: AppLayoutInfo,
+    onBackClicked: () -> Unit,
+    titleContent: @Composable () -> Unit
+) {
+
+    CenterAlignedTopAppBar(
+        //modifier = Modifier.border(2.dp, Color.Blue),
+        windowInsets = WindowInsets(
+            top = 0.dp,
+            bottom = 0.dp
+        ),
+        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+            containerColor = Color.White,
             titleContentColor = Color(0xFFcaccd9),
             navigationIconContentColor = MaterialTheme.colorScheme.primary
         ),
@@ -393,6 +423,7 @@ fun TopAppBarWithCentralImage(
         ),
         title = {
             Image(
+                modifier = Modifier.width(120.dp).height(100.dp),
                 painter = painterResource(id = R.drawable.corporation),
                 contentDescription = "Адверс")
         },
@@ -421,6 +452,7 @@ fun TopAppBarWithCentralImageAndDrawer(
         ),
         title = {
             Image(
+                modifier = Modifier.width(120.dp).height(100.dp),
                 painter = painterResource(id = R.drawable.corporation),
                 contentDescription = "Адверс")
         },

@@ -1,12 +1,16 @@
 package com.aold.advers.presentation.components.picker
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,31 +31,30 @@ fun PickerExample() {
         modifier = Modifier.fillMaxSize()
     ) {
 
-        val values = remember {  (20..95).map { it.toString() } }
+        val values = remember {  (20..95).map { it.toString() }  }
         val valuesPickerState = rememberPickerState()
         //val units = remember { listOf("°C", "℉") }
-        val units = remember { listOf("°C") }
-        val unitsPickerState = rememberPickerState()
+        //val units = remember { listOf("°C") }
+            val unitsPickerState = rememberPickerState()
 
-        Row(modifier = Modifier
-            .width(350.dp)
-            .background(Color.Transparent)) {
-            Picker(
+        Row(
+            modifier = Modifier
+                .width(300.dp)
+                .background(Color.Transparent)
+                .border(
+                    2.dp, MaterialTheme.colorScheme.onPrimaryContainer, RoundedCornerShape(20.dp)
+                )
+                .padding(PaddingValues(horizontal = 8.dp)),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween) {
+                Picker(
                 state = valuesPickerState,
                 items = values,
                 visibleItemsCount = 3,
                 modifier = Modifier.weight(0.3f),
                 textModifier = Modifier.padding(8.dp),
-                textStyle = TextStyle(fontSize = 32.sp, color = Color.White)
+                textStyle = TextStyle(fontSize = 32.sp, color = MaterialTheme.colorScheme.primary)
             )
-//            Picker(
-//                state = unitsPickerState,
-//                items = units,
-//                visibleItemsCount = 3,
-//                modifier = Modifier.weight(0.7f),
-//                textModifier = Modifier.padding(8.dp),
-//                textStyle = TextStyle(fontSize = 32.sp, color = Color.White)
-//            )
         }
         Text(
             text = "Выбранная температура: "+" + ${valuesPickerState.selectedItem} ${unitsPickerState.selectedItem}" + "°C",

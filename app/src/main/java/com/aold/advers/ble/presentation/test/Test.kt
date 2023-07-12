@@ -11,6 +11,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -62,6 +63,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -75,6 +77,7 @@ import com.aold.advers.ble.presentation.theme.pagerHeaders
 import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo
 import com.aold.advers.presentation.components.charts.TemperatureChart
 import com.aold.advers.presentation.components.charts.VoltageChart
+import com.aold.advers.presentation.components.picker.PickerExample
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.datetime.time.timepicker
@@ -143,10 +146,6 @@ fun TestScreen(
                             appLayoutInfo = appLayoutInfo,
                             onBackClicked = onBackClicked,
                             titleContent = {
-//                                SocialIcons(
-//                                    uriHandler, youTubeLink,
-//                                    linkedInLink, gitHubLink
-//                                )
                             }
                         )
                         Spacer(modifier = Modifier.height(12.dp))
@@ -158,51 +157,10 @@ fun TestScreen(
                             .padding(horizontal = 16.dp)
                             .verticalScroll(rememberScrollState())
                     ) {
-//                        AboutPager(currentPagingIndex = currentPagingIndex,
-//                            pagingItemCount = pagingItemCount, pagingItems = pagingItems, onMove =
-//                            {
-//                                if (!it) currentPagingIndex-- else currentPagingIndex++
-//                            }
-//                        )
-//
-//                        when (currentPagingIndex) {
-//                            0 -> AboutAndPrivacy(
-//                                uriHandler = uriHandler,
-//                                aboutLink = aboutLink,
-//                                privacyPolicyLink = privacyPolicy,
-//                                termsLink = termsLink
-//                            )
-//
-//                            1 -> HelpCard(
-//                                uriHandler = uriHandler,
-//                                discussionsLink = discussionsLink,
-//                            )
-//
-//                            else ->
-//                                BugCard(uriHandler = uriHandler, bugLink = bugLink)
-//                        }
-//                    }
                     }
                 }
 
             } else {
-//                Row(
-//                    modifier = Modifier
-//                        .background(MaterialTheme.colorScheme.secondaryContainer)
-//                        .fillMaxWidth(),
-//                    horizontalArrangement = Arrangement.SpaceBetween,
-//                    verticalAlignment = Alignment.CenterVertically
-//                ) {
-//                    AppInfo()
-//                    //SocialIcons(uriHandler, youTubeLink, linkedInLink, gitHubLink)
-//                }
-//                Spacer(modifier = Modifier.height(20.dp))
-//                AboutPager(currentPagingIndex = currentPagingIndex,
-//                    pagingItemCount = pagingItemCount, pagingItems = pagingItems, onMove =
-//                    {
-//                        if (!it) currentPagingIndex-- else currentPagingIndex++
-//                    }
-//                )
 
                 val dateDialogState = rememberMaterialDialogState()
                 val timeDialogState = rememberMaterialDialogState()
@@ -236,8 +194,59 @@ fun TestScreen(
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState()),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+                    verticalArrangement = Arrangement.Top
                 ) {
+                    Box(
+                        contentAlignment = Alignment.TopCenter
+                    ) {
+                        Row(
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(30.dp)
+                        ) {
+                            Button(
+                                border = BorderStroke(1.dp, Color.Transparent),
+                                shape = RoundedCornerShape(40),
+                                modifier = Modifier
+                                    .width(200.dp)
+                                    .height(60.dp),
+                                onClick = {
+                                    timeDialogState.show()
+                                }) {
+                                Icon(
+                                    modifier = Modifier.size(24.dp),
+                                    painter = painterResource(id = R.drawable.pulse),
+                                    contentDescription = null,
+                                    tint = Color.White// decorative element
+                                )
+                                Spacer(modifier = Modifier.size(20.dp))
+                                Text(text = "Устройство не подключено", textAlign = TextAlign.Start)
+                            }
+                            Button(
+                                border = BorderStroke(1.dp, Color.Transparent),
+                                shape = RoundedCornerShape(40),
+                                modifier = Modifier
+                                    .width(60.dp)
+                                    .height(60.dp),
+                                contentPadding = PaddingValues(15.dp),
+                                onClick = {
+                                    navController.navigate(SETTINGS) {
+                                        launchSingleTop = true
+                                        restoreState = true
+                                    }
+                                })
+                            {
+                                Icon(
+                                    modifier = Modifier
+                                        .fillMaxSize(),
+                                    painter = painterResource(id = R.drawable.settings),
+                                    contentDescription = null,
+                                    tint = Color.White// decorative element
+                                )
+                            }
+                        }
+                    }
                     Box(contentAlignment = Alignment.TopCenter) {
                         Row(
                             horizontalArrangement = Arrangement.SpaceBetween,
@@ -247,10 +256,30 @@ fun TestScreen(
                         ) {
                             Button(
                                 border = BorderStroke(1.dp, Color.Transparent),
-                                shape = RoundedCornerShape(15),
+                                shape = RoundedCornerShape(40),
                                 modifier = Modifier
-                                    .width(80.dp)
+                                    .width(140.dp)
                                     .height(60.dp),
+                                contentPadding = PaddingValues(15.dp),
+                                onClick = {
+                                    timeDialogState.show()
+                                }) {
+                                Icon(
+                                    painter = painterResource(id = R.drawable.termo),
+                                    contentDescription = null, // decorative element
+                                    tint = Color.White
+                                )
+                                Spacer(modifier = Modifier.size(10.dp))
+                                Text(text="0.0 C")
+                            }
+                            Spacer(Modifier.width(15.dp))
+                            Button(
+                                border = BorderStroke(1.dp, Color.Transparent),
+                                shape = RoundedCornerShape(40),
+                                modifier = Modifier
+                                    .width(140.dp)
+                                    .height(60.dp),
+                                contentPadding = PaddingValues(15.dp),
                                 onClick = {
                                     navController.navigate(SETTINGS) {
                                         launchSingleTop = true
@@ -258,53 +287,16 @@ fun TestScreen(
                                     }
                                 }) {
                                 Icon(
-                                    painter = painterResource(id = R.drawable.settings),
-                                    contentDescription = null,
-                                    tint = Color(0xff6ea0c3)// decorative element
+                                    painter = painterResource(id = R.drawable.light),
+                                    contentDescription = null, // decorative element
+                                    tint = Color.White
                                 )
                                 Spacer(modifier = Modifier.size(10.dp))
-                            }
-                            Button(
-                                border = BorderStroke(1.dp, Color.Transparent),
-                                shape = RoundedCornerShape(15),
-                                modifier = Modifier
-                                    .width(100.dp)
-                                    .height(60.dp),
-                                onClick = {
-
-                                }) {
-                                Text(
-                                    text = "ПОИСК",
-                                    style = TextStyle(fontSize = 15.sp, color = Color(0xff6ea0c3))
-                                )
-                            }
-                            Button(
-                                border = BorderStroke(1.dp, Color.Transparent),
-                                shape = RoundedCornerShape(15),
-                                modifier = Modifier
-                                    .width(80.dp)
-                                    .height(60.dp),
-                                onClick = {
-                                    timeDialogState.show()
-                                }) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.timer),
-                                    contentDescription = null,
-                                    tint = Color(0xff6ea0c3)// decorative element
-                                )
-                                Spacer(modifier = Modifier.size(10.dp))
+                                Text(text="0.0 C")
                             }
                         }
                     }
 
-//                        Box(
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .background(Color.Transparent),
-//                            contentAlignment = Alignment.Center
-//                        ) {
-//                            Spacer(modifier = Modifier.height(150.dp))
-//
                     Column(
                         modifier = Modifier
                             .fillMaxSize(),
@@ -322,18 +314,19 @@ fun TestScreen(
                         var isVisibleHistoryLog by remember {
                             mutableStateOf(false)
                         }
-
-                        CustomCircularProgressIndicator(
-                                modifier = Modifier
-                                    .size(250.dp),
-                                initialValue = 25,
-                                primaryColor = MaterialTheme.colorScheme.secondaryContainer,
-                                secondaryColor = MaterialTheme.colorScheme.background,
-                                circleRadius = 200f,
-                                onPositionChange = { position ->
-                                    //do something with this position value
-                                }
-                            )
+                        //todo круглый пикер
+//                        CustomCircularProgressIndicator(
+//                                modifier = Modifier
+//                                    .size(250.dp),
+//                                initialValue = 25,
+//                                primaryColor = MaterialTheme.colorScheme.secondaryContainer,
+//                                secondaryColor = MaterialTheme.colorScheme.background,
+//                                circleRadius = 200f,
+//                                onPositionChange = { position ->
+//                                    //do something with this position value
+//                                }
+//                            )
+                        PickerExample()
                         AnimatedVisibility(isVisibleVoltageChart) {
                                 VoltageChart(modifier = Modifier
                                     .width(300.dp)
@@ -387,15 +380,7 @@ fun TestScreen(
                                     Icon(
                                         painter = painterResource(id = R.drawable.black_btn_voltage),
                                         contentDescription = null,
-                                        tint = Color(0xff6ea0c3)// decorative element
-                                    )
-                                    Spacer(modifier = Modifier.height(2.dp))
-                                    Text(
-                                        text = stringResource(id = R.string.voltage_string),
-                                        style = TextStyle(
-                                            fontSize = 13.sp,
-                                            color = Color(0xff6ea0c3)
-                                        )
+                                        tint = Color.White// decorative element
                                     )
                                 }
                             }
@@ -417,16 +402,9 @@ fun TestScreen(
                                     Icon(
                                         painter = painterResource(id = R.drawable.termo),
                                         contentDescription = null, // decorative element
-                                        tint = Color(0xff6ea0c3)
+                                        tint = Color.White
                                     )
                                     Spacer(modifier = Modifier.height(2.dp))
-                                    Text(
-                                        text = stringResource(id = R.string.tempo_string),
-                                        style = TextStyle(
-                                            fontSize = 13.sp,
-                                            color = Color(0xff6ea0c3)
-                                        )
-                                    )
                                 }
                             }
                             Button(
@@ -446,16 +424,9 @@ fun TestScreen(
                                     Icon(
                                         painter = painterResource(id = R.drawable.black_btn_story),
                                         contentDescription = "Descriptor Buttons",
-                                        tint = Color(0xff6ea0c3)
+                                        tint = Color.White
                                     )
                                     Spacer(modifier = Modifier.height(2.dp))
-                                    Text(
-                                        text = stringResource(id = R.string.history_string),
-                                        style = TextStyle(
-                                            fontSize = 13.sp,
-                                            color = Color(0xff6ea0c3)
-                                        )
-                                    )
                                 }
                             }
                         }

@@ -15,10 +15,13 @@ val services = listOf(
         identifier = "org.bluetooth.service.human_interface_device",
         uuid = "1812", source = "gss"
     ),
+
+    //todo добавить данные юарта
+
     Service(
-        name = "Nordic LED and Button Service",
-        identifier = "com.nordicsemi.service.led_and_button",
-        uuid = "00001523-1212-EFDE-1523-785FEABCD123",
+        name = "Autoterm",
+        identifier = "com.nordicsemi.service.uart",
+        uuid = "D973F2E1-B19E-11E2-9E96-0800200C9A66",
         source = "nordic"
     ),
 )

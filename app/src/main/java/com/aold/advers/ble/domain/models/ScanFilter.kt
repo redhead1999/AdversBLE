@@ -16,8 +16,8 @@ data class ScanFilter(
 )
 
 val SCAN_FILTERS = listOf(
-    ScanFilter(ScanFilterOption.RSSI, R.drawable.signal, "RSSI"),
-    ScanFilter(ScanFilterOption.NAME, R.drawable.az_sort, "Name"),
-    ScanFilter(ScanFilterOption.FAVORITES, R.drawable.favorite_selected, "Favorites"),
-    ScanFilter(ScanFilterOption.FORGET, R.drawable.delete_forever, "Forget"),
+    ScanFilter(ScanFilterOption.RSSI, R.drawable.signal, "Поиск"),
+    ScanFilter(ScanFilterOption.NAME, R.drawable.az_sort, "Мои"),
+    ScanFilter(ScanFilterOption.FAVORITES, R.drawable.favorite_selected, "Избранное"),
+    ScanFilter(ScanFilterOption.FORGET, R.drawable.delete_forever, "Удалены"),
 )
