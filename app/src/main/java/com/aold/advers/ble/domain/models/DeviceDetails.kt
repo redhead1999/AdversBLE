@@ -1,7 +1,7 @@
 package com.aold.advers.ble.domain.models
 
+import com.aold.advers.ble.domain.models.DeviceCharacteristics
 import com.aold.advers.ble.local.entities.ScannedDevice
-
 
 data class DeviceDetail(
     val scannedDevice: ScannedDevice,

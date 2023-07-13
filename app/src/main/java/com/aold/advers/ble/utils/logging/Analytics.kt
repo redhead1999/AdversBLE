@@ -1,7 +1,7 @@
 package com.aold.advers.ble.utils.logging
 
 import android.os.Bundle
-import com.aold.advers.ble.domain.interfaces.IAnalytics
+import com.aold.advers.ble.interfaces.IAnalytics
 import com.google.firebase.analytics.FirebaseAnalytics
 import org.koin.core.component.KoinComponent
 

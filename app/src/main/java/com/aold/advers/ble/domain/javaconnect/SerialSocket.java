@@ -16,7 +16,6 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.util.Log;
 
-import com.aold.advers.R;
 import com.aold.advers.ble.domain.bleparsables.SerialListener;
 
 import java.io.IOException;
@@ -180,7 +179,9 @@ public class SerialSocket extends BluetoothGattCallback {
             case BluetoothDevice.ACTION_PAIRING_REQUEST:
                 final int pairingVariant = intent.getIntExtra(BluetoothDevice.EXTRA_PAIRING_VARIANT, -1);
                 Log.d(TAG, "pairing request " + pairingVariant);
-                onSerialConnectError(new IOException(context.getString(R.string.pairing_request)));
+
+                //onSerialConnectError(new IOException(context.getString(R.string.pairing_request)));
+
                 // pairing dialog brings app to background (onPause), but it is still partly visible (no onStop), so there is no automatic disconnect()
                 break;
             case BluetoothDevice.ACTION_BOND_STATE_CHANGED:

@@ -4,8 +4,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aold.advers.ble.domain.interfaces.IAnalytics
-import com.aold.advers.ble.domain.interfaces.IBleRepository
 import com.aold.advers.ble.domain.models.BleConnectEvents
 import com.aold.advers.ble.domain.models.BleReadWriteCommands
 import com.aold.advers.ble.domain.models.DeviceDetail
@@ -21,6 +19,8 @@ import com.aold.advers.ble.utils.logging.AnalyticsEventType
 import com.aold.advers.ble.utils.logging.CharacteristicEvent
 import com.aold.advers.ble.handlers.BleGatt
 import com.aold.advers.ble.handlers.BleManager
+import com.aold.advers.ble.interfaces.IAnalytics
+import com.aold.advers.ble.interfaces.IBleRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow

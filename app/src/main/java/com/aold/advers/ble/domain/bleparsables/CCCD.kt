@@ -5,6 +5,7 @@ import com.aold.advers.ble.domain.models.BleProperties
 import com.aold.advers.ble.domain.models.UUID_DEFAULT
 import com.aold.advers.ble.utils.toHex
 
+
 object CCCD : ParsableUuid("00002902$UUID_DEFAULT".lowercase()) {
 
     override fun commands(param: Any?): Array<String> {

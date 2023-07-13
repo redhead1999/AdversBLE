@@ -1,12 +1,12 @@
 package com.aold.advers.ble.domain.models
 
-import com.aold.advers.ble.domain.bleparsables.Appearance
-import com.aold.advers.ble.domain.bleparsables.ADVERSBLEDOM
-import com.aold.advers.ble.domain.bleparsables.PreferredConnectionParams
 import com.aold.advers.ble.utils.decodeSkipUnreadable
 import com.aold.advers.ble.utils.print
 import com.aold.advers.ble.utils.toBinaryString
 import com.aold.advers.ble.utils.toHex
+import com.aold.advers.ble.domain.bleparsables.Appearance
+import com.aold.advers.ble.domain.bleparsables.ADVERSBLEDOM
+import com.aold.advers.ble.domain.bleparsables.PreferredConnectionParams
 import timber.log.Timber
 
 data class DeviceCharacteristics(

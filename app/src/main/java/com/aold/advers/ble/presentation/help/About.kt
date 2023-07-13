@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
@@ -77,10 +76,9 @@ import com.aold.advers.ble.presentation.previewparams.PortraitLayouts
 import com.aold.advers.ble.presentation.previewparams.PortraitListParams
 import com.aold.advers.ble.presentation.settings.displayVersion
 import com.aold.advers.ble.presentation.theme.AdversBleTheme
-import com.aold.advers.ble.presentation.theme.appBarTitle
 import com.aold.advers.ble.presentation.theme.pagerHeaders
 import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo
-import com.aold.advers.presentation.components.dialog.AgreementAlertDialog
+import com.aold.advers.ble.presentation.components.dialog.AgreementAlertDialog
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

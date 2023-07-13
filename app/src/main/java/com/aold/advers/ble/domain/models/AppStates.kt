@@ -1,7 +1,8 @@
 package com.aold.advers.ble.domain.models
 
-import com.aold.advers.ble.handlers.JavaPackages
+import com.aold.advers.ble.domain.models.ScanFilterOption
 import com.aold.advers.ble.local.entities.ScannedDevice
+
 
 data class ScanState(
     val scanUI: ScanUI,

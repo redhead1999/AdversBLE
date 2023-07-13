@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import com.aold.advers.ble.domain.models.AppDestinations.CONTROL
 import com.aold.advers.ble.domain.models.AppDestinations.HOME
 import com.aold.advers.ble.domain.models.AppDestinations.SETTINGS
+import com.aold.advers.ble.domain.models.AppDestinations.TIMERS
 import com.aold.advers.ble.domain.models.AppRoutes.CONTROL_SCREEN
 import com.aold.advers.ble.domain.models.AppRoutes.HELP_ABOUT
 import com.aold.advers.ble.presentation.control.ControlScreen
@@ -17,6 +18,7 @@ import com.aold.advers.ble.presentation.help.AboutScreen
 import com.aold.advers.ble.presentation.scan.HomeRoute
 import com.aold.advers.ble.presentation.settings.Settings
 import com.aold.advers.ble.presentation.test.TestScreen
+import com.aold.advers.ble.presentation.timers.TimerScreen
 import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -68,6 +70,13 @@ fun AppNavGraph(
         }
         composable(SETTINGS) {
             Settings(
+                appLayoutInfo = appLayoutInfo,
+                onBackClicked = { navController.popBackStack() }
+            )
+        }
+
+        composable(TIMERS) {
+            TimerScreen(
                 appLayoutInfo = appLayoutInfo,
                 onBackClicked = { navController.popBackStack() }
             )

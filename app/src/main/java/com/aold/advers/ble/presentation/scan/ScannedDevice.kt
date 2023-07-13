@@ -56,13 +56,13 @@ fun ScannedDevice(
         )
     ) {
 
-        Box(modifier = Modifier.height(75.dp)) {
+        Box(modifier = Modifier.height(55.dp)) {
 
 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .defaultMinSize(minHeight = 100.dp)
+                    .defaultMinSize(minHeight = 70.dp)
                     .padding(8.dp)
             ) {
                 Column(
@@ -82,40 +82,40 @@ fun ScannedDevice(
                         style = MaterialTheme.typography.labelMedium,
                         textAlign = TextAlign.Center
                     )
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = "(${device.baseRssi})",
-                        style = labelSmallItalic,
-                        textAlign = TextAlign.Center
-                    )
+//                    Text(
+//                        modifier = Modifier.fillMaxWidth(),
+//                        text = "(${device.baseRssi})",
+//                        style = labelSmallItalic,
+//                        textAlign = TextAlign.Center
+//                    )
                 }
                 Column(modifier = Modifier.fillMaxWidth(.9f)) {
                     Text(
                         text = device.customName ?: device.deviceName
                         ?: "Unknown Name"
                     )
-                    device.manufacturer?.let {
-                        Text(
-                            text = it,
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                    }
-                    device.extra?.let {
-                        Text(
-                            text = it.joinToString(),
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                    }
+//                    device.manufacturer?.let {
+////                        Text(
+////                            text = it,
+////                            style = MaterialTheme.typography.bodyMedium
+////                        )
+//                    }
+//                    device.extra?.let {
+////                        Text(
+////                            text = it.joinToString(),
+////                            style = MaterialTheme.typography.bodyMedium
+////                        )
+//                    }
                     device.services?.let {
-                        Text(
-                            text = it.joinToString(),
-                            style = MaterialTheme.typography.bodyMedium
-                        )
+//                        Text(
+//                            text = it.joinToString(),
+//                            style = MaterialTheme.typography.bodyMedium
+//                        )
                     }
-                    Text(
-                        text = device.address,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
+//                    Text(
+//                        text = device.address,
+//                        style = MaterialTheme.typography.bodyMedium
+//                    )
                     Text(
                         text = "Last seen: ${device.lastSeen.toDate()}",
                         style = MaterialTheme.typography.labelSmall

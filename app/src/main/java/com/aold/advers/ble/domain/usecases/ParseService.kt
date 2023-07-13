@@ -2,16 +2,15 @@ package com.aold.advers.ble.domain.usecases
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothGatt
-import com.aold.advers.ble.domain.interfaces.IBleRepository
-import com.aold.advers.ble.local.entities.Service
+import com.aold.advers.ble.interfaces.IBleRepository
 import com.aold.advers.ble.domain.models.BlePermissions
 import com.aold.advers.ble.domain.models.BleProperties
 import com.aold.advers.ble.domain.models.BleWriteTypes
 import com.aold.advers.ble.domain.models.DeviceCharacteristics
 import com.aold.advers.ble.domain.models.DeviceDescriptor
-import com.aold.advers.ble.domain.models.DeviceService
 import com.aold.advers.ble.domain.models.canRead
 import com.aold.advers.ble.domain.models.canWriteProperties
+import com.aold.advers.ble.local.entities.Service
 import com.aold.advers.ble.utils.toGss
 import timber.log.Timber
 
@@ -22,9 +21,9 @@ class ParseService
 
     @SuppressLint("MissingPermission")
     suspend operator fun invoke(gatt: BluetoothGatt, status: Int):
-            List<DeviceService> {
+            List<com.aold.advers.ble.domain.models.DeviceService> {
 
-        val services = mutableListOf<DeviceService>()
+        val services = mutableListOf<com.aold.advers.ble.domain.models.DeviceService>()
 
         if (status == BluetoothGatt.GATT_SUCCESS) {
             gatt.services?.forEach { gattService ->
@@ -93,7 +92,7 @@ class ParseService
                     )
                 }
 
-                val deviceService = DeviceService(
+                val deviceService = com.aold.advers.ble.domain.models.DeviceService(
                     service.uuid,
                     service.name,
                     characteristics

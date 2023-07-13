@@ -1,15 +1,16 @@
 package com.aold.advers.ble.local
 
 import android.os.ParcelUuid
-import com.aold.advers.ble.domain.interfaces.IBleRepository
+import com.aold.advers.ble.interfaces.IBleRepository
+import com.aold.advers.ble.domain.models.ScanFilterOption
+import com.aold.advers.ble.handlers.JavaPackages
 import com.aold.advers.ble.local.entities.BleCharacteristic
 import com.aold.advers.ble.local.entities.Company
 import com.aold.advers.ble.local.entities.Descriptor
 import com.aold.advers.ble.local.entities.MicrosoftDevice
 import com.aold.advers.ble.local.entities.ScannedDevice
 import com.aold.advers.ble.local.entities.Service
-import com.aold.advers.ble.domain.models.ScanFilterOption
-import com.aold.advers.ble.handlers.JavaPackages
+
 import com.aold.advers.ble.utils.toGss
 import com.aold.advers.ble.utils.toHex
 import kotlinx.coroutines.flow.Flow

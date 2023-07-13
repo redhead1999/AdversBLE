@@ -2,18 +2,17 @@ package com.aold.advers.ble.domain.usecases
 
 import android.bluetooth.BluetoothGatt
 import android.bluetooth.BluetoothGattDescriptor
-import com.aold.advers.ble.domain.models.DeviceService
 import com.aold.advers.ble.domain.models.updateDescriptors
 import timber.log.Timber
 
 class ParseDescriptor() {
 
     operator fun invoke(
-        deviceDetails: List<DeviceService>,
+        deviceDetails: List<com.aold.advers.ble.domain.models.DeviceService>,
         descriptor: BluetoothGattDescriptor,
         status: Int,
         value: ByteArray
-    ): List<DeviceService> {
+    ): List<com.aold.advers.ble.domain.models.DeviceService> {
 
         if (status == BluetoothGatt.GATT_SUCCESS) {
 

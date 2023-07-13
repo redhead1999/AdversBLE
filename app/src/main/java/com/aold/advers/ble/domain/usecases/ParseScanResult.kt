@@ -3,7 +3,7 @@ package com.aold.advers.ble.domain.usecases
 import android.annotation.SuppressLint
 import android.bluetooth.le.ScanResult
 import android.util.SparseArray
-import com.aold.advers.ble.domain.interfaces.IBleRepository
+import com.aold.advers.ble.interfaces.IBleRepository
 import com.aold.advers.ble.local.entities.ScannedDevice
 import com.aold.advers.ble.utils.toMillis
 import timber.log.Timber

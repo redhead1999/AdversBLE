@@ -13,6 +13,7 @@ object AppRoutes {
     const val HELP_ABOUT = "help_about"
     const val SETTINGS = "settings"
     const val TEST = "test"
+    const val TIMERS = "timers"
 }
 
 class AppNavigationActions(private val navController: NavHostController) {
@@ -40,5 +41,6 @@ object AppDestinations {
     const val CONTROL = "$CONTROL_SCREEN/{$ADDRESS}"
     const val HELP_ABOUT = AppRoutes.HELP_ABOUT
     const val SETTINGS = AppRoutes.SETTINGS
+    const val TIMERS = AppRoutes.TIMERS
     const val TEST = AppRoutes.TEST
 }

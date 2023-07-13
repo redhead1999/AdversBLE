@@ -1,6 +1,6 @@
 package com.aold.advers.ble.domain.models
 
-import com.aold.advers.R
+import com.advers.bluetooth.R
 
 enum class ScanFilterOption{
     RSSI,

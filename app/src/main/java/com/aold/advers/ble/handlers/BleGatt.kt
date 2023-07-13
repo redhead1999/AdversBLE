@@ -11,13 +11,8 @@ import android.bluetooth.BluetoothProfile
 import android.os.Build
 import com.aold.advers.ble.domain.bleparsables.CCCD
 import com.aold.advers.ble.domain.bleparsables.SerialListener
-import com.aold.advers.ble.domain.models.ConnectionState
-import com.aold.advers.ble.domain.models.DeviceService
-import com.aold.advers.ble.domain.usecases.ParseDescriptor
-import com.aold.advers.ble.domain.usecases.ParseNotification
-import com.aold.advers.ble.domain.usecases.ParseRead
-import com.aold.advers.ble.domain.usecases.ParseService
 import com.aold.advers.ble.utils.print
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -32,10 +27,10 @@ import java.util.UUID
 class BleGatt(
     private val app: Application,
     private val scope: CoroutineScope,
-    private val parseService: ParseService,
-    private val parseRead: ParseRead,
-    private val parseNotification: ParseNotification,
-    private val parseDescriptor: ParseDescriptor,
+    private val parseService: com.aold.advers.ble.domain.usecases.ParseService,
+    private val parseRead: com.aold.advers.ble.domain.usecases.ParseRead,
+    private val parseNotification: com.aold.advers.ble.domain.usecases.ParseNotification,
+    private val parseDescriptor: com.aold.advers.ble.domain.usecases.ParseDescriptor,
 ) : KoinComponent {
 
     private val BLUETOOTH_LE_UUID_CCCD = UUID.fromString("00002902-0000-1000-8000-00805f9b34fb")
@@ -89,8 +84,8 @@ class BleGatt(
     private var btGatt: BluetoothGatt? = null
     private val btAdapter: BluetoothAdapter = get()
 
-    val connectMessage = MutableStateFlow(ConnectionState.DISCONNECTED)
-    val deviceDetails = MutableStateFlow<List<DeviceService>>(emptyList())
+    val connectMessage = MutableStateFlow(com.aold.advers.ble.domain.models.ConnectionState.DISCONNECTED)
+    val deviceDetails = MutableStateFlow<List<com.aold.advers.ble.domain.models.DeviceService>>(emptyList())
 
     private val bluetoothGattCallback = object : BluetoothGattCallback() {
 
@@ -102,20 +97,20 @@ class BleGatt(
 
             when (newState) {
                 BluetoothProfile.STATE_CONNECTING -> connectMessage.value =
-                    ConnectionState.CONNECTING
+                    com.aold.advers.ble.domain.models.ConnectionState.CONNECTING
 
                 BluetoothProfile.STATE_CONNECTED -> {
-                    connectMessage.value = ConnectionState.CONNECTED
+                    connectMessage.value = com.aold.advers.ble.domain.models.ConnectionState.CONNECTED
                     btGatt?.discoverServices()
                 }
 
                 BluetoothProfile.STATE_DISCONNECTING -> connectMessage.value =
-                    ConnectionState.DISCONNECTING
+                    com.aold.advers.ble.domain.models.ConnectionState.DISCONNECTING
 
                 BluetoothProfile.STATE_DISCONNECTED -> connectMessage.value =
-                    ConnectionState.DISCONNECTED
+                    com.aold.advers.ble.domain.models.ConnectionState.DISCONNECTED
 
-                else -> connectMessage.value = ConnectionState.DISCONNECTED
+                else -> connectMessage.value = com.aold.advers.ble.domain.models.ConnectionState.DISCONNECTED
             }
         }
 
@@ -239,12 +234,12 @@ class BleGatt(
         if (btAdapter.isEnabled) {
             btAdapter.let { adapter ->
                 try {
-                    connectMessage.value = ConnectionState.CONNECTING
+                    connectMessage.value = com.aold.advers.ble.domain.models.ConnectionState.CONNECTING
                     val device = adapter.getRemoteDevice(address)
                     device.connectGatt(app, false, bluetoothGattCallback)
                     onSerialConnect()
                 } catch (e: Exception) {
-                    connectMessage.value = ConnectionState.DISCONNECTED
+                    connectMessage.value = com.aold.advers.ble.domain.models.ConnectionState.DISCONNECTED
                     Timber.tag("BTGATT_CONNECT").e(e)
                 }
             }
@@ -310,7 +305,7 @@ class BleGatt(
     }
 
     fun close() {
-        connectMessage.value = ConnectionState.DISCONNECTED
+        connectMessage.value = com.aold.advers.ble.domain.models.ConnectionState.DISCONNECTED
         deviceDetails.value = emptyList()
         try {
             btGatt?.let { gatt ->

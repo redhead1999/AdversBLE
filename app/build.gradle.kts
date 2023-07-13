@@ -131,6 +131,10 @@ android {
 
         implementation(Dependencies.AndroidX.core)
 
+        //Modules
+        implementation(project(":bluetooth"))
+        androidTestImplementation (project (":sharedTest"))
+
         //Room
         implementation(Dependencies.Room.room_runtime)
         implementation(Dependencies.Room.room_ktx)
@@ -138,16 +142,6 @@ android {
         kapt(Dependencies.Room.room_test)
         androidTestImplementation(Dependencies.Room.room_test)
         kaptAndroidTest(Dependencies.Room.room_compiler)
-
-//        val room_version = "2.5.2"
-//
-//        androidTestImplementation("androidx.room:room-testing:$room_version")
-//        kaptAndroidTest("androidx.room:room-compiler:$room_version")
-//        testImplementation("androidx.room:room-testing:$room_version")
-//        implementation("androidx.room:room-runtime:$room_version")
-//        implementation("androidx.room:room-ktx:$room_version")
-//        annotationProcessor("androidx.room:room-compiler:$room_version")
-//        kapt("androidx.room:room-compiler:$room_version")
 
         implementation(Dependencies.Koin.koin_android)
         implementation(Dependencies.Koin.koin_android_compat)
@@ -219,7 +213,7 @@ android {
         implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
         implementation("me.tankery.lib:circularSeekBar:1.4.2")
 
-        androidTestImplementation (project (":sharedTest"))
+
 
     }
 }

@@ -5,6 +5,7 @@ import com.aold.advers.ble.utils.bits
 import com.aold.advers.ble.utils.bitsToHex
 import com.aold.advers.ble.utils.toHex
 
+
 object Appearance : ParsableUuid("00002A01$UUID_DEFAULT".lowercase()) {
 
     override fun commands(param: Any?): Array<String> {

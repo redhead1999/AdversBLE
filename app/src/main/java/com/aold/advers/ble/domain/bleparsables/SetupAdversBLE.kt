@@ -3,7 +3,6 @@ package com.aold.advers.ble.domain.bleparsables
 import com.aold.advers.ble.domain.models.UUID_DEFAULT
 import com.aold.advers.ble.utils.toHex
 import timber.log.Timber
-import java.util.UUID
 
 
 object ADVERSBLEDOM : ParsableUuid("D973F2E1$UUID_DEFAULT".lowercase()) {

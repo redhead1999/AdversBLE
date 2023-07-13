@@ -4,12 +4,12 @@ import android.app.Application
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.le.BluetoothLeScanner
 import app.cash.turbine.test
-import com.aold.advers.ble.domain.interfaces.IAnalytics
 import com.aold.advers.ble.domain.models.ConnectionState
 import com.aold.advers.ble.domain.models.ScanFilterOption
 import com.aold.advers.ble.domain.usecases.ParseScanResult
 import com.aold.advers.ble.handlers.BleGatt
 import com.aold.advers.ble.handlers.BleManager
+import com.aold.advers.ble.interfaces.IAnalytics
 import com.aold.advers.ble.local.BleRepository
 import com.aold.advers.ble.presentation.previewparams.deviceDetail
 import com.aold.advers.ble.presentation.scan.ScanViewModel

@@ -1,5 +1,6 @@
 package com.aold.advers.ble.domain.javaconnect;
 
+
 import com.aold.advers.BuildConfig;
 
 /**

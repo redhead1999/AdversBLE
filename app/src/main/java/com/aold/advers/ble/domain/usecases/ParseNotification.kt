@@ -8,10 +8,10 @@ import timber.log.Timber
 class ParseNotification() {
 
     operator fun invoke(
-        deviceDetails: List<DeviceService>,
+        deviceDetails: List<com.aold.advers.ble.domain.models.DeviceService>,
         characteristic: BluetoothGattCharacteristic,
         value: ByteArray
-    ): List<DeviceService> {
+    ): List<com.aold.advers.ble.domain.models.DeviceService> {
 
         val newList = deviceDetails.map { svc ->
             svc.copy(characteristics =

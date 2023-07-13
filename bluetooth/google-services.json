@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "618075605074",
+    "project_id": "adversble",
+    "storage_bucket": "adversble.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618075605074:android:7c857cf3b9e5fe360f778b",
+        "android_client_info": {
+          "package_name": "com.aold.advers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "618075605074-26li7beutg59b424uv6i61qj986sf3iq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSzaaayDBnljLHRAcaysSMdWVTnJaWJ7Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "618075605074-26li7beutg59b424uv6i61qj986sf3iq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

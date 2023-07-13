@@ -9,10 +9,10 @@ import timber.log.Timber
 class ParseRead() {
 
     operator fun invoke(
-        deviceDetails: List<DeviceService>,
+        deviceDetails: List<com.aold.advers.ble.domain.models.DeviceService>,
         characteristic: BluetoothGattCharacteristic,
         status: Int
-    ): List<DeviceService> {
+    ): List<com.aold.advers.ble.domain.models.DeviceService> {
 
         if (status == BluetoothGatt.GATT_SUCCESS) {
 

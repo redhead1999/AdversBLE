@@ -3,7 +3,7 @@ package com.aold.advers.ble.domain
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.aold.advers.ble.domain.interfaces.IBleRepository
+import com.aold.advers.ble.interfaces.IBleRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -31,6 +31,7 @@ class DeleteNotSeenWorker(
     }
 
     private val array: IntArray = intArrayOf(0xFFFF0000.toInt())
+
     fun valsToPacket(
         isSetter: Boolean,
         typeParam: IntArray,

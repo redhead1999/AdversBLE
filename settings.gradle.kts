@@ -1,5 +1,8 @@
+
+
 pluginManagement {
-    repositories {
+
+        repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
@@ -18,3 +21,4 @@ dependencyResolutionManagement {
 rootProject.name = "AdversBLE"
 include(":app")
 include(":sharedTest")
+include(":bluetooth")

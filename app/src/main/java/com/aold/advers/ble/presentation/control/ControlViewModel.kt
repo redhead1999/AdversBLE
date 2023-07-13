@@ -5,10 +5,10 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aold.advers.ble.domain.bleparsables.ADVERSBLEDOM
-import com.aold.advers.ble.domain.interfaces.IBleRepository
 import com.aold.advers.ble.domain.models.ConnectionState
 import com.aold.advers.ble.domain.models.ControlState
 import com.aold.advers.ble.handlers.BleGatt
+import com.aold.advers.ble.interfaces.IBleRepository
 import com.aold.advers.ble.local.entities.ScannedDevice
 import com.aold.advers.ble.utils.decodeHex
 import com.aold.advers.ble.utils.toHex2

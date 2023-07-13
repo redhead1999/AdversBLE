@@ -5,7 +5,7 @@ import android.bluetooth.BluetoothAdapter
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
 import android.bluetooth.le.ScanSettings
-import com.aold.advers.ble.domain.interfaces.IBleRepository
+import com.aold.advers.ble.interfaces.IBleRepository
 import com.aold.advers.ble.domain.usecases.ParseScanResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +17,7 @@ import timber.log.Timber
 class BleManager(
     private val bleRepository: IBleRepository,
     private val scope: CoroutineScope,
-    private val parseScanResult: ParseScanResult,
+    private val parseScanResult: com.aold.advers.ble.domain.usecases.ParseScanResult,
 
     ) : KoinComponent {
 

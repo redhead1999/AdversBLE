@@ -2,7 +2,7 @@ package com.aold.advers.ble.di
 
 import android.app.Application
 import androidx.room.Room
-import com.aold.advers.ble.domain.interfaces.IBleRepository
+import com.aold.advers.ble.interfaces.IBleRepository
 import com.aold.advers.ble.local.BleDao
 import com.aold.advers.ble.local.BleDatabase
 import com.aold.advers.ble.local.BleRepository

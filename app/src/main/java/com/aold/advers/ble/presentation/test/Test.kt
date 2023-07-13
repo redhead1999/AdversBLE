@@ -59,9 +59,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
@@ -70,14 +68,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.aold.advers.R
 import com.aold.advers.ble.domain.models.AppDestinations.SETTINGS
+import com.aold.advers.ble.domain.models.AppDestinations.TIMERS
 import com.aold.advers.ble.presentation.components.BasicBackTopAppBar
-import com.aold.advers.ble.presentation.components.TopAppBarWithCentralImage
-import com.aold.advers.ble.presentation.test.components.CustomCircularProgressIndicator
 import com.aold.advers.ble.presentation.theme.pagerHeaders
 import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo
-import com.aold.advers.presentation.components.charts.TemperatureChart
-import com.aold.advers.presentation.components.charts.VoltageChart
-import com.aold.advers.presentation.components.picker.PickerExample
+import com.aold.advers.ble.presentation.components.charts.TemperatureChart
+import com.aold.advers.ble.presentation.components.charts.VoltageChart
+import com.aold.advers.ble.presentation.components.picker.PickerExample
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.datetime.time.timepicker
@@ -247,7 +244,34 @@ fun TestScreen(
                             }
                         }
                     }
+
+                    var isVisibleVoltageChart by remember {
+                        mutableStateOf(false)
+                    }
+
+                    var isVisibleTemperatureChart by remember {
+                        mutableStateOf(false)
+                    }
+
+                    var isVisibleHistoryLog by remember {
+                        mutableStateOf(false)
+                    }
+
+                    AnimatedVisibility(isVisibleVoltageChart) {
+                        VoltageChart(modifier = Modifier
+                            .width(300.dp)
+                            .height(150.dp))
+                    }
+                    AnimatedVisibility(isVisibleTemperatureChart) {
+                        TemperatureChart(modifier = Modifier
+                            .width(300.dp)
+                            .height(150.dp))
+                    }
+
                     Box(contentAlignment = Alignment.TopCenter) {
+                        val isShowing = remember { mutableStateOf(false) }
+                        val context = LocalContext.current
+
                         Row(
                             horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier
@@ -261,8 +285,8 @@ fun TestScreen(
                                     .width(140.dp)
                                     .height(60.dp),
                                 contentPadding = PaddingValues(15.dp),
-                                onClick = {
-                                    timeDialogState.show()
+                                    onClick = {
+                                        isVisibleTemperatureChart = !isVisibleTemperatureChart
                                 }) {
                                 Icon(
                                     painter = painterResource(id = R.drawable.termo),
@@ -281,10 +305,11 @@ fun TestScreen(
                                     .height(60.dp),
                                 contentPadding = PaddingValues(15.dp),
                                 onClick = {
-                                    navController.navigate(SETTINGS) {
-                                        launchSingleTop = true
-                                        restoreState = true
-                                    }
+                                        isVisibleVoltageChart = !isVisibleVoltageChart
+//                                    navController.navigate(SETTINGS) {
+//                                        launchSingleTop = true
+//                                        restoreState = true
+//                                    }
                                 }) {
                                 Icon(
                                     painter = painterResource(id = R.drawable.light),
@@ -369,7 +394,11 @@ fun TestScreen(
                                     .width(90.dp)
                                     .height(75.dp),
                                 onClick = {
-                                    isVisibleVoltageChart = !isVisibleVoltageChart
+                                    Toast.makeText(
+                                        context,
+                                        "Команда отправлена",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
                             ) {
                                 Column(
@@ -378,10 +407,11 @@ fun TestScreen(
                                     horizontalAlignment = Alignment.CenterHorizontally
                                 ) {
                                     Icon(
-                                        painter = painterResource(id = R.drawable.black_btn_voltage),
+                                        painter = painterResource(id = R.drawable.air),
                                         contentDescription = null,
                                         tint = Color.White// decorative element
                                     )
+                                    Text(text = "Подогрев")
                                 }
                             }
 //
@@ -392,7 +422,10 @@ fun TestScreen(
                                     .width(90.dp)
                                     .height(75.dp),
                                 onClick = {
-                                    isVisibleTemperatureChart = !isVisibleTemperatureChart
+                                    navController.navigate(TIMERS) {
+                                        launchSingleTop = true
+                                        restoreState = true
+                                    }
                                 }) {
                                 Column(
                                     modifier = Modifier.fillMaxSize(),
@@ -400,11 +433,12 @@ fun TestScreen(
                                     horizontalAlignment = Alignment.CenterHorizontally
                                 ) {
                                     Icon(
-                                        painter = painterResource(id = R.drawable.termo),
+                                        painter = painterResource(id = R.drawable.timer),
                                         contentDescription = null, // decorative element
                                         tint = Color.White
                                     )
                                     Spacer(modifier = Modifier.height(2.dp))
+                                    Text(text = "Таймеры")
                                 }
                             }
                             Button(
@@ -427,6 +461,7 @@ fun TestScreen(
                                         tint = Color.White
                                     )
                                     Spacer(modifier = Modifier.height(2.dp))
+                                    Text(text = "История")
                                 }
                             }
                         }
