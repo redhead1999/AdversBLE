@@ -11,11 +11,11 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
 import com.aold.advers.ble.presentation.MainActivity
-import com.aold.advers.ble.domain.interfaces.IBleRepository
 import com.aold.advers.ble.domain.models.ConnectionState
 import com.aold.advers.ble.domain.models.ScanFilterOption
 import com.aold.advers.ble.handlers.BleGatt
 import com.aold.advers.ble.handlers.BleManager
+import com.aold.advers.ble.interfaces.IBleRepository
 import com.aold.advers.ble.presentation.previewparams.deviceDetail
 import com.aold.advers.di.endtoend.endToEndModule
 import com.aold.advers.sharedtest.deviceList

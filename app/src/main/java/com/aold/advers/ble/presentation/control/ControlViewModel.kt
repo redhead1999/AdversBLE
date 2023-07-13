@@ -28,6 +28,7 @@ class ControlViewModel(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
+    //переход на контроль
     val address: String = checkNotNull(savedStateHandle[ADDRESS])
 
     private val _selectedDevice = MutableStateFlow<ScannedDevice?>(null)

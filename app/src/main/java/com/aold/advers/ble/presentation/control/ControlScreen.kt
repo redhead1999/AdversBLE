@@ -101,6 +101,8 @@ fun ControlScreen(
                                 .background(MaterialTheme.colorScheme.secondaryContainer)
                         ) {
 
+                            //debug
+
                             BasicBackTopAppBar(
                                 appLayoutInfo = appLayoutInfo,
                                 onBackClicked = onBackClicked,
