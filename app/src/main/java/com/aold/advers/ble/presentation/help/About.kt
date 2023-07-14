@@ -74,7 +74,6 @@ import com.aold.advers.ble.presentation.previewparams.LandscapeLayouts
 import com.aold.advers.ble.presentation.previewparams.LandscapeListParams
 import com.aold.advers.ble.presentation.previewparams.PortraitLayouts
 import com.aold.advers.ble.presentation.previewparams.PortraitListParams
-import com.aold.advers.ble.presentation.settings.displayVersion
 import com.aold.advers.ble.presentation.theme.AdversBleTheme
 import com.aold.advers.ble.presentation.theme.pagerHeaders
 import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo

@@ -33,7 +33,8 @@ import com.aold.advers.ble.presentation.timers.extension.vectorToBitmap
 /**
  * @author Kirilin Yury on 13.07.2023.
  */
-class NotifyWork(context: Context, params: WorkerParameters) : Worker(context, params) {
+
+class TimerWorker(val context: Context, val params: WorkerParameters) : Worker(context, params){
 
     override fun doWork(): Result {
         val id = inputData.getLong(NOTIFICATION_ID, 0).toInt()
@@ -51,7 +52,7 @@ class NotifyWork(context: Context, params: WorkerParameters) : Worker(context, p
         val notificationManager =
             applicationContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
-        val bitmap = applicationContext.vectorToBitmap(R.drawable.ic_launcher)
+        val bitmap = applicationContext.vectorToBitmap(R.drawable.ic_done_white_24dp)
         val titleNotification = applicationContext.getString(R.string.app_name)
         val subtitleNotification = applicationContext.getString(R.string.app_name)
         val pendingIntent = if (SDK_INT >= S) {
@@ -60,7 +61,7 @@ class NotifyWork(context: Context, params: WorkerParameters) : Worker(context, p
             getActivity(applicationContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         }
         val notification = NotificationCompat.Builder(applicationContext, NOTIFICATION_CHANNEL)
-            .setLargeIcon(bitmap).setSmallIcon(R.drawable.ic_launcher)
+            .setLargeIcon(bitmap).setSmallIcon(R.drawable.ic_done_white_24dp)
             .setContentTitle(titleNotification).setContentText(subtitleNotification)
             .setDefaults(DEFAULT_ALL).setContentIntent(pendingIntent).setAutoCancel(true)
 

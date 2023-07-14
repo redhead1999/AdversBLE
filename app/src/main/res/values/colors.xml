@@ -11,6 +11,8 @@
     <color name="background_dark">#201A1B</color>
     <color name="notification_icon">#0D91DA</color>
 
+    <color name="colorNull">#fafafa</color>
+
     <color name="gray">#AAFFFFFF</color>
     <color name="light_gray">#55FFFFFF</color>
 

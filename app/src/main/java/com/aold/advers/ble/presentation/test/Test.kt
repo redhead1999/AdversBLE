@@ -585,50 +585,7 @@ fun TestScreen(
 //                            }
 //                        }
 //                    }
-                    MaterialDialog(
-                        dialogState = dateDialogState,
-                        buttons = {
-                            positiveButton(text = "Ok") {
-                                Toast.makeText(
-                                    context,
-                                    "Clicked ok",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                            negativeButton(text = "Cancel")
-                        }
-                    ) {
-                        datepicker(
-                            initialDate = LocalDate.now(),
-                            title = "Pick a date",
-                            allowedDateValidator = {
-                                it.dayOfMonth % 2 == 1
-                            }
-                        ) {
-                            pickedDate = it
-                        }
-                    }
-                    MaterialDialog(
-                        dialogState = timeDialogState,
-                        buttons = {
-                            positiveButton(text = "Ok") {
-                                Toast.makeText(
-                                    context,
-                                    "Clicked ok",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                            negativeButton(text = "Cancel")
-                        }
-                    ) {
-                        timepicker(
-                            initialTime = LocalTime.NOON,
-                            title = "Pick a time",
-                            timeRange = LocalTime.MIDNIGHT..LocalTime.NOON
-                        ) {
-                            pickedTime = it
-                        }
-                    }
+
                 }
             }
         }

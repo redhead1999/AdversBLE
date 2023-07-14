@@ -209,6 +209,8 @@ android {
         //NordicLib
         implementation(Dependencies.Nordic.nordic)
 
+        implementation("com.github.commandiron:WheelPickerCompose:1.1.11")
+
         //Old but gold
         implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
         implementation("me.tankery.lib:circularSeekBar:1.4.2")
@@ -219,6 +221,7 @@ android {
 }
 dependencies {
     implementation("androidx.test:runner:1.5.2")
+    implementation("com.google.android.material:material:1.9.0")
 }
 
 
