@@ -1,10 +1,8 @@
 package com.aold.advers.ble.presentation.settings
 
-import android.content.Intent
-import android.net.Uri
-import androidx.compose.foundation.Image
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.scaleIn
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,27 +17,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
-import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Shapes
+import androidx.compose.material3.Slider
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Switch
@@ -48,29 +39,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalConsumer
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.aold.advers.BuildConfig
 import com.aold.advers.R
 import com.aold.advers.ble.presentation.components.BasicBackTopAppBar
+import com.aold.advers.ble.presentation.components.charts.VoltageChart
 import com.aold.advers.ble.presentation.previewparams.FeatureParams
 import com.aold.advers.ble.presentation.previewparams.LandscapeLayouts
 import com.aold.advers.ble.presentation.previewparams.LandscapeListParams
@@ -78,16 +64,16 @@ import com.aold.advers.ble.presentation.previewparams.PortraitLayouts
 import com.aold.advers.ble.presentation.previewparams.PortraitListParams
 import com.aold.advers.ble.presentation.theme.AdversBleTheme
 import com.aold.advers.ble.presentation.theme.appBarTitle
-import com.aold.advers.ble.presentation.theme.pagerHeaders
 import com.aold.advers.ble.utils.windowinfo.AppLayoutInfo
-import com.aold.advers.ble.presentation.components.dialog.AgreementAlertDialog
-import com.aold.advers.ble.presentation.components.dialog.InfoAlertDialog
+import com.commandiron.wheel_picker_compose.WheelDatePicker
+import com.commandiron.wheel_picker_compose.WheelTimePicker
+import com.commandiron.wheel_picker_compose.core.TimeFormat
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Settings(
     appLayoutInfo: AppLayoutInfo,
-    onBackClicked: () -> Unit
+    onBackClicked: () -> Unit,
 ) {
 
     val appSnackBarHostState = remember { SnackbarHostState() }
@@ -178,7 +164,7 @@ fun Settings(
     fun LegalStuff(
         privacyPolicyLink: String,
         termsLink: String,
-        uriHandler: UriHandler
+        uriHandler: UriHandler,
     ) {
 
         val annotatedString = buildAnnotatedString {
@@ -240,7 +226,8 @@ fun Settings(
                 }
             })
     }
-    }
+}
+
 @Composable
 fun WorkTimeOptionsUI() {
     Column(
@@ -255,147 +242,9 @@ fun WorkTimeOptionsUI() {
             modifier = Modifier
                 .padding(vertical = 8.dp)
         )
-        GeneralSettingItem(
-            icon = R.drawable.ic_add,
-            mainText = "Неограниченное время работы",
-            subText = "Customize notifications",
-            onClick = {}
-        )
-        GeneralSettingItem(
-            icon = R.drawable.ic_more,
-            mainText = "Задать время",
-            subText = "Customize it more to fit your usage",
-            onClick = {}
-        )
-//        GeneralSettingItem()
-    }
-}
-
-@Composable
-fun HeaterAndPreheaterOptionsUI() {
-    Column(
-        modifier = Modifier
-            .padding(horizontal = 14.dp)
-            .padding(top = 10.dp)
-    ) {
-        Text(
-            text = "Подогреватель и догреватель",
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(vertical = 8.dp)
-        )
-        SupportItem(
-            icon = R.drawable.ic_add,
-            mainText = "Автоматический догреватель",
-            onClick = {}
-        )
-        SupportItem(
-            icon = R.drawable.ic_add,
-            mainText = "Температура догревателя",
-            onClick = {}
-        )
-        SupportItem(
-            icon = R.drawable.ic_add,
-            mainText = "Температура подогревателя",
-            onClick = {}
-        )
-    }
-}
-
-@Composable
-fun PumpAndHeaterOptionsUI() {
-    Column(
-        modifier = Modifier
-            .padding(horizontal = 14.dp)
-            .padding(top = 10.dp)
-    ) {
-        Text(
-            text = "Помпа и отопление",
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(vertical = 8.dp)
-        )
-        GeneralSettingItem(
-            icon = R.drawable.ic_add,
-            mainText = "Неограниченное время работы",
-            subText = "Customize notifications",
-            onClick = {}
-        )
-        GeneralSettingItem(
-            icon = R.drawable.ic_more,
-            mainText = "Задать время",
-            subText = "Customize it more to fit your usage",
-            onClick = {}
-        )
-//        GeneralSettingItem()
-    }
-}
-
-@Composable
-fun SystemOptionsUi() {
-    Column(
-        modifier = Modifier
-            .padding(horizontal = 14.dp)
-            .padding(top = 10.dp)
-    ) {
-        Text(
-            text = "Система",
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(vertical = 8.dp)
-        )
-        SystemSettingItem(
-            deviceNameText = "Имя устройства",
-            serialNumberText = "Серийный номер",
-            softVerionText =  "Версия ПО",
-            allWorkTimeText = "Общее время работы",
-            onClick = {}
-        )
-    }
-}
-
-@Composable
-fun HeaterOptionsUi() {
-    Column(
-        modifier = Modifier
-            .padding(horizontal = 14.dp)
-            .padding(top = 10.dp)
-    ) {
-        Text(
-            text = "Подогреватель",
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(vertical = 8.dp)
-        )
-        HeaterSettingItem(
-            deviceNameText = "Внешнее управление",
-            serialNumberText = "Температура",
-            softVerionText =  "Формат времени",
-            onClick = {}
-        )
-//        GeneralSettingItem()
-    }
-}
-
-@Composable
-fun RemoteDeviceControlOptionsUi() {
-    Column(
-        modifier = Modifier
-            .padding(horizontal = 14.dp)
-            .padding(top = 10.dp)
-    ) {
-        Text(
-            text = "Устройство дистанционного управления",
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(vertical = 8.dp)
-        )
-        RemoteControlItem(
+        WorkTimeSettingItem(
+            unlimitedWork = "Неограниченное время работы",
+            setTime = "Время: ",
             onClick = {}
         )
 //        GeneralSettingItem()
@@ -404,66 +253,7 @@ fun RemoteDeviceControlOptionsUi() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GeneralSettingItem(icon: Int, mainText: String, subText: String, onClick: () -> Unit) {
-    Card(
-        onClick = { onClick() },
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
-        modifier = Modifier
-            .padding(bottom = 8.dp)
-            .fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-    ) {
-        Row(
-            modifier = Modifier.padding(vertical = 10.dp, horizontal = 14.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Box(
-                    modifier = Modifier
-                        .size(34.dp)
-                        .background(Color.Red)
-                ) {
-                    Icon(
-                        painter = painterResource(id = icon),
-                        contentDescription = "",
-                        tint = Color.Unspecified,
-                        modifier = Modifier.padding(8.dp)
-                    )
-                }
-
-                Spacer(modifier = Modifier.width(14.dp))
-                Column(
-                    modifier = Modifier.offset(y = (2).dp)
-                ) {
-                    Text(
-                        text = mainText,
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Bold,
-                    )
-
-                    Text(
-                        text = subText,
-                        color = Color.Gray,
-                        fontSize = 10.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        modifier = Modifier.offset(y = (-4).dp)
-                    )
-                }
-            }
-            Icon(
-                painter = painterResource(id = R.drawable.ic_add),
-                contentDescription = "",
-                modifier = Modifier.size(16.dp)
-            )
-
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun SystemSettingItem(deviceNameText: String, serialNumberText: String, softVerionText: String, allWorkTimeText: String, onClick: () -> Unit) {
+fun WorkTimeSettingItem(unlimitedWork: String, setTime: String, onClick: () -> Unit) {
     Card(
         onClick = { onClick() },
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
@@ -484,6 +274,451 @@ fun SystemSettingItem(deviceNameText: String, serialNumberText: String, softVeri
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = unlimitedWork,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        val checkedState = remember { mutableStateOf(true) }
+                        Switch(
+                            modifier = Modifier.scale(0.7f),
+                            checked = checkedState.value,
+                            onCheckedChange = { checkedState.value = it }
+                        )
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = setTime,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+
+                        var isVisibleTimePicker by remember {
+                            mutableStateOf(false)
+                        }
+
+                        AnimatedVisibility(isVisibleTimePicker) {
+                                WheelTimePicker(
+                                    timeFormat = TimeFormat.AM_PM
+                                ) { snappedTime -> }
+                        }
+
+                        IconButton(onClick = {
+                            isVisibleTimePicker = !isVisibleTimePicker
+                        }) {
+                            Icon(
+                                imageVector = Icons.Default.ArrowDropDown,
+                                contentDescription = "Set time"
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@Composable
+fun HeaterAndPreheaterOptionsUI() {
+    Column(
+        modifier = Modifier
+            .padding(horizontal = 14.dp)
+            .padding(top = 10.dp)
+    ) {
+        Text(
+            text = "Подогреватель и догреватель",
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(vertical = 8.dp)
+        )
+        HeaterAndPreheaterItem(
+            autoHeater = "Автоматический догреватель",
+            temperatureReheater = "Температура догревателя",
+            temperatureHeater = "Температура подогревателя",
+            onClick = {}
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun HeaterAndPreheaterItem(
+    autoHeater: String,
+    temperatureHeater: String,
+    temperatureReheater: String,
+    onClick: () -> Unit,
+) {
+    Card(
+        onClick = { onClick() },
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
+        modifier = Modifier
+            .padding(bottom = 8.dp)
+            .fillMaxWidth(),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+    ) {
+        Row(
+            modifier = Modifier.padding(vertical = 10.dp, horizontal = 4.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Spacer(modifier = Modifier.width(14.dp))
+                Column(
+                    modifier = Modifier.offset(y = (2).dp)
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = autoHeater,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        val checkedState = remember { mutableStateOf(true) }
+                        Switch(
+                            modifier = Modifier.scale(0.7f),
+                            checked = checkedState.value,
+                            onCheckedChange = { checkedState.value = it }
+                        )
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = temperatureHeater,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Text(
+                            text = "1.0",
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    }
+                    SliderExample()
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = temperatureReheater,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Text(
+                            text = "1.0",
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    }
+                    SliderExample()
+                }
+            }
+        }
+    }
+}
+
+
+@Composable
+fun PumpAndHeaterOptionsUI() {
+    Column(
+        modifier = Modifier
+            .padding(horizontal = 14.dp)
+            .padding(top = 10.dp)
+    ) {
+        Text(
+            text = "Помпа и отопление",
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(vertical = 8.dp)
+        )
+        PumpAndHeaterItem(
+            standbyMode = "Работа помпы в ждущем режиме",
+            enginePump = "Работа помпы с двигателем",
+            cabinHeater = "Работа отопителя салона",
+            temperatureOnCabinHeater = "Температура включения отопителя салона",
+            onClick = {}
+        )
+    }
+}
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PumpAndHeaterItem(
+    standbyMode: String,
+    enginePump: String,
+    cabinHeater: String,
+    temperatureOnCabinHeater: String,
+    onClick: () -> Unit,
+) {
+    Card(
+        onClick = { onClick() },
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
+        modifier = Modifier
+            .padding(bottom = 8.dp)
+            .fillMaxWidth(),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+    ) {
+        Row(
+            modifier = Modifier.padding(vertical = 10.dp, horizontal = 4.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Spacer(modifier = Modifier.width(14.dp))
+                Column(
+                    modifier = Modifier.offset(y = (2).dp)
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = standbyMode,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        val checkedState = remember { mutableStateOf(true) }
+                        Switch(
+                            modifier = Modifier.scale(0.7f),
+                            checked = checkedState.value,
+                            onCheckedChange = { checkedState.value = it }
+                        )
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = enginePump,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        val checkedState = remember { mutableStateOf(true) }
+                        Switch(
+                            modifier = Modifier.scale(0.7f),
+                            checked = checkedState.value,
+                            onCheckedChange = { checkedState.value = it }
+                        )
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = cabinHeater,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        val checkedState = remember { mutableStateOf(true) }
+                        Switch(
+                            modifier = Modifier.scale(0.7f),
+                            checked = checkedState.value,
+                            onCheckedChange = { checkedState.value = it }
+                        )
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = temperatureOnCabinHeater,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Text(
+                            text = "1.0",
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    }
+                    SliderExample()
+                }
+            }
+        }
+    }
+}
+
+
+
+@Composable
+fun HeaterOptionsUi() {
+    Column(
+        modifier = Modifier
+            .padding(horizontal = 14.dp)
+            .padding(top = 10.dp)
+    ) {
+        Text(
+            text = "Подогреватель",
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(vertical = 8.dp)
+        )
+        HeaterSettingItem(
+            deviceNameText = "Имя устройства",
+            serialNumberText = "Серийный номер",
+            softVerionText = "Версия ПО",
+            allWorkTimeText = "Общее время работы",
+            onClick = {}
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SystemSettingItem(
+    remoteControl: String,
+    chooseTemperature: String,
+    timeFormat: String,
+    onClick: () -> Unit,
+) {
+    Card(
+        onClick = { onClick() },
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
+        modifier = Modifier
+            .padding(bottom = 8.dp)
+            .fillMaxWidth(),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+    ) {
+        Row(
+            modifier = Modifier.padding(vertical = 10.dp, horizontal = 4.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Spacer(modifier = Modifier.width(14.dp))
+                Column(
+                    modifier = Modifier.offset(y = (2).dp)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = remoteControl,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        val checkedState = remember { mutableStateOf(true) }
+                        Switch(
+                            modifier = Modifier.scale(0.7f),
+                            checked = checkedState.value,
+                            onCheckedChange = { checkedState.value = it }
+                        )
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = chooseTemperature,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Text(
+                            text = "1.0",
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = timeFormat,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Text(
+                            text = "1.0",
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@Composable
+fun SystemOptionsUi() {
+    Column(
+        modifier = Modifier
+            .padding(horizontal = 14.dp)
+            .padding(top = 10.dp)
+    ) {
+        Text(
+            text = "Система",
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(vertical = 8.dp)
+        )
+        SystemSettingItem(
+            remoteControl = "Внешнее управление",
+            chooseTemperature = "Температура",
+            timeFormat = "Формат времени",
+            onClick = {}
+        )
+//        GeneralSettingItem()
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun HeaterSettingItem(
+    deviceNameText: String,
+    serialNumberText:  String,
+    softVerionText: String,
+    allWorkTimeText: String,
+    onClick: () -> Unit,
+) {
+    Card(
+        onClick = { onClick() },
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
+        modifier = Modifier
+            .padding(bottom = 8.dp)
+            .fillMaxWidth(),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+    ) {
+        Row(
+            modifier = Modifier.padding(vertical = 10.dp, horizontal = 4.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Spacer(modifier = Modifier.width(14.dp))
+                Column(
+                    modifier = Modifier.offset(y = (2).dp)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(
@@ -551,77 +786,25 @@ fun SystemSettingItem(deviceNameText: String, serialNumberText: String, softVeri
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
-fun HeaterSettingItem(deviceNameText: String, serialNumberText: String, softVerionText: String, onClick: () -> Unit) {
-    Card(
-        onClick = { onClick() },
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
+fun RemoteDeviceControlOptionsUi() {
+    Column(
         modifier = Modifier
-            .padding(bottom = 8.dp)
-            .fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+            .padding(horizontal = 14.dp)
+            .padding(top = 10.dp)
     ) {
-        Row(
-            modifier = Modifier.padding(vertical = 10.dp, horizontal = 4.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Spacer(modifier = Modifier.width(14.dp))
-                Column(
-                    modifier = Modifier.offset(y = (2).dp)
-                ) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = deviceNameText,
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            text = "1.0",
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold,
-                        )
-                    }
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = serialNumberText,
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            text = "1.0",
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold,
-                        )
-                    }
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = softVerionText,
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            text = "1.0",
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold,
-                        )
-                    }
-                }
-            }
-        }
+        Text(
+            text = "Устройство дистанционного управления",
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(vertical = 8.dp)
+        )
+        RemoteControlItem(
+            onClick = {}
+        )
+//        GeneralSettingItem()
     }
 }
 
@@ -643,11 +826,12 @@ fun RemoteControlItem(onClick: () -> Unit) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Spacer(modifier = Modifier.width(14.dp))
                 Column(
                     modifier = Modifier.offset(y = (2).dp)
                 ) {
-                    Button(onClick = { /*TODO*/ }) {
+                    Button(
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = { /*TODO*/ }) {
                         Text(text = "Проверить обновления")
                     }
                 }
@@ -656,60 +840,26 @@ fun RemoteControlItem(onClick: () -> Unit) {
     }
 }
 
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SupportItem(icon: Int, mainText: String, onClick: () -> Unit) {
-    Card(
-        onClick = { onClick() },
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimary),
-        modifier = Modifier
-            .padding(bottom = 8.dp)
-            .fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-    ) {
-        Row(
-            modifier = Modifier.padding(vertical = 10.dp, horizontal = 14.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Box(
-                    modifier = Modifier
-                        .size(34.dp)
-                        .background(Color.Red)
-                ) {
-                    Icon(
-                        painter = painterResource(id = icon),
-                        contentDescription = "",
-                        tint = Color.Unspecified,
-                        modifier = Modifier.padding(8.dp)
-                    )
-                }
-
-                Spacer(modifier = Modifier.width(14.dp))
-
-                Text(
-                    text = mainText,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-            }
-            Icon(
-                painter = painterResource(id = R.drawable.ic_add),
-                contentDescription = "",
-                modifier = Modifier.size(16.dp)
-            )
-
-        }
-    }
+fun SliderExample() {
+    var position by remember { mutableStateOf(0f) }
+    Slider(
+        modifier = Modifier.padding(20.dp),
+        value = position,
+        onValueChange = { position = it },
+        valueRange = 0f..10f,
+        onValueChangeFinished = {
+            // do something
+        },
+        steps = 15,
+    )
 }
+
+
 @PortraitLayouts
 @Composable
 fun PreviewPortraitAbout(
-    @PreviewParameter(PortraitListParams::class) featureParams: FeatureParams
+    @PreviewParameter(PortraitListParams::class) featureParams: FeatureParams,
 ) {
     AdversBleTheme() {
         Settings(appLayoutInfo = featureParams.appLayoutInfo) {
@@ -720,7 +870,7 @@ fun PreviewPortraitAbout(
 @LandscapeLayouts
 @Composable
 fun PreviewLandscapeAbout(
-    @PreviewParameter(LandscapeListParams::class) featureParams: FeatureParams
+    @PreviewParameter(LandscapeListParams::class) featureParams: FeatureParams,
 ) {
     AdversBleTheme() {
         Settings(appLayoutInfo = featureParams.appLayoutInfo) {

@@ -193,7 +193,7 @@ fun TestScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Top
                 ) {
-                    Box(
+                    Box(modifier = Modifier.height(100.dp),
                         contentAlignment = Alignment.TopCenter
                     ) {
                         Row(
@@ -268,10 +268,12 @@ fun TestScreen(
                             .height(150.dp))
                     }
 
-                    Box(contentAlignment = Alignment.TopCenter) {
+                    Box(
+                        modifier = Modifier.height(150.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
                         val isShowing = remember { mutableStateOf(false) }
                         val context = LocalContext.current
-
                         Row(
                             horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier
